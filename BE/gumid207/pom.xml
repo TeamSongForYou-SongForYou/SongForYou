@@ -191,6 +191,12 @@
 			<artifactId>querydsl-jpa</artifactId>
 			<!-- <version>${querydsl.version}</version> -->
 		</dependency>
+		
+		<dependency>
+		    <groupId>com.zeoflow</groupId>
+		    <artifactId>jx</artifactId>
+		    <version>1.2.1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
