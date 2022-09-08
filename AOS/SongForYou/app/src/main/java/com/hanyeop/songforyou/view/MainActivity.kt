@@ -1,4 +1,4 @@
-package com.hanyeop.songforyou.view.main
+package com.hanyeop.songforyou.view
 
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
