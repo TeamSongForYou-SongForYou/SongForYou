@@ -2,4 +2,14 @@
     <string name="app_name">SongForYou</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="login_title">Song For You</string>
+    <string name="login_hint_id">ID</string>
+    <string name="login_hint_password">PASSWORD</string>
+    <string name="auto_login">자동 로그인</string>
+    <string name="find_password">비밀번호 찾기</string>
+    <string name="common_login">로그인</string>
+    <string name="google_login">구글로 로그인하기</string>
+    <string name="sign_up">회원가입</string>
+
 </resources>
