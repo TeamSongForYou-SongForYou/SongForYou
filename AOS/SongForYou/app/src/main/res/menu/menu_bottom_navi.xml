@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/HomeFragment"
+        android:icon="@drawable/home"
+        android:title=""
+        android:enabled="true"/>
+
+    <item android:id="@+id/ShowOthersFragment"
+        android:icon="@drawable/others"
+        android:title=""
+        android:enabled="true" />
+
+    <item android:id="@+id/blank"
+        android:title=""
+        android:enabled="false"/>
+
+    <item android:id="@+id/PlayListFragment"
+        android:icon="@drawable/list"
+        android:title=""
+        android:enabled="true" />
+
+    <item android:id="@+id/MyPageFragment"
+        android:icon="@drawable/mypage"
+        android:title=""
+        android:enabled="true" />
+
+</menu>
