@@ -68,5 +68,7 @@
     <color name="md_theme_dark_surfaceTint">#ADC6FF</color>
     <color name="md_theme_dark_surfaceTintColor">#ADC6FF</color>
     <color name="CustomColor1">#4285F4</color>
-    <color name="light_grey">#808080</color>
+    <color name="light_grey">#FFb6b6b9</color>
+    <!--id 입력 박스 텍스트-->Titan White
+    <color name="bombay">#FFb6b6b9</color>
 </resources>
