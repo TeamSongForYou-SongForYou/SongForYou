@@ -4,7 +4,7 @@ import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseFragment
 import com.hanyeop.songforyou.databinding.FragmentMusicSearchBinding
 
-class MusicSearchFragment : BaseFragment<FragmentMusicSearchBinding>(R.layout.fragment_music_search) {
+class SongSearchFragment : BaseFragment<FragmentMusicSearchBinding>(R.layout.fragment_song_search) {
     override fun init() {
 
     }
