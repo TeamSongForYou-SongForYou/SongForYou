@@ -6,6 +6,6 @@ import com.hanyeop.songforyou.databinding.FragmentShowOthersBinding
 
 class ShowOthersFragment : BaseFragment<FragmentShowOthersBinding>(R.layout.fragment_show_others) {
     override fun init() {
-        
+
     }
 }

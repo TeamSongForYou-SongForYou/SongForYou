@@ -12,121 +12,28 @@
         android:layout_height="match_parent"
         tools:context=".view.main.MainActivity">
 
-        <TextView
-            android:id="@+id/tv_login_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
-            android:textColor="@color/md_theme_light_primary"
-            android:text="@string/login_title"
-            android:layout_marginTop="80dp"
-            app:layout_constraintStart_toStartOf="parent"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_container_view"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            app:navGraph="@navigation/nav_main" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_login_id"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/login_hint_id"
-            app:endIconMode="clear_text"
-            android:layout_marginTop="100dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            app:layout_constraintStart_toStartOf="parent"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_view"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_login_title"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_login_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_login_password"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/login_hint_password"
-            app:endIconMode="password_toggle"
-            android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="@id/tf_login_id"
-            app:layout_constraintEnd_toEndOf="@id/tf_login_id"
-            app:layout_constraintTop_toBottomOf="@+id/tf_login_id"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_login_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <CheckBox
-            android:id="@+id/cb_auto_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/auto_login"
-            style="@style/Widget.Material3.CompoundButton.CheckBox"
-            app:layout_constraintStart_toStartOf="@id/tf_login_id"
-            app:layout_constraintTop_toBottomOf="@id/tf_login_password"
-            />
-
-        <Button
-            android:id="@+id/btn_find_password"
-            style="@style/Widget.Material3.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/find_password"
-            app:layout_constraintEnd_toEndOf="@id/tf_login_password"
-            app:layout_constraintTop_toBottomOf="@id/tf_login_password"
-            />
-
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:textSize="16sp"
-            android:text="@string/common_login"
-            android:layout_marginTop="40dp"
-            app:layout_constraintStart_toStartOf="@id/tf_login_id"
-            app:layout_constraintEnd_toEndOf="@id/tf_login_id"
-            app:layout_constraintTop_toBottomOf="@id/btn_find_password"
-            />
-
-        <Button
-            android:id="@+id/btn_google_login"
-            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/google_login"
-            app:icon="@drawable/ic_google_logo"
-            app:iconGravity="textStart"
-            app:iconTint="@null"
-            android:layout_marginTop="3dp"
-            app:layout_constraintStart_toStartOf="@id/btn_login"
-            app:layout_constraintEnd_toEndOf="@id/btn_login"
-            app:layout_constraintTop_toBottomOf="@id/btn_login"
-            />
-
-        <Button
-            android:id="@+id/btn_signup"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/sign_up"
-            android:layout_marginTop="3dp"
-            app:layout_constraintStart_toStartOf="@id/btn_google_login"
-            app:layout_constraintEnd_toEndOf="@id/btn_google_login"
-            app:layout_constraintTop_toBottomOf="@id/btn_google_login"
-            />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/menu_bottom_navi"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
