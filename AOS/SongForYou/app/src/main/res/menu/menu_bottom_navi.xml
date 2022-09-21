@@ -15,7 +15,7 @@
         android:enabled="false"/>
 
     <item android:id="@+id/PlayListFragment"
-        android:icon="@drawable/ic_locker_gray"
+        android:icon="@drawable/locker_grey"
         android:title=""
         android:enabled="true" />
 

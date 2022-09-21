@@ -37,6 +37,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginHorizontal="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -95,7 +96,8 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_chart"
                     android:paddingBottom="12dp"
-                    android:background="@drawable/btn_stroke_lightgrey"/>
+                    android:background="@drawable/btn_stroke_lightgrey"
+                    android:elevation="10dp"/>
 
                 <TextView
                     android:id="@+id/tv_genre"

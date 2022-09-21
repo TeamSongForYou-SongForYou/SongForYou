@@ -31,9 +31,9 @@
             android:layout_height="56dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/menu_bottom_navi"/>
+            app:menu="@menu/menu_bottom_navi" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
