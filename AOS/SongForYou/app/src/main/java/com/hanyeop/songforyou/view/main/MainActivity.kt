@@ -12,6 +12,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private lateinit var navController : NavController
 
+    //test
     override fun init() {
         initNavigation()
     }
