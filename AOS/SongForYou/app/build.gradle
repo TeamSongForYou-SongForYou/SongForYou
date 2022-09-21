@@ -86,6 +86,7 @@ dependencies {
     // Horizon
     implementation 'com.yalantis:eqwaves:1.0.1'
 
+    implementation files('libs/libDaumMapAndroid.jar')
 
     // SimpleRatingBar
     implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'

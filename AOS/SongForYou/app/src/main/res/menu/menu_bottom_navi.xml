@@ -5,7 +5,7 @@
         android:title=""
         android:enabled="true"/>
 
-    <item android:id="@+id/ShowOthersFragment"
+    <item android:id="@+id/KaraokeFragment"
         android:icon="@drawable/ic_show_gray"
         android:title=""
         android:enabled="true" />
