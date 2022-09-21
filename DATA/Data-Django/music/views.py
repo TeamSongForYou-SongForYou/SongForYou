@@ -10,18 +10,26 @@ import pandas as pd
 import sklearn
 import os
 
+# from urllib.request import urlopen
+import urllib.request
+
 # Create your views here.
-@ api_view(['GET'])
+@ api_view(['POST'])
 def record(request,userSeq):
     # 나의 노래 분석
     # 오디오 파일 가져와서 분석
     # -> 성공하면 분석결과 테이블에 저장하고 true 반환
     # -> 실패하면 false 반환
+    # 오디오 파일 삭제
 
-    song_path = 'music\music\임영웅-무지개.wav'
+    # 오디오 s3 주소
+    # 오디오 저장
+    song_url = request.data.get('url')
+    save_name = 'music\music\my.wav'
+    urllib.request.urlretrieve(song_url,save_name)
 
-    # 오디오 파일이 없으면 false
-    if not (os.path.isfile(song_path)):
+    # 오디오 파일이 저장이 안되면 false
+    if not (os.path.isfile(save_name)):
         result = {
             'success' : 'false'
         }
@@ -29,7 +37,7 @@ def record(request,userSeq):
     data = {}
     data['user_pk'] = userSeq
     # 노래 음원
-    y,sr = librosa.load(song_path)
+    y,sr = librosa.load(save_name)
     # 템포
     tempo, _ = librosa.beat.beat_track(y, sr=sr)
     data['tempo'] = tempo
@@ -63,6 +71,8 @@ def record(request,userSeq):
         result = {
             'success' : 'true',
         }
+        # 오디오 파일 삭제
+        os.remove(save_name)
         return Response(result)
         
 
