@@ -31,9 +31,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ssafy</groupId>
-	<artifactId>gumid101</artifactId>
+	<artifactId>gumid207</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>gumid101</name>
+	<name>gumid207</name>
 	<description>common project</description>
 	<properties>
 		<java.version>1.8</java.version>
