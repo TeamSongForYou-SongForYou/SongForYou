@@ -80,6 +80,11 @@ dependencies {
     // PowerSpinner
     implementation "com.github.skydoves:powerspinner:1.2.3"
 
+    // Lottie
+    implementation 'com.airbnb.android:lottie:3.5.0'
+
+    // Horizon
+    implementation 'com.yalantis:eqwaves:1.0.1'
 
 
     // SimpleRatingBar
