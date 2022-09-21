@@ -43,6 +43,9 @@ public class Song {
 	@Column(name = "song_thumbnail_url")
 	private String thumbnailUrl;
 	
+	@Column(name = "song_youtube_url")
+	private String youtubeUrl;
+	
 	@Column(name = "song_reg_time")
 	private LocalDateTime regTime;
 
