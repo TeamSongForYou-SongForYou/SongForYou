@@ -76,8 +76,12 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.0-rc01"
 
+
     // PowerSpinner
     implementation "com.github.skydoves:powerspinner:1.2.3"
 
 
+
+    // SimpleRatingBar
+    implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
 }
