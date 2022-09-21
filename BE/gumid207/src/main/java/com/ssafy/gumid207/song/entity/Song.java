@@ -24,7 +24,6 @@ import lombok.AccessLevel;
 public class Song {
 	
 	@Id 
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "song_seq")
 	private Long songSeq;
 	
