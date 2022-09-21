@@ -80,7 +80,7 @@ dependencies {
     // PowerSpinner
     implementation "com.github.skydoves:powerspinner:1.2.3"
 
-
+    implementation files('libs/libDaumMapAndroid.jar')
 
     // SimpleRatingBar
     implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
