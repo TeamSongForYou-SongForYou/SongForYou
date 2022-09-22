@@ -3,11 +3,17 @@ package com.hanyeop.songforyou.view.main.karaoke
 import android.content.Context
 import android.location.Location
 import android.location.LocationManager
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivityKaraokeBinding
+import com.hanyeop.songforyou.model.response.Place
+import com.hanyeop.songforyou.model.response.ResultSearchKeyword
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -20,7 +26,7 @@ class KaraokeActivity : BaseActivity<ActivityKaraokeBinding>(R.layout.activity_k
     override fun init() {
         startTracking()
 
-
+        initViewModelCallback()
     }
 
     private fun startTracking(){
@@ -43,5 +49,32 @@ class KaraokeActivity : BaseActivity<ActivityKaraokeBinding>(R.layout.activity_k
         marker.markerType = MapPOIItem.MarkerType.BluePin
         marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin
         binding.layoutMap.addPOIItem(marker)
+    }
+
+    private fun initViewModelCallback(){
+        lifecycleScope.launch {
+            karaokeViewModel.karaokeList.collectLatest {
+                addItemsAndMarkers(it)
+            }
+        }
+    }
+
+    // 검색 결과 처리 함수
+    private fun addItemsAndMarkers(searchResult: List<Place>) {
+        if (searchResult.isNotEmpty()) {
+            binding.layoutMap.removeAllPOIItems() // 지도의 마커 모두 제거
+            for (document in searchResult) {
+            // 지도에 마커 추가
+                val point = MapPOIItem()
+                point.apply {
+                    itemName = document.place_name
+                    mapPoint = MapPoint.mapPointWithGeoCoord(document.y.toDouble(),
+                        document.x.toDouble())
+                    markerType = MapPOIItem.MarkerType.BluePin
+                    selectedMarkerType = MapPOIItem.MarkerType.RedPin
+                }
+                binding.layoutMap.addPOIItem(point)
+            }
+        }
     }
 }
