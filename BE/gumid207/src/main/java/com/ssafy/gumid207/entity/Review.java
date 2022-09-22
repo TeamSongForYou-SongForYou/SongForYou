@@ -39,15 +39,15 @@ public class Review {
 
 	@OneToOne
 	@JoinColumn(name = "user_seq", nullable = false)
-	private Long userSeq;
+	private User userSeq;
 
 	@ManyToOne
 	@JoinColumn(name = "karaoke_seq", nullable = false)
-	private Long karaokeSeq;
+	private Karaoke karaokeSeq;
 
 	@OneToOne
 	@JoinColumn(name = "file_seq", nullable = false)
-	private Long fileSeq;
+	private File fileSeq;
 
 	@Column(name = "review_price", nullable = true)
 	private String reviewPrice;
