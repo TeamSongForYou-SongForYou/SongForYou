@@ -1,4 +1,4 @@
-package com.hanyeop.songforyou.view.main.karaoke
+package com.hanyeop.songforyou.view.karaoke
 
 import android.content.Context
 import android.location.Location

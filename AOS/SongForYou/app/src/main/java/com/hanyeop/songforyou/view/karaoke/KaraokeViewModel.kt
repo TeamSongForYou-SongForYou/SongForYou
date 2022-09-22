@@ -1,4 +1,4 @@
-package com.hanyeop.songforyou.view.main.karaoke
+package com.hanyeop.songforyou.view.karaoke
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
