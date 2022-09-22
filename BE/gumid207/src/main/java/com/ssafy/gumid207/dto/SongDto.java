@@ -56,6 +56,7 @@ public class SongDto implements Serializable {
 		}
 		return new SongDtoBuilder() //
 				.songSeq(song.getSongSeq()) //
+				.songTitle(song.getTitle()) //
 				.songArtistName(song.getArtistName()) //
 				.songGenre(song.getGenre()) //
 				.songYoutubeUrl(song.getYoutubeUrl()) //

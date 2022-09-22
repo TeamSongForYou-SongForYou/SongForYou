@@ -15,14 +15,15 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-
-import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter
+@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "t_user")
 public class User {
@@ -32,33 +33,57 @@ public class User {
 	@Column(name = "user_seq")
 	private Long userSeq;
 	
-	@Column(name = "user_nickname", unique = true)
+	@Column(name = "user_nickname", unique = true, nullable = false)
 	private String nickName;
 	
-	@Column(name = "user_point")
+	@Column(name = "user_point", nullable = true)
 	private Integer point;
 	
-	@Column(name = "user_id", unique = true)
+	@Column(name = "user_id", unique = true, nullable = false)
 	private String id;
 	
-	@Column(name = "user_pass")
+	@Column(name = "user_pass", nullable = true)
 	private String pass;
 	
-	@OneToOne
-	@JoinColumn(name = "user_profile_img_seq")
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_profile_img_seq", nullable = true)
 	private File profileImgSeq; 
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_voice_file_seq", nullable = true)
+	private File voiceFileSeq; 
 	
-	@Column(name = "user_birthday")
+	@Column(name = "user_birthday", nullable = true)
 	private Integer birthday;
 	
-	@Column(name = "user_gender")
+	@Column(name = "user_gender", nullable = true)
 	private String gender;
 	
-	@Column(name = "user_fcm_token")
+	@Column(name = "user_fcm_token", nullable = true)
 	private String fcmToken;
+	
+	@Column(name = "user_email", nullable = true)
+	private String email;
 	
 	@Column(name = "user_reg_time")
 	private LocalDateTime regTime;
+
+
+	@Builder
+	public User(String nickName, String email, String id, String pass, Integer point, File profileImgSeq, Integer birthday, String gender,
+			String fcmToken, LocalDateTime regTime) {
+		this.nickName = nickName;
+		this.email = email;
+		this.id = id;
+		this.pass = pass;
+		this.point = point;
+		this.profileImgSeq = profileImgSeq;
+		this.birthday = birthday;
+		this.gender = gender;
+		this.fcmToken = fcmToken;
+		this.regTime = regTime;
+	}
+	
 	
 
 }

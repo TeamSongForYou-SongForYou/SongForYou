@@ -5,9 +5,12 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -22,31 +25,28 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "t_file")
-public class File {
+@AllArgsConstructor
+@Builder
+@Table(name = "t_user_vote")
+public class UserVote {
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "file_seq")
-	private Long fileSeq;
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "user_vote_seq")
+	private Long userVoteSeq;
 	
-	@Column(name = "file_original_name", nullable = false)
-	private String originalName;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "vote_seq", nullable = false)
+	private File voteSeq;
 	
-	@Column(name = "file_saved_name", nullable = false)
-	private String savedName;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_seq", nullable = false)
+	private User userSeq;
 	
-	@Column(name = "file_saved_path", nullable = false)
-	private String savedPath;
-	
-	@Column(name = "file_type", nullable = false)
-	private String type;
-
 	@CreatedDate
-	@Column(name = "file_reg_time")
-	private LocalDateTime regTime;
+	@Column(name = "user_vote_reg_time")
+	private LocalDateTime userVoteRegTime;
 
 }

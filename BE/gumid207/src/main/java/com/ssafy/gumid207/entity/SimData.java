@@ -1,7 +1,5 @@
 package com.ssafy.gumid207.entity;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -10,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.AllArgsConstructor;
@@ -26,27 +23,20 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "t_file")
-public class File {
+@Table(name = "t_sim_data")
+public class SimData {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "file_seq")
-	private Long fileSeq;
+	@Column(name = "sim_data_seq")
+	private Long simDataSeq;
 	
-	@Column(name = "file_original_name", nullable = false)
-	private String originalName;
+	@Column(name = "sim_data_mysong", nullable = false)
+	private Long simDataMysong;
 	
-	@Column(name = "file_saved_name", nullable = false)
-	private String savedName;
+	@Column(name = "sim_data_targetsong", nullable = false)
+	private Long simDataTargetsong;
 	
-	@Column(name = "file_saved_path", nullable = false)
-	private String savedPath;
-	
-	@Column(name = "file_type", nullable = false)
-	private String type;
-
-	@CreatedDate
-	@Column(name = "file_reg_time")
-	private LocalDateTime regTime;
+	@Column(name = "sim_data_similarity", nullable = false)
+	private Double simDataSimilarity;
 
 }
