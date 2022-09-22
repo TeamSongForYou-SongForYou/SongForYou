@@ -21,12 +21,12 @@ import lombok.extern.slf4j.Slf4j;
 @Api(tags = "보관함 컨트롤러")
 public class SongBoxRestController {
 	
-	private final SongBoxService settingServ;
+	private final SongBoxService songBoxServ;
 	
 	@ApiParam(value = "곡 정보 반환")
 	@GetMapping(value = "/{songSeq}")
 	public ResponseEntity<?> getUserSetting(@PathVariable Long songSeq) throws Exception{
-		return new ResponseEntity<>(new ResponseFrame<>(true, settingServ.getUserSetting(songSeq), 1, "곡 정보를 반환합니다."), HttpStatus.OK);
+		return new ResponseEntity<>(new ResponseFrame<>(true, songBoxServ.getUserSetting(songSeq), 1, "곡 정보를 반환합니다."), HttpStatus.OK);
 	}
 	
 //	@ApiParam(value = "유저 환경정보 세팅 (넣은 정보만 변경, null인 정보는 유지)")
