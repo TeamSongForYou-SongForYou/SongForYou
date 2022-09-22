@@ -8,8 +8,11 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.AllArgsConstructor;
@@ -21,30 +24,26 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "t_file")
-public class File {
+@AllArgsConstructor
+@Builder
+@Table(name = "t_karaoke")
+public class Karaoke {
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "file_seq")
-	private Long fileSeq;
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "karaoke_seq")
+	private Long karaokeSeq;
+
+	@Column(name="karaoke_name")
+	private String karaoke_name;
 	
-	@Column(name = "file_original_name")
-	private String originalName;
+	@Column(name="karaoke_address")
+	private String karaoke_address;
 	
-	@Column(name = "file_saved_name")
-	private String savedName;
-	
-	@Column(name = "file_saved_path")
-	private String savedPath;
-	
-	@Column(name = "file_type")
-	private String type;
-	
-	@Column(name = "file_reg_time")
-	private LocalDateTime regTime;
+	@CreatedDate
+	@Column(name = "karaoke_reg_time")
+	private LocalDateTime karaokeRegTime;
 
 }
