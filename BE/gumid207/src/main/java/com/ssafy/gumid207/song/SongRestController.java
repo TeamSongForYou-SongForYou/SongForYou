@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/song")
 @RequiredArgsConstructor
 @Slf4j
-@Api(tags = "보관함 컨트롤러")
+@Api(tags = "노래 정보 컨트롤러")
 public class SongRestController {
 	
 	private final SongService songServ;
