@@ -12,6 +12,51 @@
         android:layout_height="match_parent"
         tools:context=".view.audio.AudioRecordActivity">
 
+        <com.hanyeop.songforyou.view.audio.SoundVisualizerView
+            android:id="@+id/soundVisualizerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@id/recordTimeTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/resetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RESET"
+            app:layout_constraintBottom_toBottomOf="@+id/recordButton"
+            app:layout_constraintEnd_toStartOf="@+id/recordButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/recordButton"
+            tools:ignore="HardcodedText" />
+
+        <com.hanyeop.songforyou.view.audio.CountUpView
+            android:id="@+id/recordTimeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="00:00"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/recordButton"
+            app:layout_constraintLeft_toLeftOf="@id/recordButton"
+            app:layout_constraintRight_toRightOf="@id/recordButton"
+            tools:ignore="HardcodedText" />
+
+        <com.hanyeop.songforyou.view.audio.RecordButton
+            android:id="@+id/recordButton"
+            android:layout_width="100dp"
+            tools:src="@drawable/ic_recorde"
+            android:scaleType="fitCenter"
+            android:padding="25dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
