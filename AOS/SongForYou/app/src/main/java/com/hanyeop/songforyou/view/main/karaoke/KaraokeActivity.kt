@@ -3,14 +3,13 @@ package com.hanyeop.songforyou.view.main.karaoke
 import android.content.Context
 import android.location.Location
 import android.location.LocationManager
-import android.widget.Toast
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivityKaraokeBinding
 import com.hanyeop.songforyou.model.response.Place
-import com.hanyeop.songforyou.model.response.ResultSearchKeyword
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -22,6 +21,8 @@ import net.daum.mf.map.api.MapView
 class KaraokeActivity : BaseActivity<ActivityKaraokeBinding>(R.layout.activity_karaoke) {
 
     private val karaokeViewModel by viewModels<KaraokeViewModel>()
+
+    private val eventListener = MarkerEventListener()   // 마커 클릭 이벤트 리스너
 
     override fun init() {
         startTracking()
@@ -38,17 +39,10 @@ class KaraokeActivity : BaseActivity<ActivityKaraokeBinding>(R.layout.activity_k
         // 경도 , 위도
         val uLongitude = userNowLocation?.longitude
         val uLatitude = userNowLocation?.latitude
-        val uNowPosition = MapPoint.mapPointWithGeoCoord(uLatitude!!, uLongitude!!)
 
         karaokeViewModel.getSearchKeyword("노래방", uLongitude.toString(), uLatitude.toString())
 
-        // 현 위치에 마커 찍기
-        val marker = MapPOIItem()
-        marker.itemName = "현 위치"
-        marker.mapPoint = uNowPosition
-        marker.markerType = MapPOIItem.MarkerType.BluePin
-        marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin
-        binding.layoutMap.addPOIItem(marker)
+        binding.layoutMap.setPOIItemEventListener(eventListener)
     }
 
     private fun initViewModelCallback(){
@@ -68,6 +62,7 @@ class KaraokeActivity : BaseActivity<ActivityKaraokeBinding>(R.layout.activity_k
                 val point = MapPOIItem()
                 point.apply {
                     itemName = document.place_name
+                    userObject = document
                     mapPoint = MapPoint.mapPointWithGeoCoord(document.y.toDouble(),
                         document.x.toDouble())
                     markerType = MapPOIItem.MarkerType.BluePin
@@ -75,6 +70,32 @@ class KaraokeActivity : BaseActivity<ActivityKaraokeBinding>(R.layout.activity_k
                 }
                 binding.layoutMap.addPOIItem(point)
             }
+        }
+    }
+
+    // 마커 클릭 이벤트 리스너
+    inner class MarkerEventListener: MapView.POIItemEventListener {
+        override fun onPOIItemSelected(mapView: MapView?, poiItem: MapPOIItem?) {
+            // 마커 클릭 시
+            val curItem = poiItem!!.userObject as Place
+            binding.apply {
+                tvKaraokeName.text = curItem.place_name
+                tvAddress.text = curItem.road_address_name
+                tvNumber.text = curItem.address_name
+                tvDistance.text = "${curItem.distance}m"
+            }
+        }
+
+        override fun onCalloutBalloonOfPOIItemTouched(mapView: MapView?, poiItem: MapPOIItem?) {
+            // 말풍선 클릭 시 (Deprecated)
+        }
+
+        override fun onCalloutBalloonOfPOIItemTouched(mapView: MapView?, poiItem: MapPOIItem?, buttonType: MapPOIItem.CalloutBalloonButtonType?) {
+            // 말풍선 클릭 시
+        }
+
+        override fun onDraggablePOIItemMoved(mapView: MapView?, poiItem: MapPOIItem?, mapPoint: MapPoint?) {
+            // 마커의 속성 중 isDraggable = true 일 때 마커를 이동시켰을 경우
         }
     }
 }
