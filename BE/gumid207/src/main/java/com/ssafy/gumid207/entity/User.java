@@ -1,16 +1,20 @@
-package com.ssafy.gumid207.user.entity;
+package com.ssafy.gumid207.entity;
 
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -37,8 +41,12 @@ public class User {
 	@Column(name = "user_id", unique = true)
 	private String id;
 	
-//	@Column(name = "user_profile_img_seq")
-//	private Integer 
+	@Column(name = "user_pass")
+	private String pass;
+	
+	@OneToOne
+	@JoinColumn(name = "user_profile_img_seq")
+	private File profileImgSeq; 
 	
 	@Column(name = "user_birthday")
 	private Integer birthday;
