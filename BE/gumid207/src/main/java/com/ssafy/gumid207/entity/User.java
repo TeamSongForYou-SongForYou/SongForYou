@@ -1,4 +1,4 @@
-package com.ssafy.gumid207.user.entity;
+package com.ssafy.gumid207.entity;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +15,6 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.ssafy.gumid207.file.entity.File;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -41,6 +40,9 @@ public class User {
 	
 	@Column(name = "user_id", unique = true)
 	private String id;
+	
+	@Column(name = "user_pass")
+	private String pass;
 	
 	@OneToOne
 	@JoinColumn(name = "user_profile_img_seq")

@@ -1,4 +1,4 @@
-package com.ssafy.gumid207.file.entity;
+package com.ssafy.gumid207.entity;
 
 import java.time.LocalDateTime;
 
