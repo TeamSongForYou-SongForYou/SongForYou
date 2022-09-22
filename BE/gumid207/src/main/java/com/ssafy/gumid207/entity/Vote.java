@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -29,24 +29,37 @@ import lombok.Setter;
 @EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor
 @Builder
-@Table(name = "t_dislike")
-public class Dislike {
+@Table(name = "t_vote")
+public class Vote {
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "dislike_seq")
-	private Long dislikeSeq;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="song_seq", nullable = false)
-	private Song song;
+	@Column(name = "vote_seq")
+	private Long voteSeq;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_seq", nullable = false)
-	private User user;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "vote_img_seq", nullable = true)
+	private File voteImgSeq;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "vote_user_seq", nullable = false)
+	private User voteUserSeq;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "vote_competition_seq", nullable = false)
+	private Competition voteCompetitionSeq;
 
+	@Column(name = "vote_file_type", nullable = false)
+	private String voteFileType;
+
+	@Column(name = "vote_item_title", nullable = false)
+	private String voteItemTitle;
+
+	@Column(name = "vote_point", nullable = false)
+	private Integer votePoint;
+	
 	@CreatedDate
-	@Column(name = "dislike_reg_time")
-	private LocalDateTime dislikeRegTime;
+	@Column(name = "vote_reg_time")
+	private LocalDateTime voteRegTime;
 
 }

@@ -22,31 +22,29 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "t_file")
-public class File {
+@AllArgsConstructor
+@Builder
+@Table(name = "t_notification")
+public class Notification {
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "file_seq")
-	private Long fileSeq;
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "notification_seq")
+	private Long notificationSeq;
 	
-	@Column(name = "file_original_name", nullable = false)
-	private String originalName;
+	@Column(name = "notification_title", nullable = false)
+	private String notificationTitle;
+
+	@Column(name = "notification_content", nullable = false)
+	private String notificationContent;
 	
-	@Column(name = "file_saved_name", nullable = false)
-	private String savedName;
-	
-	@Column(name = "file_saved_path", nullable = false)
-	private String savedPath;
-	
-	@Column(name = "file_type", nullable = false)
-	private String type;
+	@Column(name = "notification_fcm_token", nullable = false)
+	private String notificationFcmToken;
 
 	@CreatedDate
-	@Column(name = "file_reg_time")
-	private LocalDateTime regTime;
+	@Column(name = "notification_reg_time")
+	private LocalDateTime notificationRegTime;
 
 }

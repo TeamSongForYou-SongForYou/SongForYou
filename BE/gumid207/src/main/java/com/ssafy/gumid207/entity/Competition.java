@@ -5,9 +5,12 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -26,22 +29,26 @@ import lombok.Setter;
 @EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor
 @Builder
-@Table(name = "t_karaoke")
-public class Karaoke {
+@Table(name = "t_competition")
+public class Competition {
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "karaoke_seq")
-	private Long karaokeSeq;
-
-	@Column(name="karaoke_name", nullable = false)
-	private String karaoke_name;
+	@Column(name = "competition_seq")
+	private Long competitionSeq;
 	
-	@Column(name="karaoke_address", nullable = false)
-	private String karaoke_address;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "song_seq", nullable = false)
+	private Song song;
+
+	@Column(name = "competition_expiry_date", nullable = false)
+	private LocalDateTime competitionExpiryDate;
+
+	@Column(name = "competition_end_date", nullable = false)
+	private LocalDateTime competitionEndDate;
 	
 	@CreatedDate
-	@Column(name = "karaoke_reg_time")
-	private LocalDateTime karaokeRegTime;
+	@Column(name = "competition_reg_time")
+	private LocalDateTime competitionRegTime;
 
 }
