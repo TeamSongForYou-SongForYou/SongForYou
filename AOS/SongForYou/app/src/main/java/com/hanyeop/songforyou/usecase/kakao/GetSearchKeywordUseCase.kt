@@ -8,5 +8,5 @@ import javax.inject.Singleton
 class GetSearchKeywordUseCase @Inject constructor(
     private val kakaoRepository: KakaoRepository
 ) {
-    fun execute(query: String) = kakaoRepository.getSearchKeyword(query)
+    fun execute(query: String, x: String, y: String) = kakaoRepository.getSearchKeyword(query, x, y)
 }

@@ -15,9 +15,9 @@ class KaraokeViewModel @Inject constructor(
     private val getSearchKeywordUseCase: GetSearchKeywordUseCase,
 ): ViewModel() {
 
-    fun getSearchKeyword(query: String){
+    fun getSearchKeyword(query: String, x: String, y: String){
         viewModelScope.launch(Dispatchers.IO) {
-            getSearchKeywordUseCase.execute(query).collectLatest {
+            getSearchKeywordUseCase.execute(query, x, y).collectLatest {
                 Log.d("test5", "getSearchKeyword: $it")
             }
         }

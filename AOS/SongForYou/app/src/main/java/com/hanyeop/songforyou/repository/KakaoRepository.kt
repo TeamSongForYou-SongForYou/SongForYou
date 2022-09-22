@@ -13,9 +13,9 @@ import javax.inject.Singleton
 class KakaoRepository @Inject constructor(
     private val kakaoRemoteDataSource: KakaoRemoteDataSource
 ) {
-    fun getSearchKeyword(query: String): Flow<ResultType<ResultSearchKeyword>> = flow {
+    fun getSearchKeyword(query: String, x: String, y: String): Flow<ResultType<ResultSearchKeyword>> = flow {
         emit(ResultType.Loading)
-        kakaoRemoteDataSource.getSearchKeyword(query).collect {
+        kakaoRemoteDataSource.getSearchKeyword(query, x, y).collect {
             if(it.meta.total_count == 0){
                 emit(ResultType.Empty)
             }else{

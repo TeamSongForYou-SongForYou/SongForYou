@@ -11,7 +11,7 @@ import javax.inject.Singleton
 class KakaoRemoteDataSource @Inject constructor(
     private val kakaoAPI: KakaoApi
 ) {
-    fun getSearchKeyword(query: String): Flow<ResultSearchKeyword> = flow {
-        emit(kakaoAPI.getSearchKeyword(query = query))
+    fun getSearchKeyword(query: String, x: String, y: String): Flow<ResultSearchKeyword> = flow {
+        emit(kakaoAPI.getSearchKeyword(query = query, x = x, y = y))
     }
 }

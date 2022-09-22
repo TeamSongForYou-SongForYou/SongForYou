@@ -10,6 +10,8 @@ interface KakaoApi {
     @GET("v2/local/search/keyword.json") // Keyword.json의 정보를 받아옴
     suspend fun getSearchKeyword(
         @Header("Authorization") apiKey: String = AUTH_HEADER,
-        @Query("query") query: String
+        @Query("query") query: String,
+        @Query("x") x: String,
+        @Query("y") y: String,
     ): ResultSearchKeyword
 }
