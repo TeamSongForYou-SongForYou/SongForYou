@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class KaraokeViewModel @Inject constructor(
-    private val getSearchKeywordUseCase: GetSearchKeywordUseCase
+    private val getSearchKeywordUseCase: GetSearchKeywordUseCase,
 ): ViewModel() {
 
     fun getSearchKeyword(query: String){

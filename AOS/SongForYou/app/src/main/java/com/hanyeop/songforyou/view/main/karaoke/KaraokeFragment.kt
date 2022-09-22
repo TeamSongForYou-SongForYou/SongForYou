@@ -7,7 +7,7 @@ import com.hanyeop.songforyou.databinding.FragmentKaraokeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import net.daum.mf.map.api.MapView
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class KaraokeFragment : BaseFragment<FragmentKaraokeBinding>(R.layout.fragment_karaoke) {
 
     private val karaokeViewModel by viewModels<KaraokeViewModel>()
@@ -15,11 +15,11 @@ class KaraokeFragment : BaseFragment<FragmentKaraokeBinding>(R.layout.fragment_k
     override fun init() {
         initMap()
 
-//        karaokeViewModel.getSearchKeyword("노래방")
+        karaokeViewModel.getSearchKeyword("노래방")
     }
 
     private fun initMap(){
-        val mapView = MapView(requireContext())
+        val mapView = MapView(requireActivity())
         binding.layoutMap.addView(mapView)
     }
 }

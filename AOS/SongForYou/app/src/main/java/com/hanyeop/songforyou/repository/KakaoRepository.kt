@@ -15,7 +15,7 @@ class KakaoRepository @Inject constructor(
 ) {
     fun getSearchKeyword(query: String): Flow<ResultType<ResultSearchKeyword>> = flow {
         emit(ResultType.Loading)
-        kakaoRemoteDataSource.getSearchKeyword(query = query).collect {
+        kakaoRemoteDataSource.getSearchKeyword(query).collect {
             if(it.meta.total_count == 0){
                 emit(ResultType.Empty)
             }else{
