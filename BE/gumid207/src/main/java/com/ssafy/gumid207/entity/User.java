@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -66,6 +67,23 @@ public class User {
 	
 	@Column(name = "user_reg_time")
 	private LocalDateTime regTime;
+
+
+	@Builder
+	public User(String nickName, String email, String id, String pass, Integer point, File profileImgSeq, Integer birthday, String gender,
+			String fcmToken, LocalDateTime regTime) {
+		this.nickName = nickName;
+		this.email = email;
+		this.id = id;
+		this.pass = pass;
+		this.point = point;
+		this.profileImgSeq = profileImgSeq;
+		this.birthday = birthday;
+		this.gender = gender;
+		this.fcmToken = fcmToken;
+		this.regTime = regTime;
+	}
+	
 	
 
 }
