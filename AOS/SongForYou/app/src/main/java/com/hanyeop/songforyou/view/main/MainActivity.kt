@@ -7,7 +7,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private lateinit var navController : NavController
