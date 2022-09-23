@@ -48,14 +48,24 @@
         <com.hanyeop.songforyou.view.audio.RecordButton
             android:id="@+id/recordButton"
             android:layout_width="100dp"
-            tools:src="@drawable/ic_recorde"
-            android:scaleType="fitCenter"
-            android:padding="25dp"
             android:layout_height="100dp"
             android:layout_marginBottom="50dp"
+            android:padding="25dp"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@drawable/ic_recorde" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/recordButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/recordButton"
+            app:layout_constraintTop_toTopOf="@+id/recordButton"
+            app:srcCompat="@drawable/stop" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

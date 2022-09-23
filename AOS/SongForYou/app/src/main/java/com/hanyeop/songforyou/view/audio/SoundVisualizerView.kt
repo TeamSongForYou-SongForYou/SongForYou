@@ -18,7 +18,7 @@ class SoundVisualizerView(
 
     // 계단화 방지 플레그 적용
     private val amplitudePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = context.getColor(R.color.purple_500)
+        color = context.getColor(R.color.CustomColor1)
         strokeWidth = LINE_WIDTH
         strokeCap = Paint.Cap.ROUND // 라인의 양 끄투머리 동그랗게
     }
