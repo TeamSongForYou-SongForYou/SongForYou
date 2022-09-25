@@ -8,6 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface UserApi {
@@ -32,16 +33,21 @@ interface UserApi {
     ): BaseResponse<String>
 
     // 닉네임 중복 검사
-//    @GET("/user/checknickname/{userNickname}")
-//    suspend fun chec
+    @GET("/user/checknickname/{userNickname}")
+    suspend fun checkNickname(
+        @Path("userNickname") userNickname: String
+    ): BaseResponse<String>
 
     // 이메일 인증번호 전송
-
-
-    // 이메일 인증번호 전송
-
+    @GET("/user/{userEmail}")
+    suspend fun emailAuth(
+        @Path("userEmail") userEmail: String
+    ): BaseResponse<String>
 
     // 비밀번호 찾기
-
+    @PUT("/user/findpassword/{userEmail}")
+    suspend fun findPassword(
+        @Body map: HashMap<String, String>
+    ): BaseResponse<String>
 
 }
