@@ -3,10 +3,8 @@ package com.hanyeop.songforyou.datasource
 import com.hanyeop.songforyou.api.UserApi
 import com.hanyeop.songforyou.base.BaseResponse
 import com.hanyeop.songforyou.model.dto.UserDto
-import com.hanyeop.songforyou.utils.JWT
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import retrofit2.http.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
