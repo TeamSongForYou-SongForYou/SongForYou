@@ -1,9 +1,6 @@
 package com.hanyeop.songforyou.di
 
-import com.hanyeop.songforyou.api.IbRecommendApi
-import com.hanyeop.songforyou.api.KakaoApi
-import com.hanyeop.songforyou.api.Oauth2Api
-import com.hanyeop.songforyou.api.UbRecommendApi
+import com.hanyeop.songforyou.api.*
 import com.hanyeop.songforyou.utils.BASE_URL
 import com.hanyeop.songforyou.utils.KAKAO_BASE_URL
 import dagger.Module
@@ -67,5 +64,12 @@ object RemoteDataModule {
     @Singleton
     fun provideUbRecommendApi(@Named("retrofit") retrofit: Retrofit): UbRecommendApi {
         return retrofit.create(UbRecommendApi::class.java)
+    }
+
+    // SbRecommendApi DI
+    @Provides
+    @Singleton
+    fun provideSbRecommendApi(@Named("retrofit") retrofit: Retrofit): SbRecommendApi {
+        return retrofit.create(SbRecommendApi::class.java)
     }
 }
