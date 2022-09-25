@@ -5,8 +5,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetgetIbRecommendMyListUseCase @Inject constructor(
+class GetIbRecommendMyListUseCase @Inject constructor(
     private val ibRecommendRepository: IbRecommendRepository
 ){
-    fun execute(dateLimit: Int) = ibRecommendRepository.getIbRecommendMyRecord(dateLimit)
+    fun execute() = ibRecommendRepository.getIbRecommendMyList()
 }

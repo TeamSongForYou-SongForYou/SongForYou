@@ -15,7 +15,7 @@ class IbRecommendRepository @Inject constructor(
     private val ibRecommendRemoteDataSource: IbRecommendRemoteDataSource
 ) {
 
-    fun getIbRecommendMyList(): Flow<ResultType<BaseResponse<RecommendResponse>>> = flow{
+    fun getIbRecommendMyList(): Flow<ResultType<BaseResponse<List<RecommendResponse>>>> = flow{
         emit(ResultType.Loading)
         ibRecommendRemoteDataSource.getIbRecommendMyList().collect{
             if(it.success){
@@ -28,7 +28,7 @@ class IbRecommendRepository @Inject constructor(
         emit(ResultType.Error(e))
     }
 
-    fun getIbRecommendMyRecord(dateLimit: Int): Flow<ResultType<BaseResponse<RecommendResponse>>> = flow{
+    fun getIbRecommendMyRecord(dateLimit: Int): Flow<ResultType<BaseResponse<List<RecommendResponse>>>> = flow{
         emit(ResultType.Loading)
         ibRecommendRemoteDataSource.getIbRecommendMyRecord(dateLimit).collect{
             if(it.success){

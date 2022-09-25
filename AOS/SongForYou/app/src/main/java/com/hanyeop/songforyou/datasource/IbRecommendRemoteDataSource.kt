@@ -13,11 +13,11 @@ class IbRecommendRemoteDataSource @Inject constructor(
     private val ibRecommendApi: IbRecommendApi
 ){
 
-    fun getIbRecommendMyList(): Flow<BaseResponse<RecommendResponse>> = flow{
+    fun getIbRecommendMyList(): Flow<BaseResponse<List<RecommendResponse>>> = flow{
         emit(ibRecommendApi.getIbRecommendMyList())
     }
 
-    fun getIbRecommendMyRecord(dateLimit: Int): Flow<BaseResponse<RecommendResponse>> = flow{
+    fun getIbRecommendMyRecord(dateLimit: Int): Flow<BaseResponse<List<RecommendResponse>>> = flow{
         emit(ibRecommendApi.getIbRecommendMyRecord(dateLimit))
     }
 }
