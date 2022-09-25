@@ -20,8 +20,8 @@ class UbRecommendRepository @Inject constructor(
         ubRecommendRemoteDataSource.getUbRecommendMySound().collect{
             if(it.success){
                 emit(ResultType.Success(it))
-            }else{
-
+            }else if(!it.success){
+                emit(ResultType.Fail(it))
             }
         }
     }.catch { e ->

@@ -20,8 +20,8 @@ class IbRecommendRepository @Inject constructor(
         ibRecommendRemoteDataSource.getIbRecommendMyList().collect{
             if(it.success){
                 emit(ResultType.Success(it))
-            }else{
-
+            }else if(!it.success){
+                emit(ResultType.Fail(it))
             }
         }
     }.catch { e ->
@@ -33,8 +33,8 @@ class IbRecommendRepository @Inject constructor(
         ibRecommendRemoteDataSource.getIbRecommendMyRecord(dateLimit).collect{
             if(it.success){
                 emit(ResultType.Success(it))
-            }else{
-
+            }else if(!it.success){
+                emit(ResultType.Fail(it))
             }
         }
     }.catch { e ->
@@ -46,8 +46,8 @@ class IbRecommendRepository @Inject constructor(
         ibRecommendRemoteDataSource.getIbRecommendBefore(SongSeq).collect{
             if(it.success){
                 emit(ResultType.Success(it))
-            }else{
-
+            }else if(!it.success){
+                emit(ResultType.Fail(it))
             }
         }
     }.catch { e ->

@@ -20,8 +20,8 @@ class SbRecommendRepository @Inject constructor(
         sbRecommendRemoteDataSource.getSbRecommend(genre, age, gender, weather).collect{
             if(it.success){
                 emit(ResultType.Success(it))
-            }else{
-
+            }else if(!it.success){
+                emit(ResultType.Fail(it))
             }
         }
     }.catch { e ->
@@ -33,8 +33,8 @@ class SbRecommendRepository @Inject constructor(
         sbRecommendRemoteDataSource.getSbRecommendRandom().collect{
             if(it.success){
                 emit(ResultType.Success(it))
-            }else{
-
+            }else if(!it.success){
+                emit(ResultType.Fail(it))
             }
         }
     }.catch { e ->
