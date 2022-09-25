@@ -16,5 +16,9 @@ class SbRecommendRemoteDataSource @Inject constructor(
     fun getSbRecommend(genre: String, age: Int, gender: String, weather: Int): Flow<BaseResponse<List<RecommendResponse>>> = flow{
         emit(sbRecommendApi.getSbRecommend(genre, age, gender, weather))
     }
+
+    fun getSbRecommendRandom(): Flow<BaseResponse<List<RecommendResponse>>> = flow{
+        emit(sbRecommendApi.getSbRecommendRandom())
+    }
 }
 
