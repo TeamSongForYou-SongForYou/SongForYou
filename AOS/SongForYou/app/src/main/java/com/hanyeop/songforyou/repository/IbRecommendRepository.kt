@@ -40,4 +40,17 @@ class IbRecommendRepository @Inject constructor(
     }.catch { e ->
         emit(ResultType.Error(e))
     }
+
+    fun getIbRecommendBefore(SongSeq: Int): Flow<ResultType<BaseResponse<List<RecommendResponse>>>> = flow{
+        emit(ResultType.Loading)
+        ibRecommendRemoteDataSource.getIbRecommendBefore(SongSeq).collect{
+            if(it.success){
+                emit(ResultType.Success(it))
+            }else{
+
+            }
+        }
+    }.catch { e ->
+        emit(ResultType.Error(e))
+    }
 }

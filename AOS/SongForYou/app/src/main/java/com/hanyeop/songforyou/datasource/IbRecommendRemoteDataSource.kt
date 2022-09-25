@@ -20,5 +20,9 @@ class IbRecommendRemoteDataSource @Inject constructor(
     fun getIbRecommendMyRecord(dateLimit: Int): Flow<BaseResponse<List<RecommendResponse>>> = flow{
         emit(ibRecommendApi.getIbRecommendMyRecord(dateLimit))
     }
+
+    fun getIbRecommendBefore(SongSeq: Int): Flow<BaseResponse<List<RecommendResponse>>> = flow{
+        emit(ibRecommendApi.getIbRecommendBefore(SongSeq))
+    }
 }
 
