@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.gumid207.dto.SongDto;
 import com.ssafy.gumid207.entity.Song;
+import com.ssafy.gumid207.song.SongRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 public class SongBoxServiceImpl implements SongBoxService {
-	private final SongBoxRepository songBoxRepo;
+	private final SongRepository songBoxRepo;
 
 	@Override
 	public SongDto getUserSetting(Long songSeq) throws Exception {

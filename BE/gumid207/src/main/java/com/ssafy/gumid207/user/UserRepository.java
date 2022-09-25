@@ -1,6 +1,5 @@
 package com.ssafy.gumid207.user;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,7 +10,7 @@ import com.ssafy.gumid207.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
-	
+	Optional<User> findByUserSeq(Long userSeq);
 	Optional<User> findById(String id);
 	Optional<User> findByNickName(String nickName);
 	Optional<User> findByEmail(String email); 

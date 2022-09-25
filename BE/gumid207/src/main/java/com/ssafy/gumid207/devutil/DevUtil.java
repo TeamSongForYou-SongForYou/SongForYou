@@ -2,6 +2,7 @@ package com.ssafy.gumid207.devutil;
 
 import java.time.LocalDateTime;
 
+import com.ssafy.gumid207.dto.UserDto;
 import com.ssafy.gumid207.entity.User;
 
 /**
@@ -9,7 +10,7 @@ import com.ssafy.gumid207.entity.User;
  *
  */
 public class DevUtil {
-	public static User getLoginUser() {
+	public static UserDto getLoginUser() {
 		User user = new User();
 		user.setBirthday(1996);
 		user.setGender("male");
@@ -19,6 +20,6 @@ public class DevUtil {
 		user.setPass("1234");
 		user.setRegTime(LocalDateTime.now());
 		
-		return user;
+		return UserDto.of(user);
 	}
 }
