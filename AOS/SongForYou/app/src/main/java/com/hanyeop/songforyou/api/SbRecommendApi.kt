@@ -1,7 +1,7 @@
 package com.hanyeop.songforyou.api
 
 import com.hanyeop.songforyou.base.BaseResponse
-import com.hanyeop.songforyou.model.response.RecommendResponse
+import com.hanyeop.songforyou.model.response.SongResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,9 +13,9 @@ interface SbRecommendApi {
         @Query ("age") age: Int,
         @Query ("gender") gender: String,
         @Query ("weather") weather: Int
-    ): BaseResponse<List<RecommendResponse>>
+    ): BaseResponse<List<SongResponse>>
 
     @GET("sb-recommend/random-list")
-    suspend fun getSbRecommendRandom(): BaseResponse<List<RecommendResponse>>
+    suspend fun getSbRecommendRandom(): BaseResponse<List<SongResponse>>
 
 }

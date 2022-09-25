@@ -2,7 +2,7 @@ package com.hanyeop.songforyou.repository
 
 import com.hanyeop.songforyou.base.BaseResponse
 import com.hanyeop.songforyou.datasource.SbRecommendRemoteDataSource
-import com.hanyeop.songforyou.model.response.RecommendResponse
+import com.hanyeop.songforyou.model.response.SongResponse
 import com.hanyeop.songforyou.utils.ResultType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -15,7 +15,7 @@ class SbRecommendRepository @Inject constructor(
     private val sbRecommendRemoteDataSource: SbRecommendRemoteDataSource
 ) {
 
-    fun getSbRecommend(genre: String, age: Int, gender: String, weather: Int): Flow<ResultType<BaseResponse<List<RecommendResponse>>>> = flow{
+    fun getSbRecommend(genre: String, age: Int, gender: String, weather: Int): Flow<ResultType<BaseResponse<List<SongResponse>>>> = flow{
         emit(ResultType.Loading)
         sbRecommendRemoteDataSource.getSbRecommend(genre, age, gender, weather).collect{
             if(it.success){
@@ -28,7 +28,7 @@ class SbRecommendRepository @Inject constructor(
         emit(ResultType.Error(e))
     }
 
-    fun getSbRecommendRandom(): Flow<ResultType<BaseResponse<List<RecommendResponse>>>> = flow{
+    fun getSbRecommendRandom(): Flow<ResultType<BaseResponse<List<SongResponse>>>> = flow{
         emit(ResultType.Loading)
         sbRecommendRemoteDataSource.getSbRecommendRandom().collect{
             if(it.success){
