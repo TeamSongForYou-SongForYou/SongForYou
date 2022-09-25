@@ -14,4 +14,8 @@ interface SbRecommendApi {
         @Query ("gender") gender: String,
         @Query ("weather") weather: Int
     ): BaseResponse<List<RecommendResponse>>
+
+    @GET("sb-recommend/random-list")
+    suspend fun getSbRecommendRandom(): BaseResponse<List<RecommendResponse>>
+
 }
