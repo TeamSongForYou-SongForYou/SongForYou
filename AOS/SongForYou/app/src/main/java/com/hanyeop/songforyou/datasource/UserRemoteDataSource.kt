@@ -7,9 +7,10 @@ import com.hanyeop.songforyou.utils.JWT
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.http.*
-
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class UserRemoteDataSource @Inject constructor(
     private val userApi: UserApi
 ) {
