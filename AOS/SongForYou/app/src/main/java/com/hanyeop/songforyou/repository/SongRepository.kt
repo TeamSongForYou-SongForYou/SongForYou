@@ -3,6 +3,7 @@ package com.hanyeop.songforyou.repository
 import com.hanyeop.songforyou.base.BaseResponse
 import com.hanyeop.songforyou.datasource.SongRemoteDataSource
 import com.hanyeop.songforyou.model.response.SongDetailResponse
+import com.hanyeop.songforyou.model.response.UrlResponse
 import com.hanyeop.songforyou.utils.ResultType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -26,4 +27,18 @@ class SongRepository @Inject constructor(
     }.catch { e ->
         emit(ResultType.Error(e))
     }
+
+    fun getSoundFile(songSeq: Int): Flow<ResultType<BaseResponse<UrlResponse>>> = flow{
+        emit(ResultType.Loading)
+        songRemoteDataSource.getSoundFile(songSeq).collect{
+            if(it.success){
+                emit(ResultType.Success(it))
+            }else if(!it.success){
+                emit(ResultType.Fail(it))
+            }
+        }
+    }.catch { e ->
+        emit(ResultType.Error(e))
+    }
+
 }
