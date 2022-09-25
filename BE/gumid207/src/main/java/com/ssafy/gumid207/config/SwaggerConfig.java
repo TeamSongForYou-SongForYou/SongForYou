@@ -38,7 +38,7 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("SSAFY 구미 2반 특화프로젝트").description("Android 랑 연동하기 위한 API 모음에 대한 설명")
+		return new ApiInfoBuilder().title("SSAFY 구미 3반 특화프로젝트").description("Android 랑 연동하기 위한 API 모음에 대한 설명")
 				.version("0.1").build();
 	}
 	
