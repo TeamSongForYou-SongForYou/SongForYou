@@ -16,10 +16,8 @@ public class UserRegisterDto {
 	private String email;
 	private String id;
 	private String pass;
-	private File profileImgSeq;
 	private Integer birthday;
 	private String gender;
-	private LocalDateTime regTime;
 	
 	public User toEntity() {
 		return User.builder()
@@ -27,10 +25,8 @@ public class UserRegisterDto {
 				.email(email)
 				.id(id)
 				.pass(pass)
-				.profileImgSeq(profileImgSeq)
 				.birthday(birthday)
 				.gender(gender)
-				.regTime(regTime)
 				.build();
 	}
 
