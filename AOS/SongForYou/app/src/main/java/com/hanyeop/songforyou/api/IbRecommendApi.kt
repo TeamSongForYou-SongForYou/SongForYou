@@ -7,6 +7,9 @@ import retrofit2.http.Query
 
 interface IbRecommendApi {
 
+    @GET("/ib-recommend/my-list")
+    suspend fun getIbRecommendMyList() : BaseResponse<RecommendResponse>
+
     @GET("ib-recommend/my-record")
     suspend fun getIbRecommendMyRecord(
         @Query ("datelimit") dateLimit: Int

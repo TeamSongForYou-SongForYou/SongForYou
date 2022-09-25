@@ -12,6 +12,11 @@ import javax.inject.Singleton
 class IbRecommendRemoteDataSource @Inject constructor(
     private val ibRecommendApi: IbRecommendApi
 ){
+
+    fun getIbRecommendMyList(): Flow<BaseResponse<RecommendResponse>> = flow{
+        emit(ibRecommendApi.getIbRecommendMyList())
+    }
+
     fun getIbRecommendMyRecord(dateLimit: Int): Flow<BaseResponse<RecommendResponse>> = flow{
         emit(ibRecommendApi.getIbRecommendMyRecord(dateLimit))
     }

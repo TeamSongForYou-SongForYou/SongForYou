@@ -14,6 +14,20 @@ import javax.inject.Singleton
 class IbRecommendRepository @Inject constructor(
     private val ibRecommendRemoteDataSource: IbRecommendRemoteDataSource
 ) {
+
+    fun getIbRecommendMyList(): Flow<ResultType<BaseResponse<RecommendResponse>>> = flow{
+        emit(ResultType.Loading)
+        ibRecommendRemoteDataSource.getIbRecommendMyList().collect{
+            if(it.success){
+                emit(ResultType.Success(it))
+            }else{
+
+            }
+        }
+    }.catch { e ->
+        emit(ResultType.Error(e))
+    }
+
     fun getIbRecommendMyRecord(dateLimit: Int): Flow<ResultType<BaseResponse<RecommendResponse>>> = flow{
         emit(ResultType.Loading)
         ibRecommendRemoteDataSource.getIbRecommendMyRecord(dateLimit).collect{
