@@ -50,5 +50,4 @@ interface UserApi {
         @Body map: HashMap<String, String>
     ): BaseResponse<String>
 
-
 }
