@@ -54,7 +54,7 @@ class SongRepository @Inject constructor(
         emit(ResultType.Error(e))
     }
 
-    fun songSearch(songName: String): Flow<ResultType<BaseResponse<SongResponse>>> = flow{
+    fun songSearch(songName: String): Flow<ResultType<BaseResponse<List<SongResponse>>>> = flow{
         emit(ResultType.Loading)
         songRemoteDataSource.songSearch(songName).collect{
             if(it.success){

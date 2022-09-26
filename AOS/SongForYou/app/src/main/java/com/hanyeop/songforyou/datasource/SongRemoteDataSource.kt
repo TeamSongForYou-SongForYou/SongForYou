@@ -25,7 +25,7 @@ class SongRemoteDataSource @Inject constructor(
         emit(songApi.songDisLike(songSeq))
     }
 
-    fun songSearch(songName: String): Flow<BaseResponse<SongResponse>> = flow {
+    fun songSearch(songName: String): Flow<BaseResponse<List<SongResponse>>> = flow {
         emit(songApi.songSearch(songName))
     }
 }
