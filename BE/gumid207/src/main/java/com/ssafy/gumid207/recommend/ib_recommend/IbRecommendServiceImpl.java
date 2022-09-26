@@ -5,11 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -21,6 +19,8 @@ import com.ssafy.gumid207.entity.SimData;
 import com.ssafy.gumid207.entity.Song;
 import com.ssafy.gumid207.entity.User;
 import com.ssafy.gumid207.recommend.SimDataRepository;
+import com.ssafy.gumid207.recommend.SimNode;
+import com.ssafy.gumid207.recommend.SongStaticData;
 import com.ssafy.gumid207.song.SongDislikeRepository;
 import com.ssafy.gumid207.song.SongRepository;
 import com.ssafy.gumid207.songbox.MyListRepository;
@@ -35,15 +35,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Transactional
 public class IbRecommendServiceImpl implements IbRecommendService {
-	class SimNode {
-		Long songNum;
-		Double sim;
-
-		public SimNode(Long songNum, Double sim) {
-			this.songNum = songNum;
-			this.sim = sim;
-		}
-	}
 
 	private final UserRepository userRepo;
 	private final MyListRepository myListRepo;
@@ -51,24 +42,6 @@ public class IbRecommendServiceImpl implements IbRecommendService {
 	private final SimDataRepository simRepo;
 	private final SongRepository songRepo;
 	private final SongDislikeRepository dislikeRepo;
-
-	public static Map<Long, List<SimData>> simMap;
-	public static List<Song> songList;
-	public static Random random;
-
-	@PostConstruct
-	public void init() {
-		simMap = new HashMap<>();
-		random = new Random();
-		List<Song> songs = songRepo.findAllByOrderBySongSeq();
-		songList = new ArrayList<>();
-		for (Song song : songs) {
-			while (songList.size() < song.getSongSeq()) {
-				songList.add(null);
-			}
-			songList.add(song);
-		}
-	}
 
 	@Override
 	public List<SongDto> getMyListRecommend(Long userSeq, Integer size) throws Exception {
@@ -111,17 +84,17 @@ public class IbRecommendServiceImpl implements IbRecommendService {
 		}
 		Map<Long, SimNode> simResultMap = new HashMap<>();
 		for (Long songNum : songNums) {
-			if (!simMap.containsKey(songNum)) {
-				simMap.put(songNum, simRepo.findAllBySimDataMysong(songNum));
+			if (!SongStaticData.simMap.containsKey(songNum)) {
+				SongStaticData.simMap.put(songNum, simRepo.findAllBySimDataMysong(songNum));
 			}
-			for (SimData simData : simMap.get(songNum)) {
-				if (random.nextInt(100) < 20) {
+			for (SimData simData : SongStaticData.simMap.get(songNum)) {
+				if (SongStaticData.random.nextInt(100) < 20) {
 					continue;
 				}
 				Long key = simData.getSimDataTargetsong();
 				SimNode node = simResultMap.getOrDefault(key, new SimNode(key, 0.0));
 				simResultMap.put(key, node);
-				node.sim = 1 - (1 - node.sim) * (1 - simData.getSimDataSimilarity() * (1 - random.nextDouble() * 0.3));
+				node.sim = 1 - (1 - node.sim) * (1 - simData.getSimDataSimilarity() * (1 - SongStaticData.random.nextDouble() * 0.3));
 			}
 		}
 		List<SimNode> simNodeList = new ArrayList<>(simResultMap.values());
@@ -131,7 +104,7 @@ public class IbRecommendServiceImpl implements IbRecommendService {
 			if (dislike.contains(simNodeList.get(i).songNum)) {
 				continue;
 			}
-			results.add(songList.get(simNodeList.get(i).songNum.intValue()));
+			results.add(SongStaticData.songList.get(simNodeList.get(i).songNum.intValue()));
 		}
 		return results.stream().map((song) -> SongDto.of(song)).collect(Collectors.toList());
 	}

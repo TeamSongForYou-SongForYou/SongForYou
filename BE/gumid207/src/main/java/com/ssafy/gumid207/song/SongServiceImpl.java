@@ -45,7 +45,7 @@ public class SongServiceImpl implements SongService {
 
 	@Override
 	public Boolean dislikeSong(Long userSeq, Long songSeq) throws Exception {
-		User user = userRepo.findByUserSeq(songSeq).orElseThrow(() -> new UserNotFoundException("해당 유저를 찾을 수 없습니다."));
+		User user = userRepo.findByUserSeq(userSeq).orElseThrow(() -> new UserNotFoundException("해당 유저를 찾을 수 없습니다."));
 		Song song = songRepo.findBySongSeq(songSeq).orElseThrow(() -> new SongNotFoundException("해당 곡을 찾을 수 없습니다."));
 		Dislike dislike = Dislike.builder() //
 				.user(user) //
@@ -57,7 +57,7 @@ public class SongServiceImpl implements SongService {
 	
 	@Override
 	public Boolean deleteDislikeSong(Long userSeq, Long songSeq) throws Exception {
-		User user = userRepo.findByUserSeq(songSeq).orElseThrow(() -> new UserNotFoundException("해당 유저를 찾을 수 없습니다."));
+		User user = userRepo.findByUserSeq(userSeq).orElseThrow(() -> new UserNotFoundException("해당 유저를 찾을 수 없습니다."));
 		Song song = songRepo.findBySongSeq(songSeq).orElseThrow(() -> new SongNotFoundException("해당 곡을 찾을 수 없습니다."));
 		Dislike dislike = dislikeRepo.findByUserAndSong(user, song).orElseThrow(() -> new DislikeNotFoundException("해당 싫어요 정보를 찾을 수 없습니다."));
 		dislikeRepo.delete(dislike);
