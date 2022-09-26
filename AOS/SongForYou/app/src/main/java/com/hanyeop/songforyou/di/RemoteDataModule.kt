@@ -1,5 +1,7 @@
 package com.hanyeop.songforyou.di
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.hanyeop.songforyou.api.*
 import com.hanyeop.songforyou.utils.BASE_URL
 import com.hanyeop.songforyou.utils.KAKAO_BASE_URL
@@ -7,10 +9,16 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
 import javax.inject.Singleton
+import javax.net.ssl.HostnameVerifier
+import javax.net.ssl.SSLSocketFactory
+import javax.net.ssl.TrustManagerFactory
+import javax.net.ssl.X509TrustManager
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -31,11 +39,35 @@ object RemoteDataModule {
     @Provides
     @Singleton
     @Named("retrofit")
-    fun provideRetrofitInstance(): Retrofit {
+    fun provideRetrofitInstance(gson: Gson, client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(client)
             .build()
+    }
+
+    // OkHttpClient DI
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(httpLoggingInterceptor)
+            .build()
+    }
+
+    // Gson DI
+    @Provides
+    @Singleton
+    fun provideGson(): Gson {
+        return GsonBuilder().setLenient().create()
+    }
+
+    // HttpLoggingInterceptor DI
+    @Provides
+    @Singleton
+    fun provideInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
     // KakaoApi DI
