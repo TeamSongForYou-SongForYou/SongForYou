@@ -27,5 +27,5 @@ interface SongApi {
     @GET("song/{songName}/search")
     suspend fun songSearch(
         @Path ("songName") songName: String
-    ): BaseResponse<SongResponse>
+    ): BaseResponse<List<SongResponse>>
 }
