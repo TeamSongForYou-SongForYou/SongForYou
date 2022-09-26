@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.main.search.SongSearchFragment">
+        tools:context=".view.search.SongSearchActivity">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
@@ -59,6 +59,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7"
             tools:listitem="@layout/item_recommend_list" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

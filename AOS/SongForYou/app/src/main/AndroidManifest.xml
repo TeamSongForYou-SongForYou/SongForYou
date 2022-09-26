@@ -21,6 +21,27 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.detail.SongDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".view.search.SongSearchActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".view.random.RandomRecommendActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".view.before.BeforeRecommendActivity"
             android:exported="false">
             <meta-data
@@ -46,7 +67,7 @@
             android:exported="false" />
         <activity
             android:name=".view.audio.AudioRecordActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".view.login.LoginActivity"
             android:exported="false" />
