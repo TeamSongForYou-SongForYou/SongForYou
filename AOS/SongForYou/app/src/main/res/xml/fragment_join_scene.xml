@@ -2,7 +2,23 @@
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
-    <ConstraintSet android:id="@+id/start"></ConstraintSet>
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            motion:layout_constraintVertical_bias="0.0"
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toTopOf="@id/gl_header"
+            motion:layout_constraintHorizontal_bias="0.0"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:id="@+id/header_welcome" />
+        <Constraint
+            android:layout_height="wrap_content"
+            motion:layout_constraintGuide_begin="153dp"
+            android:layout_width="wrap_content"
+            android:id="@+id/gl_header" />
+    </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
         <Constraint
