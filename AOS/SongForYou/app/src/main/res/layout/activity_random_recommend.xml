@@ -10,9 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.main.random.RandomRecommendFragment"
-        android:background="@drawable/background_linear_gradient">
-
+        android:background="@drawable/background_linear_gradient"
+        tools:context=".view.random.RandomRecommendActivity">
 
         <TextView
             android:id="@+id/tv_random_recommend_header"
