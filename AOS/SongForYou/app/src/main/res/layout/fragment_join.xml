@@ -83,7 +83,7 @@
                             app:layout_constraintTop_toTopOf="parent"/>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/et_email"
+                            android:id="@+id/til_email"
                             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -115,14 +115,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="25dp"
                             android:text="본인인증"
-                            app:layout_constraintBottom_toBottomOf="@id/et_email"
+                            app:layout_constraintBottom_toBottomOf="@id/til_email"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/et_email"
-                            app:layout_constraintTop_toTopOf="@id/et_email"
+                            app:layout_constraintStart_toEndOf="@id/til_email"
+                            app:layout_constraintTop_toTopOf="@id/til_email"
                             app:layout_constraintVertical_bias="0.0" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/et_email_auth_number"
+                            android:id="@+id/til_email_auth_number"
                             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
                             app:boxStrokeWidth="1dp"
                             app:layout_constraintEnd_toStartOf="@id/btn_email_auth_number_check"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/et_email">
+                            app:layout_constraintTop_toBottomOf="@id/til_email">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="match_parent"
@@ -155,9 +155,9 @@
                             android:layout_marginEnd="25dp"
                             android:text="인증하기"
                             android:textColor="@color/light_grey"
-                            app:layout_constraintBottom_toBottomOf="@+id/et_email_auth_number"
+                            app:layout_constraintBottom_toBottomOf="@+id/til_email_auth_number"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/et_email_auth_number"
+                            app:layout_constraintStart_toEndOf="@id/til_email_auth_number"
                             app:layout_constraintTop_toBottomOf="@id/btn_email_auth_send" />
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -168,10 +168,10 @@
                             android:layout_marginTop="40dp"
                             android:text="별명"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/et_email_auth_number" />
+                            app:layout_constraintTop_toBottomOf="@id/til_email_auth_number" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/et_nickname"
+                            android:id="@+id/til_nickname"
                             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -204,10 +204,10 @@
                             android:layout_marginEnd="25dp"
                             android:text="중복확인"
                             android:textColor="@color/light_grey"
-                            app:layout_constraintBottom_toBottomOf="@id/et_nickname"
+                            app:layout_constraintBottom_toBottomOf="@id/til_nickname"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/et_nickname"
-                            app:layout_constraintTop_toTopOf="@id/et_nickname" />
+                            app:layout_constraintStart_toEndOf="@id/til_nickname"
+                            app:layout_constraintTop_toTopOf="@id/til_nickname" />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tv_password_header"
                             android:layout_width="wrap_content"
@@ -216,10 +216,10 @@
                             android:layout_marginTop="40dp"
                             android:text="비밀번호"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/et_nickname" />
+                            app:layout_constraintTop_toBottomOf="@id/til_nickname" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/et_password"
+                            android:id="@+id/til_password"
                             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -233,6 +233,7 @@
                             app:boxCornerRadiusTopStart="5dp"
                             app:boxStrokeColor="@color/seed"
                             app:boxStrokeWidth="1dp"
+                            app:endIconMode="password_toggle"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_password_header">
@@ -241,6 +242,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:textSize="14sp"
+                                android:inputType="textPassword"
                                 android:hint="password"/>
                         </com.google.android.material.textfield.TextInputLayout>
                         <androidx.appcompat.widget.AppCompatTextView
@@ -251,10 +253,10 @@
                             android:layout_marginTop="10dp"
                             android:text="비밀번호 재확인"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/et_password" />
+                            app:layout_constraintTop_toBottomOf="@id/til_password" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/et_password_check"
+                            android:id="@+id/til_password_check"
                             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -268,6 +270,7 @@
                             app:boxCornerRadiusTopStart="5dp"
                             app:boxStrokeColor="@color/seed"
                             app:boxStrokeWidth="1dp"
+                            app:endIconMode="password_toggle"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_password_check_header">
@@ -276,6 +279,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:textSize="14sp"
+                                android:inputType="textPassword"
                                 android:hint="password" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -287,7 +291,7 @@
                             android:layout_marginTop="24dp"
                             android:text="출생년도"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/et_password_check" />
+                            app:layout_constraintTop_toBottomOf="@id/til_password_check" />
 
                         <com.skydoves.powerspinner.PowerSpinnerView
                             android:id="@+id/spinner_year"
@@ -329,7 +333,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.171"
                             app:layout_constraintStart_toEndOf="@id/spinner_year"
-                            app:layout_constraintTop_toBottomOf="@id/et_password_check"
+                            app:layout_constraintTop_toBottomOf="@id/til_password_check"
                             app:layout_constraintVertical_bias="0.0" />
 
                         <com.skydoves.powerspinner.PowerSpinnerView
@@ -362,8 +366,6 @@
                             app:spinner_popup_animation="dropdown"
                             app:spinner_popup_background="@drawable/background_spinner"
                             app:spinner_popup_elevation="14dp" />
-
-
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
