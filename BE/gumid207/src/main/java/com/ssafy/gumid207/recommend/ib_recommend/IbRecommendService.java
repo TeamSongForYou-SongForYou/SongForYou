@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.ssafy.gumid207.entity.Song;
+import com.ssafy.gumid207.dto.SongDto;
 
 @Service
 public interface IbRecommendService {
-	List<Song> getMyListRecommend(Long userSeq, Integer size) throws Exception;
+	List<SongDto> getMyListRecommend(Long userSeq, Integer size) throws Exception;
+	List<SongDto> getMyRecordRecommend(Long userSeq, Integer datelimit, Integer size) throws Exception;
 
 }

@@ -1,5 +1,6 @@
 package com.ssafy.gumid207.recommend.ib_recommend;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,12 +15,14 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.gumid207.customexception.UserNotFoundException;
+import com.ssafy.gumid207.dto.SongDto;
 import com.ssafy.gumid207.entity.SimData;
 import com.ssafy.gumid207.entity.Song;
 import com.ssafy.gumid207.entity.User;
 import com.ssafy.gumid207.song.SongDislikeRepository;
 import com.ssafy.gumid207.song.SongRepository;
 import com.ssafy.gumid207.songbox.MyListRepository;
+import com.ssafy.gumid207.songbox.MyRecordRepository;
 import com.ssafy.gumid207.user.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -41,7 +44,8 @@ public class IbRecommendServiceImpl implements IbRecommendService {
 	}
 
 	private final UserRepository userRepo;
-	private final MyListRepository myListRepository;
+	private final MyListRepository myListRepo;
+	private final MyRecordRepository myRecordRepo;
 	private final SimDataRepository simRepo;
 	private final SongRepository songRepo;
 	private final SongDislikeRepository dislikeRepo;
@@ -65,16 +69,32 @@ public class IbRecommendServiceImpl implements IbRecommendService {
 	}
 
 	@Override
-	public List<Song> getMyListRecommend(Long userSeq, Integer size) throws Exception {
-		if (size == null || size == 0) {
-			size = 30;
+	public List<SongDto> getMyListRecommend(Long userSeq, Integer size) throws Exception {
+		User user = userRepo.findByUserSeq(userSeq).orElseThrow(() -> new UserNotFoundException("유저 정보를 찾을 수 없습니다."));
+		Set<Long> dislike = dislikeRepo.findByUser(user).stream().map((entity) -> entity.getSong().getSongSeq()).collect(Collectors.toSet());
+		List<Long> mySongNums = myListRepo.findByUser(user).stream()
+				.map((mylist) -> mylist.getSong().getSongSeq()).collect(Collectors.toList());
+		return getRecommendFromParams(dislike, mySongNums, size);
+	}
+	
+	@Override
+	public List<SongDto> getMyRecordRecommend(Long userSeq, Integer datelimit, Integer size) throws Exception {
+		if (datelimit == null || datelimit <= 0) {
+			datelimit = 7;
 		}
 		User user = userRepo.findByUserSeq(userSeq).orElseThrow(() -> new UserNotFoundException("유저 정보를 찾을 수 없습니다."));
 		Set<Long> dislike = dislikeRepo.findByUser(user).stream().map((entity) -> entity.getSong().getSongSeq()).collect(Collectors.toSet());
-		List<Long> mySongNums = myListRepository.findByUser(user).stream()
-				.map((mylist) -> mylist.getSong().getSongSeq()).collect(Collectors.toList());
+		List<Long> myRecordNums = myRecordRepo.findByUserAndMyRecordRegTimeAfter(user, LocalDateTime.now().minusDays(datelimit)).stream()
+				.map((myrecord) -> myrecord.getSong().getSongSeq()).collect(Collectors.toList());
+		return getRecommendFromParams(dislike, myRecordNums, size);
+	}
+	
+	public List<SongDto> getRecommendFromParams(Set<Long> dislike, List<Long> songNums, Integer size){
+		if (size == null || size <= 0) {
+			size = 50;
+		}
 		Map<Long, SimNode> simResultMap = new HashMap<>();
-		for (Long songNum : mySongNums) {
+		for (Long songNum : songNums) {
 			if (!simMap.containsKey(songNum)) {
 				simMap.put(songNum, simRepo.findAllBySimDataMysong(songNum));
 			}
@@ -97,7 +117,7 @@ public class IbRecommendServiceImpl implements IbRecommendService {
 			}
 			results.add(songList.get(simNodeList.get(i).songNum.intValue()));
 		}
-		return results;
+		return results.stream().map((song) -> SongDto.of(song)).collect(Collectors.toList());
 	}
 
 }
