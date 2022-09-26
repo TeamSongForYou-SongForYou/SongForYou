@@ -1,6 +1,8 @@
 package com.hanyeop.songforyou.view.login.join
 
+import android.util.Log
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import com.google.android.material.textfield.TextInputLayout
 import com.hanyeop.songforyou.R
@@ -10,6 +12,8 @@ import com.hanyeop.songforyou.view.login.UserViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
+private const val TAG = "JoinFragment___"
 
 class JoinFragment : BaseFragment<FragmentJoinBinding>(R.layout.fragment_join) {
 //    private val joinViewModel by viewModels<UserViewModel>()
@@ -26,7 +30,7 @@ class JoinFragment : BaseFragment<FragmentJoinBinding>(R.layout.fragment_join) {
 //
 //        initClickListener()
 //
-//        setTextChangedListener()
+        setTextChangedListener()
 //
 //        setItemSelectedListener()
     }
@@ -163,47 +167,47 @@ class JoinFragment : BaseFragment<FragmentJoinBinding>(R.layout.fragment_join) {
 //        }
 //    }
 //
-//    private fun setTextChangedListener() = with(binding) {
-//
-//        // id 이메일 입력창 에러 비활성화
-//        tilId.editText?.addTextChangedListener {
-//            tilId.isErrorEnabled = false
-//        }
-//
-//        // 이메일 인증창 에러 비활성화
-//        tilIdVertification.editText?.addTextChangedListener {
-//            tilIdVertification.isErrorEnabled = false
-//        }
-//
-//        // 닉네임 입력창 에러 비활성화
-//        tilNickname.editText?.addTextChangedListener {
-//            tilNickname.isErrorEnabled = false
-//        }
-//
-//        // 비밀번호 입력창 에러 비활성화
-//        tilPw.editText?.addTextChangedListener {
-//            tilPw.isErrorEnabled = false
-//        }
-//
-//        // 비밀번호 재확인 입력창 에러 비활성화
-//        tilPwCheck.editText?.addTextChangedListener {
-//            tilPwCheck.isErrorEnabled = false
-//        }
-//    }
-//
-//    private fun setItemSelectedListener() = with(binding) {
-//
-//        // 스피너 선택 리스너 설정
-//        spinnerYear.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
-//            Log.d(TAG, "setItemSelectedListener: $newItem")
-//            joinViewModel.birthYearChanged(newItem)
-//        }
-//
-//        spinnerGender.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
-//            Log.d(TAG, "setItemSelectedListener: $newItem")
-//            joinViewModel.genderTypeChanged(newItem)
-//        }
-//    }
+    private fun setTextChangedListener() = with(binding) {
+
+        // id 이메일 입력창 에러 비활성화
+        tilEmail.editText?.addTextChangedListener {
+            tilEmail.isErrorEnabled = false
+        }
+
+        // 이메일 인증창 에러 비활성화
+        tilEmailAuthNumber.editText?.addTextChangedListener {
+            tilEmailAuthNumber.isErrorEnabled = false
+        }
+
+        // 닉네임 입력창 에러 비활성화
+        tilNickname.editText?.addTextChangedListener {
+            tilNickname.isErrorEnabled = false
+        }
+
+        // 비밀번호 입력창 에러 비활성화
+        tilPassword.editText?.addTextChangedListener {
+            tilPassword.isErrorEnabled = false
+        }
+
+        // 비밀번호 재확인 입력창 에러 비활성화
+        tilPasswordCheck.editText?.addTextChangedListener {
+            tilPasswordCheck.isErrorEnabled = false
+        }
+    }
+
+    private fun setItemSelectedListener() = with(binding) {
+
+        // 스피너 선택 리스너 설정
+        spinnerYear.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
+            Log.d(TAG, "setItemSelectedListener: $newItem")
+            //joinViewModel.birthYearChanged(newItem)
+        }
+
+        spinnerGender.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
+            Log.d(TAG, "setItemSelectedListener: $newItem")
+            //joinViewModel.genderTypeChanged(newItem)
+        }
+    }
 //
 //    private fun initView() = with(binding) {
 //

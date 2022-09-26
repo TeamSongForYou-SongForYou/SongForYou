@@ -6,7 +6,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class signUpUseCase @Inject constructor(
+class SignUpUseCase @Inject constructor(
     private val userRepository: UserRepository
 ){
     fun execute(token: String, userDto: UserDto)
