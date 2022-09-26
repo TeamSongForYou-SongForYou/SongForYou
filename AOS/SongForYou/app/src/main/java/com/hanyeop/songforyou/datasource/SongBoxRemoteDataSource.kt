@@ -14,4 +14,8 @@ class SongBoxRemoteDataSource @Inject constructor(
     fun addSongBox(songSeq: Int): Flow<BaseResponse<String>> = flow {
         emit(songBoxApi.addSongBox(songSeq))
     }
+
+    fun deleteSongBox(songSeq: Int): Flow<BaseResponse<String>> = flow {
+        emit(songBoxApi.deleteSongBox(songSeq))
+    }
 }

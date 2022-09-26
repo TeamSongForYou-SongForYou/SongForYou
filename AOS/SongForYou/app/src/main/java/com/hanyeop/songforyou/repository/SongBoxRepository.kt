@@ -25,4 +25,17 @@ class SongBoxRepository @Inject constructor(
     }.catch { e ->
         emit(ResultType.Error(e))
     }
+
+    fun deleteSongBox(songSeq: Int): Flow<ResultType<BaseResponse<String>>> = flow{
+        emit(ResultType.Loading)
+        songBoxRemoteDataSource.deleteSongBox(songSeq).collect{
+            if(it.success){
+                emit(ResultType.Success(it))
+            }else if(!it.success){
+                emit(ResultType.Fail(it))
+            }
+        }
+    }.catch { e ->
+        emit(ResultType.Error(e))
+    }
 }
