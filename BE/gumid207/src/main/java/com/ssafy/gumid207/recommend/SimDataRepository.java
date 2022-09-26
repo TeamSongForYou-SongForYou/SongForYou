@@ -1,4 +1,4 @@
-package com.ssafy.gumid207.recommend.ib_recommend;
+package com.ssafy.gumid207.recommend;
 
 import java.util.List;
 

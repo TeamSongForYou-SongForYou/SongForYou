@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -69,7 +70,7 @@ public class IbRecommendRestController {
 
 	@ApiParam(value = "이전곡 비슷한 노래 추천 리스트 받기")
 	@GetMapping(value = "/{songSeq}/before-after")
-	public Object getBeforeAfterRecommend(@RequestParam(required = true) Long songSeq) throws Exception {
+	public Object getBeforeAfterRecommend(@PathVariable(required = true) Long songSeq) throws Exception {
 		UserDto userDto = getLoginUser();
 		List<SongDto> songDtoList = ibRecommendServ.getBeforeAfterRecommend(userDto.getUserSeq(), songSeq, null);
 		return new ResponseEntity<>(
