@@ -16,7 +16,7 @@ class UserRepository @Inject constructor(
 ) {
 
     // 일반 회원가입
-    fun signUpUser(token: String, userDto: UserDto): Flow<ResultType<BaseResponse<String>>> = flow {
+    fun signUpUser(token: String, userDto: UserDto) = flow {
         emit(ResultType.Loading)
         userRemoteDataSource.signUpUser(token, userDto).collect {
             if (it.success) {
