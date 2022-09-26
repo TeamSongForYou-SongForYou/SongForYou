@@ -10,5 +10,6 @@ import com.ssafy.gumid207.entity.Song;
 public interface SongRepository extends JpaRepository<Song, Long>{
 	Optional<Song> findBySongSeq(Long songSeq);
 	List<Song> findByTitleIgnoreCaseContaining(String songName);
+	List<Song> findAllByOrderBySongSeq();
 	
 }

@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Builder;
@@ -65,6 +66,7 @@ public class User {
 	@Column(name = "user_email", nullable = true)
 	private String email;
 	
+	@CreatedDate
 	@Column(name = "user_reg_time")
 	private LocalDateTime regTime;
 
@@ -81,7 +83,11 @@ public class User {
 		this.birthday = birthday;
 		this.gender = gender;
 		this.fcmToken = fcmToken;
-		this.regTime = regTime;
+		this.regTime = LocalDateTime.now();
+	}
+	
+	public void modifyPass(String pass) {
+		this.pass = pass;
 	}
 	
 	

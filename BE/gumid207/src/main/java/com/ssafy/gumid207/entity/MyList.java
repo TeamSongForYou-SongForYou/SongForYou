@@ -39,11 +39,11 @@ public class MyList {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "song_seq", nullable = false)
-	private File songSeq;
+	private Song song;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_seq", nullable = false)
-	private User userSeq;
+	private User user;
 
 	@CreatedDate
 	@Column(name = "my_list_reg_time")

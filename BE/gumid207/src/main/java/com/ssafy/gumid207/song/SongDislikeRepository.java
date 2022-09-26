@@ -12,5 +12,6 @@ import com.ssafy.gumid207.entity.User;
 public interface SongDislikeRepository extends JpaRepository<Dislike, Long> {
 	Optional<Dislike> findByUserAndSong(User user, Song song);
 	List<Dislike> findByUser_userSeq(Long userSeq);
+	List<Dislike> findByUser(User user);
 
 }
