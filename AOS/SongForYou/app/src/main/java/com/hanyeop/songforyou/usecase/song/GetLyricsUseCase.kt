@@ -5,8 +5,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetSoundFileUseCase @Inject constructor(
+class GetLyricsUseCase @Inject constructor(
     private val songRepository: SongRepository
 ) {
-    fun execute(songSeq: Int) = songRepository.getSoundFile(songSeq)
+    fun execute(songSeq: Int) = songRepository.getLyrics(songSeq)
 }

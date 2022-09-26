@@ -1,8 +1,7 @@
 package com.hanyeop.songforyou.api
 
 import com.hanyeop.songforyou.base.BaseResponse
-import com.hanyeop.songforyou.model.response.SongDetailResponse
-import com.hanyeop.songforyou.model.response.UrlResponse
+import com.hanyeop.songforyou.model.response.LyricsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -13,8 +12,8 @@ interface SongApi {
         @Path ("songSeq") songSeq: Int
     ): BaseResponse<SongDetailResponse>
 
-    @GET("song/{songSeq}/sound-file")
-    suspend fun getSoundFile(
+    @GET("song/{songSeq}/lyrics")
+    suspend fun getLyrics(
         @Path ("songSeq") songSeq: Int
-    ): BaseResponse<UrlResponse>
+    ): BaseResponse<LyricsResponse>
 }

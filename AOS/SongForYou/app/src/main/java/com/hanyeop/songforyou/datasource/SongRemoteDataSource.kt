@@ -2,8 +2,7 @@ package com.hanyeop.songforyou.datasource
 
 import com.hanyeop.songforyou.api.SongApi
 import com.hanyeop.songforyou.base.BaseResponse
-import com.hanyeop.songforyou.model.response.SongDetailResponse
-import com.hanyeop.songforyou.model.response.UrlResponse
+import com.hanyeop.songforyou.model.response.LyricsResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -17,7 +16,7 @@ class SongRemoteDataSource @Inject constructor(
         emit(songApi.getSongDetail(songSeq))
     }
 
-    fun getSoundFile(songSeq: Int): Flow<BaseResponse<UrlResponse>> = flow {
-        emit(songApi.getSoundFile(songSeq))
+    fun getLyrics(songSeq: Int): Flow<BaseResponse<LyricsResponse>> = flow {
+        emit(songApi.getLyrics(songSeq))
     }
 }
