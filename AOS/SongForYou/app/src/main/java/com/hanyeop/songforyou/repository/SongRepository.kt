@@ -3,6 +3,7 @@ package com.hanyeop.songforyou.repository
 import com.hanyeop.songforyou.base.BaseResponse
 import com.hanyeop.songforyou.datasource.SongRemoteDataSource
 import com.hanyeop.songforyou.model.response.LyricsResponse
+import com.hanyeop.songforyou.model.response.SongResponse
 import com.hanyeop.songforyou.utils.ResultType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -14,7 +15,7 @@ import javax.inject.Singleton
 class SongRepository @Inject constructor(
     private val songRemoteDataSource: SongRemoteDataSource
 ){
-    fun getSongDetail(songSeq: Int): Flow<ResultType<BaseResponse<SongDetailResponse>>> = flow{
+    fun getSongDetail(songSeq: Int): Flow<ResultType<BaseResponse<SongResponse>>> = flow{
         emit(ResultType.Loading)
         songRemoteDataSource.getSongDetail(songSeq).collect{
             if(it.success){

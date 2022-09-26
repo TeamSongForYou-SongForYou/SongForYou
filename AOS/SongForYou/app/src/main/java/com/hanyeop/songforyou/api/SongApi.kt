@@ -4,6 +4,7 @@ import com.hanyeop.songforyou.base.BaseResponse
 import com.hanyeop.songforyou.model.response.LyricsResponse
 import com.hanyeop.songforyou.model.response.SongResponse
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface SongApi {
@@ -17,4 +18,9 @@ interface SongApi {
     suspend fun getLyrics(
         @Path ("songSeq") songSeq: Int
     ): BaseResponse<LyricsResponse>
+
+    @POST("song/{songSeq}/dislike")
+    suspend fun songDisLike(
+        @Path ("songSeq") songSeq: Int
+    ): BaseResponse<String>
 }
