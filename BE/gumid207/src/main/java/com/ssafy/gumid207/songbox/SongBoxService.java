@@ -8,4 +8,6 @@ public interface SongBoxService {
 
 	Boolean addMyList(Long userSeq, Long songSeq) throws Exception;
 
+	Boolean deleteMyList(Long userSeq, Long songSeq) throws Exception;
+
 }

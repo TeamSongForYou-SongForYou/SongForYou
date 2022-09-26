@@ -1,9 +1,12 @@
 package com.ssafy.gumid207.songbox;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.gumid207.customexception.MyListAlreadyExistException;
+import com.ssafy.gumid207.customexception.MyListNotFoundException;
 import com.ssafy.gumid207.customexception.SongNotFoundException;
 import com.ssafy.gumid207.customexception.UserNotFoundException;
 import com.ssafy.gumid207.entity.MyList;
@@ -37,6 +40,18 @@ public class SongBoxServiceImpl implements SongBoxService {
 				.song(song) //
 				.build();
 		myListRepo.save(myList);
+		return true;
+	}
+	
+	@Override
+	public Boolean deleteMyList(Long userSeq, Long songSeq) throws Exception {
+		User user = userRepo.findByUserSeq(userSeq).orElseThrow(() -> new UserNotFoundException("해당 유저를 찾을 수 없습니다."));
+		Song song = songRepo.findBySongSeq(songSeq).orElseThrow(() -> new SongNotFoundException("해당 곡을 찾을 수 없습니다."));
+		Optional<MyList> oMyList = myListRepo.findByUserAndSong(user, song);
+		if (!oMyList.isPresent()) {
+			throw new MyListNotFoundException("보관함에 곡이 없습니다.");
+		}
+		myListRepo.delete(oMyList.get());
 		return true;
 	}
 
