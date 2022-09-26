@@ -7,390 +7,390 @@
 
     </data>
 
-    <androidx.constraintlayout.motion.widget.MotionLayout
-        android:id="@+id/motionlayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/seed"
-        app:layoutDescription="@xml/fragment_join_scene"
-        tools:context=".view.login.JoinFragment">
-
+        android:background="@color/seed">
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/header_welcome"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
+            android:id="@+id/tv_socialJoin_header"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="83dp"
             android:gravity="center"
             android:text="회원가입"
             android:textColor="@color/white"
             android:textSize="32sp"
-            app:layout_constraintBottom_toTopOf="@id/gl_header"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.75" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="477dp" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint_1"
-            android:layout_width="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/background_card"
-            android:elevation="20dp"
-            android:translationZ="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/gl_header">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/header_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
-                android:text="아이디"
+            app:layout_constraintTop_toBottomOf="@id/tv_socialJoin_header">
+            <FrameLayout
+                android:id="@+id/frameLayout_form"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/tv_socialJoin_header">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_id"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:textColorHint="@color/light_grey"
-                app:boxBackgroundColor="@color/white"
-                app:boxBackgroundMode="outline"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeColor="@color/seed"
-                app:boxStrokeWidth="1dp"
-                app:layout_constraintEnd_toStartOf="@id/btn_request_id_vertification"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/header_id">
-
-                <com.google.android.material.textfield.TextInputEditText
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="example@mail.com"
-                    android:inputType="textEmailAddress" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginTop="61dp"
+                    android:background="@drawable/background_card" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_request_id_vertification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/btn_square_grey"
-                android:minHeight="40dp"
-                android:text="본인인증"
-                android:textColor="@color/light_grey"
-                app:layout_constraintBottom_toBottomOf="@id/til_id"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/til_id"
-                app:layout_constraintTop_toTopOf="@id/til_id" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_id_vertification"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:textColorHint="@color/light_grey"
-                app:boxBackgroundColor="@color/white"
-                app:boxBackgroundMode="outline"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeColor="@color/seed"
-                app:boxStrokeWidth="1dp"
-                app:layout_constraintEnd_toStartOf="@id/btn_id_vertify"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_id"
-                tools:visibility="visible">
-
-                <com.google.android.material.textfield.TextInputEditText
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="인증번호 입력"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_id_vertify"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/btn_square_grey"
-                android:minHeight="40dp"
-                android:text="인증하기"
-                android:textColor="@color/light_grey"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@id/til_id_vertification"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/iv_profile_img"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="20dp"
+                        android:src="@color/light_grey"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:srcCompat="@tools:sample/avatars"/>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraint_form"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="100dp"
+                        android:elevation="20dp"
+                        android:translationZ="1dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/iv_profile_img">
+                        <TextView
+                            android:id="@+id/tv_email_header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="40dp"
+                            android:text="이메일"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/et_email"
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="20dp"
+                            android:textColorHint="@color/light_grey"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxBackgroundMode="outline"
+                            app:boxCornerRadiusBottomEnd="5dp"
+                            app:boxCornerRadiusBottomStart="5dp"
+                            app:boxCornerRadiusTopEnd="5dp"
+                            app:boxCornerRadiusTopStart="5dp"
+                            app:boxStrokeColor="@color/seed"
+                            app:boxStrokeWidth="1dp"
+                            app:layout_constraintEnd_toStartOf="@id/btn_email_auth_send"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_email_header">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textSize="14sp"
+                                android:hint="ssafy@naver.com" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <Button
+                            android:id="@+id/btn_email_auth_send"
+                            style="@style/BtnBasic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="25dp"
+                            android:text="본인인증"
+                            app:layout_constraintBottom_toBottomOf="@id/et_email"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/et_email"
+                            app:layout_constraintTop_toTopOf="@id/et_email"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/et_email_auth_number"
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="20dp"
+                            android:textColorHint="@color/light_grey"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxBackgroundMode="outline"
+                            app:boxCornerRadiusBottomEnd="5dp"
+                            app:boxCornerRadiusBottomStart="5dp"
+                            app:boxCornerRadiusTopEnd="5dp"
+                            app:boxCornerRadiusTopStart="5dp"
+                            app:boxStrokeColor="@color/seed"
+                            app:boxStrokeWidth="1dp"
+                            app:layout_constraintEnd_toStartOf="@id/btn_email_auth_number_check"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/et_email">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textSize="14sp"
+                                android:hint="인증번호를 입력하세요" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <Button
+                            android:id="@+id/btn_email_auth_number_check"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="25dp"
+                            android:text="인증하기"
+                            android:textColor="@color/light_grey"
+                            app:layout_constraintBottom_toBottomOf="@+id/et_email_auth_number"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/et_email_auth_number"
+                            app:layout_constraintTop_toBottomOf="@id/btn_email_auth_send" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_nickname_header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="40dp"
+                            android:text="별명"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/et_email_auth_number" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/et_nickname"
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="20dp"
+                            android:textColorHint="@color/light_grey"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxBackgroundMode="outline"
+                            app:boxCornerRadiusBottomEnd="5dp"
+                            app:boxCornerRadiusBottomStart="5dp"
+                            app:boxCornerRadiusTopEnd="5dp"
+                            app:boxCornerRadiusTopStart="5dp"
+                            app:boxStrokeColor="@color/seed"
+                            app:boxStrokeWidth="1dp"
+                            app:layout_constraintEnd_toStartOf="@id/btn_nickname_check"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_nickname_header">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textSize="14sp"
+                                android:hint="별명을 입력하세요" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <Button
+                            android:id="@+id/btn_nickname_check"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="25dp"
+                            android:text="중복확인"
+                            android:textColor="@color/light_grey"
+                            app:layout_constraintBottom_toBottomOf="@id/et_nickname"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/et_nickname"
+                            app:layout_constraintTop_toTopOf="@id/et_nickname" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_password_header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="40dp"
+                            android:text="비밀번호"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/et_nickname" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/et_password"
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="20dp"
+                            android:textColorHint="@color/light_grey"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxBackgroundMode="outline"
+                            app:boxCornerRadiusBottomEnd="5dp"
+                            app:boxCornerRadiusBottomStart="5dp"
+                            app:boxCornerRadiusTopEnd="5dp"
+                            app:boxCornerRadiusTopStart="5dp"
+                            app:boxStrokeColor="@color/seed"
+                            app:boxStrokeWidth="1dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_password_header">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textSize="14sp"
+                                android:hint="password"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_password_check_header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:text="비밀번호 재확인"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/et_password" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/et_password_check"
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="20dp"
+                            android:textColorHint="@color/light_grey"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxBackgroundMode="outline"
+                            app:boxCornerRadiusBottomEnd="5dp"
+                            app:boxCornerRadiusBottomStart="5dp"
+                            app:boxCornerRadiusTopEnd="5dp"
+                            app:boxCornerRadiusTopStart="5dp"
+                            app:boxStrokeColor="@color/seed"
+                            app:boxStrokeWidth="1dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_password_check_header">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textSize="14sp"
+                                android:hint="password" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_year_header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="24dp"
+                            android:text="출생년도"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/et_password_check" />
+
+                        <com.skydoves.powerspinner.PowerSpinnerView
+                            android:id="@+id/spinner_year"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginTop="12dp"
+                            android:background="@drawable/btn_square_grey"
+                            android:gravity="center_vertical"
+                            android:hint="선택"
+                            android:paddingLeft="20dp"
+                            android:textColor="@color/light_grey"
+                            android:textColorHint="@color/light_grey"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_year_header"
+                            app:layout_constraintEnd_toStartOf="@id/spinner_gender"
+                            app:spinner_arrow_gravity="end"
+                            app:spinner_arrow_padding="8dp"
+                            app:spinner_arrow_show="true"
+                            app:spinner_arrow_tint="@color/seed"
+                            app:spinner_divider_color="@color/white"
+                            app:spinner_divider_show="true"
+                            app:spinner_divider_size="1dp"
+                            app:spinner_item_array="@array/year"
+                            app:spinner_popup_animation="dropdown"
+                            app:spinner_popup_background="@drawable/background_spinner"
+                            app:spinner_popup_elevation="14dp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_gender_header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginBottom="12dp"
+                            android:text="성별"
+                            app:layout_constraintBottom_toTopOf="@+id/spinner_gender"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.171"
+                            app:layout_constraintStart_toEndOf="@id/spinner_year"
+                            app:layout_constraintTop_toBottomOf="@id/et_password_check"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <com.skydoves.powerspinner.PowerSpinnerView
+                            android:id="@+id/spinner_gender"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:background="@drawable/btn_square_grey"
+                            android:gravity="center_vertical"
+                            android:hint="선택"
+                            android:layout_marginEnd="25dp"
+                            android:paddingLeft="20dp"
+                            android:textColor="@color/light_grey"
+                            android:textColorHint="@color/light_grey"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="@id/spinner_year"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.504"
+                            app:layout_constraintStart_toEndOf="@id/spinner_year"
+                            app:layout_constraintTop_toTopOf="@id/spinner_year"
+                            app:layout_constraintVertical_bias="0.0"
+                            app:spinner_arrow_gravity="end"
+                            app:spinner_arrow_padding="8dp"
+                            app:spinner_arrow_show="true"
+                            app:spinner_arrow_tint="@color/seed"
+                            app:spinner_divider_color="@color/white"
+                            app:spinner_divider_show="true"
+                            app:spinner_divider_size="1dp"
+                            app:spinner_item_array="@array/gender"
+                            app:spinner_popup_animation="dropdown"
+                            app:spinner_popup_background="@drawable/background_spinner"
+                            app:spinner_popup_elevation="14dp" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </FrameLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/white">
+            <Button
+                android:id="@+id/btn_join"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="회원가입"
+                android:textColor="@color/seed"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/til_id_vertification"
-                app:layout_constraintTop_toTopOf="@id/til_id_vertification"
-                tools:visibility="visible" />
+                app:layout_constraintStart_toStartOf="parent"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ScrollView
-            android:id="@+id/scrollview"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            android:fillViewport="true"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/gl_header"
-            tools:visibility="visible">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint_2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/background_card"
-                android:elevation="20dp"
-                android:translationZ="1dp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/header_nickname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="40dp"
-                    android:text="별명"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_nickname"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:textColorHint="@color/light_grey"
-                    app:boxBackgroundColor="@color/white"
-                    app:boxBackgroundMode="outline"
-                    app:boxCornerRadiusBottomEnd="10dp"
-                    app:boxCornerRadiusBottomStart="10dp"
-                    app:boxCornerRadiusTopEnd="10dp"
-                    app:boxCornerRadiusTopStart="10dp"
-                    app:boxStrokeColor="@color/seed"
-                    app:boxStrokeWidth="1dp"
-                    app:layout_constraintEnd_toStartOf="@id/btn_request_nickname_vertification"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/header_nickname">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="별명을 입력하세요" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_request_nickname_vertification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/btn_square_grey"
-                    android:minHeight="40dp"
-                    android:text="중복검사"
-                    android:textColor="@color/light_grey"
-                    app:layout_constraintBottom_toBottomOf="@id/til_nickname"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/til_nickname"
-                    app:layout_constraintTop_toTopOf="@id/til_nickname" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/header_pw"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:text="비밀번호"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/til_nickname" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_pw"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:textColorHint="@color/bombay"
-                    app:boxBackgroundColor="@color/white"
-                    app:boxBackgroundMode="outline"
-                    app:boxCornerRadiusBottomEnd="10dp"
-                    app:boxCornerRadiusBottomStart="10dp"
-                    app:boxCornerRadiusTopEnd="10dp"
-                    app:boxCornerRadiusTopStart="10dp"
-                    app:boxStrokeColor="@color/seed"
-                    app:boxStrokeWidth="1dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/header_pw"
-                    app:passwordToggleEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="password1234^^"
-                        android:inputType="textPassword" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/header_pw_check"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:text="비밀번호 확인"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/til_pw" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_pw_check"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:textColorHint="@color/bombay"
-                    app:boxBackgroundColor="@color/white"
-                    app:boxBackgroundMode="outline"
-                    app:boxCornerRadiusBottomEnd="10dp"
-                    app:boxCornerRadiusBottomStart="10dp"
-                    app:boxCornerRadiusTopEnd="10dp"
-                    app:boxCornerRadiusTopStart="10dp"
-                    app:boxStrokeColor="@color/seed"
-                    app:boxStrokeWidth="1dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/header_pw_check"
-                    app:passwordToggleEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="password1234^^"
-                        android:inputType="textPassword" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/gl_verti_50"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_begin="20dp" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/header_birth"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:text="출생 년도"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/til_pw_check" />
-
-                <com.skydoves.powerspinner.PowerSpinnerView
-                    android:id="@+id/spinner_year"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/btn_square_grey"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:gravity="center"
-                    android:hint="선택"
-                    android:padding="10dp"
-                    android:textColor="@color/bombay"
-                    android:textColorHint="@color/bombay"
-                    android:textSize="14.5sp"
-                    app:layout_constraintEnd_toEndOf="@id/gl_verti_50"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/header_birth"
-                    app:spinner_arrow_gravity="end"
-                    app:spinner_arrow_padding="8dp"
-                    app:spinner_arrow_show="true"
-                    app:spinner_arrow_tint="@color/bombay"
-                    app:spinner_divider_color="@color/white"
-                    app:spinner_divider_show="true"
-                    app:spinner_divider_size="1dp"
-                    app:spinner_item_array="@array/year"
-                    app:spinner_popup_animation="dropdown"
-                    app:spinner_popup_background="@drawable/background_spinner"
-                    app:spinner_popup_elevation="14dp"
-                    tools:ignore="HardcodedText,UnusedAttribute" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/header_gender"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="성별"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/gl_verti_50"
-                    app:layout_constraintTop_toTopOf="@id/header_birth" />
-
-                <com.skydoves.powerspinner.PowerSpinnerView
-                    android:id="@+id/spinner_gender"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/btn_square_grey"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:gravity="center"
-                    android:hint="선택"
-                    android:padding="10dp"
-                    android:textColor="@color/bombay"
-                    android:textColorHint="@color/bombay"
-                    android:textSize="14.5sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/gl_verti_50"
-                    app:layout_constraintTop_toBottomOf="@id/header_birth"
-                    app:spinner_arrow_gravity="end"
-                    app:spinner_arrow_padding="8dp"
-                    app:spinner_arrow_show="true"
-                    app:spinner_arrow_tint="@color/bombay"
-                    app:spinner_divider_color="@color/white"
-                    app:spinner_divider_show="true"
-                    app:spinner_divider_size="1dp"
-                    app:spinner_item_array="@array/gender"
-                    app:spinner_popup_animation="dropdown"
-                    app:spinner_popup_background="@drawable/background_spinner"
-                    app:spinner_popup_elevation="14dp"
-                    tools:ignore="HardcodedText,UnusedAttribute" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_join"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="120dp"
-                    android:layout_marginBottom="40dp"
-                    android:background="@drawable/button_join"
-                    android:text="회원가입"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/spinner_gender"
-                    app:layout_constraintVertical_bias="0.0" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </ScrollView>
-
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

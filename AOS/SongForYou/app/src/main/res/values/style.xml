@@ -1,3 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:ns1="http://schemas.android.com/tools" xmlns:ns2="urn:oasis:names:tc:xliff:document:1.2">
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="colorPrimary">@color/black</item>
+    </style>
+
+    <style name="BtnStyle" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_marginStart">35dp</item>
+        <item name="android:layout_marginEnd">35dp</item>
+        <!--        <item name="android:textColor">@color/selector_text_color</item>-->
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="BtnBasic" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/seed</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:radius">10dp</item>
+        <item name="backgroundTint">@color/white</item>
+    </style>
+    <style name="DialogStyle" parent="Base.Theme.AppCompat.Dialog">
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+    </style>
+    <style name="header_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">58dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/noto_sans_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
 </resources>
