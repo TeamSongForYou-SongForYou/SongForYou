@@ -20,6 +20,7 @@ import com.ssafy.gumid207.dto.SongDto;
 import com.ssafy.gumid207.entity.SimData;
 import com.ssafy.gumid207.entity.Song;
 import com.ssafy.gumid207.entity.User;
+import com.ssafy.gumid207.recommend.SimDataRepository;
 import com.ssafy.gumid207.song.SongDislikeRepository;
 import com.ssafy.gumid207.song.SongRepository;
 import com.ssafy.gumid207.songbox.MyListRepository;
