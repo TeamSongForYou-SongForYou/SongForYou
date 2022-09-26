@@ -20,4 +20,8 @@ class SongRemoteDataSource @Inject constructor(
     fun getLyrics(songSeq: Int): Flow<BaseResponse<LyricsResponse>> = flow {
         emit(songApi.getLyrics(songSeq))
     }
+
+    fun songDisLike(songSeq: Int): Flow<BaseResponse<String>> = flow {
+        emit(songApi.songDisLike(songSeq))
+    }
 }
