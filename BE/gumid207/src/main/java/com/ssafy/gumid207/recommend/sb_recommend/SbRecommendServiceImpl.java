@@ -78,7 +78,7 @@ public class SbRecommendServiceImpl implements SbRecommendService {
 		int limit = 10000;
 		while(limit > 0 && randomSongs.size() < size) {
 			limit--;
-			Long randNum = SongStaticData.random.nextLong(SongStaticData.songList.size());
+			Long randNum = SongStaticData.random.nextLong() % SongStaticData.songList.size();
 			if (picked.contains(randNum)) {
 				continue;
 			}
