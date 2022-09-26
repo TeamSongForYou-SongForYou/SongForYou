@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.gumid207.dto.UserDto;
+import com.ssafy.gumid207.dto.UserLoginDto;
 import com.ssafy.gumid207.dto.UserRegisterDto;
 import com.ssafy.gumid207.entity.User;
 import com.ssafy.gumid207.res.ResponseFrame;
@@ -99,5 +100,21 @@ public class UserController {
 	        Boolean result = userService.modifyPass(email, newPass);
 	        return new ResponseEntity<>(ResponseFrame.of(result, msg), HttpStatus.OK);
 		}
+	}
+	
+	@PostMapping("/login")
+	@ApiOperation(value = "일반 로그인", response = ResponseEntity.class)
+	public ResponseEntity<?> login(@RequestBody UserLoginDto params) {
+		
+		Boolean result = userService.loginUser(params);
+		String msg;
+		
+		if(result) {
+			msg = "로그인에 성공하였습니다.";
+		}
+		else {
+			msg = "가입되지 않거나 틀린 비밀번호입니다.";
+		}
+		return new ResponseEntity<>(new ResponseFrame<>(result, params, 1, msg), HttpStatus.OK);
 	}
 }

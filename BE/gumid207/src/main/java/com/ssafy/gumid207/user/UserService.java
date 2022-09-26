@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.gumid207.dto.UserLoginDto;
 import com.ssafy.gumid207.dto.UserRegisterDto;
 import com.ssafy.gumid207.entity.User;
 
@@ -68,6 +69,16 @@ public class UserService {
 		}
 		else {
 			result.get().modifyPass(newPass);
+			return true;
+		}
+	}
+	
+	public Boolean loginUser(UserLoginDto params) {
+		Optional<User> result = userRepository.findByIdAndPass(params.getId(), params.getPass());
+		if(result.isEmpty()) {
+			return false;
+		}
+		else {
 			return true;
 		}
 	}
