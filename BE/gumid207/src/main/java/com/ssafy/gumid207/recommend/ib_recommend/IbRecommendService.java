@@ -10,5 +10,6 @@ import com.ssafy.gumid207.dto.SongDto;
 public interface IbRecommendService {
 	List<SongDto> getMyListRecommend(Long userSeq, Integer size) throws Exception;
 	List<SongDto> getMyRecordRecommend(Long userSeq, Integer datelimit, Integer size) throws Exception;
+	List<SongDto> getBeforeAfterRecommend(Long userSeq, Long songSeq, Integer size) throws Exception;
 
 }

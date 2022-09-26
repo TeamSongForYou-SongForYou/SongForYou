@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.gumid207.devutil.DevUtil;
 import com.ssafy.gumid207.dto.SongDto;
 import com.ssafy.gumid207.dto.UserDto;
 import com.ssafy.gumid207.entity.User;
@@ -29,13 +28,12 @@ import lombok.extern.slf4j.Slf4j;
 @Api(tags = "노래 유사도 기반 추천 컨트롤러")
 public class IbRecommendRestController {
 	private final UserRepository userRepo;
-	
+
 	public UserDto getLoginUser() {
 		User user = null;
 		try {
 			user = userRepo.findById(3l).get();
-		}
-		catch (Exception e) {			
+		} catch (Exception e) {
 			user = new User();
 			user.setBirthday(1996);
 			user.setGender("male");
@@ -69,6 +67,14 @@ public class IbRecommendRestController {
 				new ResponseFrame<>(true, songDtoList, songDtoList.size(), "최근 녹음곡 기반 추천 정보를 반환합니다."), HttpStatus.OK);
 	}
 
+	@ApiParam(value = "이전곡 비슷한 노래 추천 리스트 받기")
+	@GetMapping(value = "/{songSeq}/before-after")
+	public Object getBeforeAfterRecommend(@RequestParam(required = true) Long songSeq) throws Exception {
+		UserDto userDto = getLoginUser();
+		List<SongDto> songDtoList = ibRecommendServ.getBeforeAfterRecommend(userDto.getUserSeq(), songSeq, null);
+		return new ResponseEntity<>(
+				new ResponseFrame<>(true, songDtoList, songDtoList.size(), "이전 곡 번호 기반 기반 추천 정보를 반환합니다."), HttpStatus.OK);
+	}
 //	@ApiParam(value = "유저 환경정보 세팅 (넣은 정보만 변경, null인 정보는 유지)")
 //	@PostMapping(value = "/{userSeq}")
 //	public ResponseEntity<?> setUserSetting(@PathVariable Long userSeq, @RequestBody UserSettingDto userSettingDto) throws Exception{
