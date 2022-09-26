@@ -1,7 +1,6 @@
 package com.hanyeop.songforyou.view.login
 
 import android.content.SharedPreferences
-import android.provider.ContactsContract.CommonDataKinds.Email
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,7 +17,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,8 +25,6 @@ private const val TAG = "UserViewModel___"
 
 @HiltViewModel
 class UserViewModel @Inject constructor(
-    private val oauth2Repository: Oauth2Repository,
-    private val sharedPreferences: SharedPreferences,
     private val userRepository: UserRepository
 ): ViewModel() {
 
@@ -75,7 +71,7 @@ class UserViewModel @Inject constructor(
     }
 
     // 닉네임 중복 검사
-    //fun
+    // fun checkEmail(userEmail: String)
     // 이메일 인증번호 전송
     // 이메일 인증번호 확인
     // 비밀번호 찾기
