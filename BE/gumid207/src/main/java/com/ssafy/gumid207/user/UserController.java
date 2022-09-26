@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -54,7 +55,7 @@ public class UserController {
 	
 	@GetMapping("/isUsedEmail")
     @ApiOperation(value = "이메일 중복 체크", response = ResponseEntity.class)
-    public ResponseEntity<?> isUsedEmail(String email) throws Exception{
+    public ResponseEntity<?> isUsedEmail(@PathVariable("email") String email) throws Exception{
     	
         Boolean result = userService.checkEmail(email);
         System.out.println("결과는:" + result);
@@ -66,7 +67,7 @@ public class UserController {
 	
 	@GetMapping("/isUsednickName")
     @ApiOperation(value = "닉네임 중복 체크", response = ResponseEntity.class)
-    public ResponseEntity<?> isUsedNickName(String nickName) throws Exception{
+    public ResponseEntity<?> isUsedNickName(@PathVariable("nickName") String nickName) throws Exception{
     	
         Boolean result = userService.checkNickName(nickName);
         System.out.println("결과는:" + result);
@@ -78,7 +79,7 @@ public class UserController {
 	
 	@GetMapping("/emailAuth")
     @ApiOperation(value = "이메일 인증", response = ResponseEntity.class)
-    public ResponseEntity<?> emailAuth(String email) throws UnsupportedEncodingException{
+    public ResponseEntity<?> emailAuth(@PathVariable("email") String email) throws UnsupportedEncodingException{
     	String data = mailService.joinEmail(email);
         String msg = "이메일 인증번호 전송 완료";
         int count = 1;
