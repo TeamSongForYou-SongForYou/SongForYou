@@ -75,7 +75,7 @@ class UserViewModel @Inject constructor(
     }
 
     // 닉네임 중복 검사
-    fun
+    //fun
     // 이메일 인증번호 전송
     // 이메일 인증번호 확인
     // 비밀번호 찾기
