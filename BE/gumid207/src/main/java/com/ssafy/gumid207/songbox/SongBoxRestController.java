@@ -1,40 +1,68 @@
 package com.ssafy.gumid207.songbox;
 
+import java.time.LocalDateTime;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.gumid207.dto.UserDto;
+import com.ssafy.gumid207.entity.User;
 import com.ssafy.gumid207.res.ResponseFrame;
+import com.ssafy.gumid207.user.UserRepository;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/songbox")
+@RequestMapping("/song-box")
 @RequiredArgsConstructor
 @Slf4j
 @Api(tags = "보관함 컨트롤러")
 public class SongBoxRestController {
-	
-	private final SongBoxService songBoxServ;
-	
-	@ApiParam(value = "곡 정보 반환")
-	@GetMapping(value = "/{songSeq}")
-	public ResponseEntity<?> getUserSetting(@PathVariable Long songSeq) throws Exception{
-		return new ResponseEntity<>(new ResponseFrame<>(true, songBoxServ.getUserSetting(songSeq), 1, "곡 정보를 반환합니다."), HttpStatus.OK);
+	private final UserRepository userRepo;
+
+	public UserDto getLoginUser() {
+		User user = null;
+		try {
+			user = userRepo.findById(3l).get();
+		} catch (Exception e) {
+			user = new User();
+			user.setBirthday(1996);
+			user.setGender("male");
+			user.setId("anfidthtn");
+			user.setNickName("무량소수");
+			user.setPoint(1000);
+			user.setPass("1234");
+			user.setRegTime(LocalDateTime.now());
+		}
+
+		return UserDto.of(user);
 	}
 	
-//	@ApiParam(value = "유저 환경정보 세팅 (넣은 정보만 변경, null인 정보는 유지)")
-//	@PostMapping(value = "/{userSeq}")
-//	public ResponseEntity<?> setUserSetting(@PathVariable Long userSeq, @RequestBody UserSettingDto userSettingDto) throws Exception{
-//		return new ResponseEntity<>(new ResponseFrame<>(true, settingServ.setUserSetting(userSeq, userSettingDto), 1, "유저 환경설정에 성공했습니다."), HttpStatus.OK);
-//	}
+	private final SongBoxService songBoxServ;
+
+	@ApiOperation(value = "노래 보관함에 추가")
+	@PostMapping(value="/my-box/{songSeq}")
+	public ResponseEntity<?> addMyList(@PathVariable Long songSeq) throws Exception {
+		UserDto userDto = getLoginUser();
+		Boolean result = songBoxServ.addMyList(userDto.getUserSeq(), songSeq);
+		return new ResponseEntity<>(new ResponseFrame<>(true, result, 1, "보관함에 추가했습니다."), HttpStatus.OK);
+	}
 	
+	@ApiOperation(value = "노래 보관함에서 삭제")
+	@DeleteMapping(value="/my-box/{songSeq}")
+	public ResponseEntity<?> deleteMyList(@PathVariable Long songSeq) throws Exception {
+		UserDto userDto = getLoginUser();
+		Boolean result = songBoxServ.deleteMyList(userDto.getUserSeq(), songSeq);
+		return new ResponseEntity<>(new ResponseFrame<>(true, result, 1, "보관함에서 삭제했습니다."), HttpStatus.OK);
+	}
 	
 
 }
