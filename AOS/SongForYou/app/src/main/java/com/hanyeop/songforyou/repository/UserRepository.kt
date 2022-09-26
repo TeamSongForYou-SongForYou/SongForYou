@@ -83,9 +83,9 @@ class UserRepository @Inject constructor(
 
 
     // 이메일 인증번호 전송
-    fun emailAuth(userEmail: String): Flow<ResultType<BaseResponse<String>>> = flow {
+    fun requestEmailAuth(userEmail: String): Flow<ResultType<BaseResponse<String>>> = flow {
         emit(ResultType.Loading)
-        userRemoteDataSource.emailAuth(userEmail).collect {
+        userRemoteDataSource.requestEmailAuth(userEmail).collect {
             if (it.success) {
                 emit(ResultType.Success(it))
             } else if (!it.success) {

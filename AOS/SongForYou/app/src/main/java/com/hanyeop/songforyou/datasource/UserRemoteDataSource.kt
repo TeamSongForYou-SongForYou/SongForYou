@@ -44,10 +44,10 @@ class UserRemoteDataSource @Inject constructor(
 
 
     // 이메일 인증번호 전송
-    fun emailAuth(
+    fun requestEmailAuth(
         userEmail: String
     ): Flow<BaseResponse<String>> = flow {
-        emit(userApi.emailAuth(userEmail))
+        emit(userApi.requestEmailAuth(userEmail))
     }
 
     // 비밀번호 찾기

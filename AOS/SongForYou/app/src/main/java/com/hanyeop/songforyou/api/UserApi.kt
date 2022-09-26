@@ -40,7 +40,7 @@ interface UserApi {
 
     // 이메일 인증번호 전송
     @GET("/user/{userEmail}")
-    suspend fun emailAuth(
+    suspend fun requestEmailAuth(
         @Path("userEmail") userEmail: String
     ): BaseResponse<String>
 
