@@ -23,4 +23,9 @@ interface SongApi {
     suspend fun songDisLike(
         @Path ("songSeq") songSeq: Int
     ): BaseResponse<String>
+
+    @GET("song/{songName}/search")
+    suspend fun songSearch(
+        @Path ("songName") songName: String
+    ): BaseResponse<SongResponse>
 }
