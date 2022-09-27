@@ -14,4 +14,6 @@ public interface ReviewService {
 
 	ReviewDto uploadReview(Long userSeq, ReviewUploadDto reviewUploadDto, MultipartFile imgFile) throws Exception;
 
+	List<ReviewDto> getReviewList(String karaokeName, String karaokeAddress) throws Exception;
+
 }

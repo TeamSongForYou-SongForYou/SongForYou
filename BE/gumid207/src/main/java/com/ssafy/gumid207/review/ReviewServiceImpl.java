@@ -1,9 +1,13 @@
 package com.ssafy.gumid207.review;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ssafy.gumid207.customexception.ReviewUploadDtoIllegalParameterException;
 import com.ssafy.gumid207.customexception.UserNotFoundException;
 import com.ssafy.gumid207.dto.ReviewDto;
 import com.ssafy.gumid207.dto.ReviewUploadDto;
@@ -11,7 +15,6 @@ import com.ssafy.gumid207.entity.File;
 import com.ssafy.gumid207.entity.Karaoke;
 import com.ssafy.gumid207.entity.Review;
 import com.ssafy.gumid207.entity.User;
-import com.ssafy.gumid207.res.MyRecordResDto;
 import com.ssafy.gumid207.s3.FileRepository;
 import com.ssafy.gumid207.s3.S3FileService;
 import com.ssafy.gumid207.user.UserRepository;
@@ -62,5 +65,23 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		
 		return ReviewDto.of(review);
+	}
+	
+	@Override
+	public List<ReviewDto> getReviewList(String karaokeName, String karaokeAddress) throws Exception{
+		if (karaokeName == null || karaokeAddress == null) {
+			throw new ReviewUploadDtoIllegalParameterException("노래방 이름, 주소가 올바르지 않습니다.");
+		}
+		Karaoke karaoke = karaokeRepo
+				.findByKaraokeNameAndKaraokeAddress(karaokeName,
+						karaokeAddress) //
+				.orElse(Karaoke.builder() //
+						.karaokeName(karaokeName) //
+						.karaokeAddress(karaokeAddress) //
+						.build());
+		karaokeRepo.save(karaoke);
+		return reviewRepo.findByKaraokeSeq(karaoke).stream().map((review) //
+				-> ReviewDto.of(review)) //
+				.collect(Collectors.toList());
 	}
 }
