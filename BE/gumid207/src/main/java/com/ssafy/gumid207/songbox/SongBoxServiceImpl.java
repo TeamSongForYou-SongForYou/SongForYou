@@ -4,14 +4,20 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.gumid207.customexception.MyListAlreadyExistException;
 import com.ssafy.gumid207.customexception.MyListNotFoundException;
 import com.ssafy.gumid207.customexception.SongNotFoundException;
 import com.ssafy.gumid207.customexception.UserNotFoundException;
+import com.ssafy.gumid207.entity.File;
 import com.ssafy.gumid207.entity.MyList;
+import com.ssafy.gumid207.entity.MyRecord;
 import com.ssafy.gumid207.entity.Song;
 import com.ssafy.gumid207.entity.User;
+import com.ssafy.gumid207.res.MyRecordResDto;
+import com.ssafy.gumid207.s3.FileRepository;
+import com.ssafy.gumid207.s3.S3FileService;
 import com.ssafy.gumid207.song.SongRepository;
 import com.ssafy.gumid207.user.UserRepository;
 
@@ -27,6 +33,9 @@ public class SongBoxServiceImpl implements SongBoxService {
 	private final UserRepository userRepo;
 	private final SongRepository songRepo;
 	private final MyListRepository myListRepo;
+	private final MyRecordRepository myRecordRepo;
+	private final FileRepository fileRepo;
+	private final S3FileService s3serv;
 
 	@Override
 	public Boolean addMyList(Long userSeq, Long songSeq) throws Exception {
@@ -42,7 +51,7 @@ public class SongBoxServiceImpl implements SongBoxService {
 		myListRepo.save(myList);
 		return true;
 	}
-	
+
 	@Override
 	public Boolean deleteMyList(Long userSeq, Long songSeq) throws Exception {
 		User user = userRepo.findByUserSeq(userSeq).orElseThrow(() -> new UserNotFoundException("해당 유저를 찾을 수 없습니다."));
@@ -55,4 +64,19 @@ public class SongBoxServiceImpl implements SongBoxService {
 		return true;
 	}
 
+	@Override
+	public MyRecordResDto saveMySongRecord(Long userSeq, Long songSeq, MultipartFile recordFile) throws Exception {
+		User user = userRepo.findByUserSeq(userSeq).orElseThrow(() -> new UserNotFoundException("해당 유저를 찾을 수 없습니다."));
+		Song song = songRepo.findBySongSeq(songSeq).orElseThrow(() -> new SongNotFoundException("해당 곡을 찾을 수 없습니다."));
+
+		File file = File.of(s3serv.upload(recordFile, userSeq.toString(), "songRecord", "mp3"));
+		fileRepo.save(file);
+		MyRecord myRecord = MyRecord.builder() //
+				.user(user) //
+				.song(song) //
+				.file(file) //
+				.build();
+		myRecordRepo.save(myRecord);
+		return MyRecordResDto.of(myRecord);
+	}
 }
