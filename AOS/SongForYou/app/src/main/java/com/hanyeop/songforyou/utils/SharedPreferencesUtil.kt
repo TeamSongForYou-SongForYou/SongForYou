@@ -1,8 +1,8 @@
-package com.ssafy.heritage.util
+package com.hanyeop.songforyou.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.ssafy.heritage.data.dto.User
+import com.hanyeop.songforyou.model.dto.UserDto
 
 class SharedPreferencesUtil(context: Context) {
     private val sharedPreferencesName = "store_preference"
@@ -10,9 +10,8 @@ class SharedPreferencesUtil(context: Context) {
         context.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE)
 
     // 사용자 정보 저장
-    fun saveUser(user: User){
+    fun saveUser(user: UserDto){
         val editor = preferences.edit()
-        user.userSeq?.let { editor.putInt("userSeq", it) }
         editor.putString("userNickName",user.userNickname)
         editor.commit()
     }

@@ -1,172 +1,145 @@
 package com.hanyeop.songforyou.view.login.join
 
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseFragment
 import com.hanyeop.songforyou.databinding.FragmentJoinBinding
 import com.hanyeop.songforyou.view.login.UserViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 private const val TAG = "JoinFragment___"
 
+@AndroidEntryPoint
 class JoinFragment : BaseFragment<FragmentJoinBinding>(R.layout.fragment_join) {
-//    private val joinViewModel by viewModels<UserViewModel>()
+    private val userViewModel by viewModels<UserViewModel>()
 
     // 소셜로그인인지 아닌지 확인
-//    private val type by lazy { arguments?.getString("type") ?: "" }
+    private val type by lazy { arguments?.getString("type") ?: "" }
 
-    override fun init(): Unit = with(binding) {
+    override fun init(){
+        binding.joinVM = userViewModel
 
-
-//        initObserver()
+        initObserver()
 
 //        initView()
 //
-//        initClickListener()
-//
+        initClickListener()
+
         setTextChangedListener()
-//
-//        setItemSelectedListener()
+
+        initViewModelCallback()
+
+        setItemSelectedListener()
     }
 
-//    private fun initObserver() {
-//        joinViewModel.message.observe(viewLifecycleOwner) {
-//
-//            // viewModel에서 Toast메시지 Event 발생시
-//            it.getContentIfNotHandled()?.let {
-//                makeToast(it)
-//            }
-//        }
-//    }
+    private fun initObserver() {
+        userViewModel.message.observe(viewLifecycleOwner) {
 
-//    private fun initClickListener() = with(binding) {
-//
-//        // 인증번호전송 클릭시
-//        btnRequestIdVertification.setOnClickListener {
-//
-//            CoroutineScope(Dispatchers.Main).launch {
-//
-//                // 인증번호 요청 성공시
-//                if (joinViewModel.sendIdVeroficationCode(tilId) == true) {
-//                    tilIdVertification.visibility = View.VISIBLE
-//                    btnIdVertify.visibility = View.VISIBLE
-//                } else {
-//                    tilIdVertification.visibility = View.GONE
-//                    btnIdVertify.visibility = View.GONE
-//                }
-//
-//            }
-//
-//        }
-//
-//        // 인증하기 클릭시
-//        btnIdVertify.setOnClickListener {
-//
-//            CoroutineScope(Dispatchers.Main).launch {
-//
-//                // 인증번호 인증 성공시
-//                if (joinViewModel.idVerify(tilIdVertification)) {
-//                    tilId.isEnabled = false
-//                    btnRequestIdVertification.isEnabled = false
-//                    tilIdVertification.editText?.setText("인증성공")
-//                    tilIdVertification.isEnabled = false
-//                    btnIdVertify.isEnabled = false
-//
-//                    motionlayout.transitionToEnd()
-//                }
-//            }
-//        }
-//
-//        // 닉네임 중복검사 클릭시
-//        btnRequestNicknameVertification.setOnClickListener {
-//
-//            CoroutineScope(Dispatchers.Main).launch {
-//
-//                // 중복된 닉네임 없는 경우
-//                if (joinViewModel.nicknameVerify(tilNickname)) {
-//                    // 사용 가능한 닉네임이라고 표시
-//                }
-//            }
-//        }
-//
-//        // 회원가입 클릭시
-//        btnJoin.setOnClickListener {
-//
-//
-//            // 닉네임 중복검사 했는지 확인
-//            if (joinViewModel.isCheckedNickname.value == false) {
-//                makeTextInputLayoutError(tilNickname, "닉네임 중복검사를 해주세요")
-//                makeToast("닉네임 중복검사를 해주세요")
-//                return@setOnClickListener
-//            }
-//
-//            // 비밀번호 유효성 검사 했는지 확인 (소셜 회원가입이 아닌 경우)
-//            if (!type.equals("social") && !joinViewModel.validatePw(tilPw, tilPwCheck)) {
-//                return@setOnClickListener
-//            }
-//
-//            // 생년월일 선택했는지 확인
-//            if (joinViewModel.birth.value == null) {
-//                makeToast("출생 년도를 선택해주세요")
-//                return@setOnClickListener
-//            }
-//
-//            // 성별 선택했는지 확인인
-//            if (joinViewModel.gender.value == null) {
-//                makeToast("성별을 선택해주세요")
-//                return@setOnClickListener
-//            }
-//
-//            // 유효성 검사 다 통과하면 회원가입 요청
-//            CoroutineScope(Dispatchers.Main).launch {
-//
-//                // 소셜 회원가입인 경우
-//                if (type.equals("social")) {
-//                    val id = arguments?.getString("id")
-//
-//                    val token = joinViewModel.socialJoin(id!!)
-//
-//                    Log.d(TAG, "token: $token")
-//
-//                    // 소셜 회원가입 성공시
-//                    if (token != null) {
-//                        ApplicationClass.sharedPreferencesUtil.saveToken(token)
-//
-//                        val user = JWTUtils.decoded(token)
-//                        if (user != null) {
-//                            Intent(requireContext(), HomeActivity::class.java).apply {
-//                                startActivity(this)
-//                            }
-//                        } else {
-//                            makeToast("유저 정보 획득에 실패하였습니다")
-//                        }
-//                    }
-//                    // 회원가입 실패한 경우
-//                    else {
-//                        makeToast("회원가입 오류")
-//                    }
-//                }
-//                // 일반 회원가입인 경우
-//                else {
-//                    // 일반 회원가입 성공시
-//                    if (joinViewModel.join()) {
-//                        findNavController().navigate(R.id.action_joinFragment_to_loginFragment)
-//                    }
-//                    // 회원가입 실패한 경우
-//                    else {
-//
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
+            // viewModel에서 Toast메시지 Event 발생시
+            it.getContentIfNotHandled()?.let {
+                makeToast(it)
+            }
+        }
+    }
+    private fun initViewModelCallback() = with(binding){
+        lifecycleScope.launch {
+            // 인증 번호 전송 성공 시
+            userViewModel.emailAuthNumber.collectLatest {
+                btnEmailAuthNumberCheck.visibility = View.VISIBLE
+            }
+        }
+        lifecycleScope.launch {
+            userViewModel.isEmailAuthChecked.collectLatest {
+                // 인증 번호 인증 성공 시
+                if(it){
+                    tilEmail.isEnabled = false
+                    btnEmailAuthNumberRequest.isEnabled = false
+                    tilEmailAuthNumber.editText?.setText("인증성공")
+                    tilEmailAuthNumber.isEnabled = false
+                    btnEmailAuthNumberCheck.isEnabled = false
+                }
+            }
+        }
+        lifecycleScope.launch {
+            userViewModel.isNicknameChecked.collectLatest {
+                // 사용가능한 닉네임인 경우
+                if(it){
+                    btnNicknameCheck.text = "사용가능"
+                    btnNicknameCheck.isEnabled = false
+                }
+            }
+        }
+        lifecycleScope.launch {
+            userViewModel.isJoinChecked.collectLatest {
+                // 회원가입에 성공한 경우
+                if(it){
+                    findNavController().navigate(R.id.action_joinFragment_to_loginFragment)
+                }else{
+                    // 실패한 경우
+                }
+            }
+        }
+    }
+    private fun initClickListener() = with(binding) {
+
+        // 인증번호 전송(본인확인) 클릭시
+        btnEmailAuthNumberRequest.setOnClickListener {
+            userViewModel.requestEmailAuthNumber(tilEmail)
+        }
+
+        // 인증번호 확인 클릭시
+        btnEmailAuthNumberCheck.setOnClickListener {
+            userViewModel.checkEmailAuthNumber(tilEmailAuthNumber)
+        }
+
+        // 닉네임 중복확인 클릭시
+        btnNicknameCheck.setOnClickListener {
+            userViewModel.checkNickname(tilNickname)
+        }
+
+        // 회원가입 클릭시
+        btnJoin.setOnClickListener {
+
+            // 닉네임 중복 검사 확인
+            if(userViewModel.isNicknameChecked.value == false){
+                makeTextInputLayoutError(tilNickname, "닉네임 중복검사를 해주세요")
+                makeToast("닉네임 중복검사를 해주세요")
+                return@setOnClickListener
+            }
+
+            // 비밀번호 유효성 검사 확인
+            if (!userViewModel.validatePassword(tilPassword, tilPasswordCheck)) {
+                return@setOnClickListener
+            }
+
+            // 출생년도 선택 확인
+            if(userViewModel.year.value == null){
+                makeToast("출생 년도를 선택해주세요")
+                return@setOnClickListener
+            }
+
+            // 성별 선택 확인
+            if(userViewModel.gender.value == null){
+                makeToast("성별을 선택해주세요")
+                return@setOnClickListener
+            }
+            // 검사를 모두 통과할 경우 회원가입 요청
+            // 소셜인 경우
+
+            // 일반 회원가입인 경우
+            userViewModel.signUpUser()
+        }
+    }
+
     private fun setTextChangedListener() = with(binding) {
 
         // id 이메일 입력창 에러 비활성화
@@ -200,26 +173,13 @@ class JoinFragment : BaseFragment<FragmentJoinBinding>(R.layout.fragment_join) {
         // 스피너 선택 리스너 설정
         spinnerYear.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
             Log.d(TAG, "setItemSelectedListener: $newItem")
-            //joinViewModel.birthYearChanged(newItem)
+            userViewModel.yearChanged(newItem)
         }
-
         spinnerGender.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
             Log.d(TAG, "setItemSelectedListener: $newItem")
-            //joinViewModel.genderTypeChanged(newItem)
+            userViewModel.genderChanged(newItem)
         }
     }
-//
-//    private fun initView() = with(binding) {
-//
-//        // 소셜 로그인인 경우
-//        if (type.equals("social")) {
-//            headerPw.visibility = View.GONE
-//            headerPwCheck.visibility = View.GONE
-//            tilPw.visibility = View.GONE
-//            tilPwCheck.visibility = View.GONE
-//            motionlayout.transitionToEnd()
-//        }
-//    }
 
     private fun makeToast(msg: String) {
         Toast.makeText(requireActivity(), msg, Toast.LENGTH_SHORT).show()

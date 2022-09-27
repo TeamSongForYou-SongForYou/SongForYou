@@ -9,6 +9,6 @@ import javax.inject.Singleton
 class SignUpUseCase @Inject constructor(
     private val userRepository: UserRepository
 ){
-    fun execute(token: String, userDto: UserDto)
-    = userRepository.signUpUser(token, userDto)
+    fun execute(userDto: UserDto)
+    = userRepository.signUpUser(userDto)
 }

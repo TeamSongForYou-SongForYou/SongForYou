@@ -38,13 +38,18 @@ class UserViewModel @Inject constructor(
     private val findPasswordUseCase: FindPasswordUseCase
 ): ViewModel() {
 
-    var job: Job? = null
+    val email =  MutableLiveData<String>()
 
-    private val _email = MutableStateFlow("")
-    val email get() = _email.asStateFlow()
+    val nickname = MutableLiveData<String>()
 
-    private val _nickname = MutableStateFlow("")
-    val nickname get() = _nickname.asStateFlow()
+    val password = MutableLiveData<String>()
+
+    val gender = MutableLiveData<String>()
+
+    val year = MutableLiveData<String>()
+
+    private val _isPasswordChecked = MutableStateFlow("")
+    val isPasswordChecked get() = _isPasswordChecked.asStateFlow()
 
     private val _isEmailChecked = MutableStateFlow(false)
     val isEmailChecked get() = _isEmailChecked.asStateFlow()
@@ -54,6 +59,11 @@ class UserViewModel @Inject constructor(
 
     private val _isNicknameChecked = MutableStateFlow(false)
     val isNicknameChecked get() = _isNicknameChecked.asStateFlow()
+
+    private val _isJoinChecked = MutableStateFlow(false)
+    val isJoinChecked get() = _isJoinChecked.asStateFlow()
+
+
 
     // viewModel에서 Toast 메시지 띄우기 위한 Event
     private val _message = MutableLiveData<Event<String>>()
@@ -102,7 +112,7 @@ class UserViewModel @Inject constructor(
 
             // 이메일 중복검사
             checkEmail(email.value!!, textInputLayout)
-
+            Log.d(TAG, isEmailChecked.value.toString())
             // 중복검사 통과시
             if(isEmailChecked.value){
                 // 서버로 인증 번호 전송 요청
@@ -140,10 +150,12 @@ class UserViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
              checkEmailUseCase.execute(userEmail).collectLatest {
                 if(it is ResultType.Success){
+                    Log.d(TAG, it.data.data)
                     if(it.data.data.equals(true)){
+                        Log.d(TAG, "true")
                         _isEmailChecked.value = true
                     }else{
-                        Log.d(TAG, "${it.data}")
+                        Log.d(TAG, "${it.data}......")
                         makeTextInputLayoutError(textInputLayout, "중복된 이메일입니다")
                         makeToast("중복된 이메일입니다")
                         _isEmailChecked.value = false
@@ -153,16 +165,62 @@ class UserViewModel @Inject constructor(
             }
         }
     }
+    // 비밀번호 유효성 검사 실행
+    fun validatePassword(tilPw: TextInputLayout, tilPwCheck: TextInputLayout): Boolean {
 
+        // 비밀번호를 입력했는지 검사
+        if (password.value.isNullOrBlank()) {
+            makeTextInputLayoutError(tilPw, "비밀번호를 입력해주세요")
+            makeToast("비밀번호를 입력해주세요")
+            return false
+        }
 
+        // 비밀번호 형식이 틀린 경우
+        else {
+            val pwRegex = """^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^+\-=])(?=\S+$).*$"""
+            val pwPattern = Pattern.compile(pwRegex)
+            if (!pwPattern.matcher(password.value).matches()) {
+                makeTextInputLayoutError(tilPw, "비밀번호를 규칙을 만족하지 못합니다")
+                makeToast("비밀번호를 규칙을 만족하지 못합니다")
+                return false
+            }
+        }
+
+        // 비밀번호 재확인 입력했는지 검사
+        if (isPasswordChecked.value.isNullOrBlank()) {
+            makeTextInputLayoutError(tilPwCheck, "비밀번호를 입력해주세요")
+            makeToast("비밀번호를 입력해주세요")
+            return false
+        }
+        // 두 비밀번호가 일치하지 않는 경우
+        if (password.value != isPasswordChecked.value) {
+            makeTextInputLayoutError(tilPwCheck, "비밀번호가 일치하지 않습니다")
+            makeToast("비밀번호가 일치하지 않습니다")
+            return false
+        }
+
+        // 유효성 검사를 다 통과한 경우
+        return true
+    }
     // 비밀번호 찾기
 
-    // 일반 회원기입
-    fun signUpUser(token: String, userDto: UserDto){
-        viewModelScope.launch(Dispatchers.IO) {
-            signUpUseCase.execute(token, userDto).collectLatest {
-                if(it is ResultType.Success) {
 
+    // 출생년도 선택시
+    fun yearChanged(selected: String){
+        year.value = selected
+    }
+    // 출생년도 선택시
+    fun genderChanged(selected: String){
+        gender.value = selected
+    }
+    // 일반 회원가입
+    fun signUpUser(){
+        val user = UserDto(year.value!!.toInt(), email.value!!, gender.value!!, email.value!!,nickname.value!!, password.value!!,0,"")
+        viewModelScope.launch(Dispatchers.IO) {
+            signUpUseCase.execute(user).collectLatest {
+                if(it is ResultType.Success) {
+                    _joinMsgEvent.value = it.data.msg
+                    _isJoinChecked.value = true
                 }
             }
         }
@@ -172,6 +230,7 @@ class UserViewModel @Inject constructor(
     fun loginUser(map: HashMap<String, String>){
         viewModelScope.launch(Dispatchers.IO) {
             loginUseCase.execute(map).collectLatest {
+
             }
         }
     }
