@@ -92,14 +92,14 @@ public class UserController {
 	public ResponseEntity<?> newPass(String email) throws UnsupportedEncodingException{
 		Optional<User> user = userRepository.findByEmail(email);
 		if(user.isPresent()) {
-			return new ResponseEntity<>(ResponseFrame.of(false, "가입되지 않은 이메일 입니다."), HttpStatus.OK);
-		}
-		else {
 			String newPass = mailService.passEmail(email);
 			System.out.println("newPass: " + newPass);
 	        String msg = "새 비밀번호 전송 완료";
 	        Boolean result = userService.modifyPass(email, newPass);
 	        return new ResponseEntity<>(ResponseFrame.of(result, msg), HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(ResponseFrame.of(false, "가입되지 않은 이메일 입니다."), HttpStatus.OK);
 		}
 	}
 	
