@@ -12,13 +12,11 @@ import javax.inject.Singleton
 class UserRemoteDataSource @Inject constructor(
     private val userApi: UserApi
 ) {
-
     // 일반 회원가입
     fun signUpUser(
-        token: String,
         userDto: UserDto
     ): Flow<BaseResponse<String>> = flow {
-        emit(userApi.signUpUser(token, userDto))
+        emit(userApi.signUpUser(userDto))
     }
 
     // 일반 로그인
@@ -44,10 +42,10 @@ class UserRemoteDataSource @Inject constructor(
 
 
     // 이메일 인증번호 전송
-    fun emailAuth(
+    fun requestEmailAuth(
         userEmail: String
     ): Flow<BaseResponse<String>> = flow {
-        emit(userApi.emailAuth(userEmail))
+        emit(userApi.requestEmailAuth(userEmail))
     }
 
     // 비밀번호 찾기
