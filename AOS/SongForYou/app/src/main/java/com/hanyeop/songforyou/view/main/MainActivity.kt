@@ -33,6 +33,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
         // 바텀 네비게이션 연결
         binding.bottomNavigationView.setupWithNavController(navController)
+
+        binding.bottomNavigationView.background = null
     }
 
     private fun initClickListener(){
