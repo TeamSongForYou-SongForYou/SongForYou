@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -69,6 +71,9 @@ public class User {
 	@CreatedDate
 	@Column(name = "user_reg_time")
 	private LocalDateTime regTime;
+	
+	@Enumerated(EnumType.STRING)
+	private Authority authority;
 
 
 	@Builder
@@ -83,6 +88,7 @@ public class User {
 		this.birthday = birthday;
 		this.gender = gender;
 		this.fcmToken = fcmToken;
+		this.authority = Authority.ROLE_USER;
 		this.regTime = LocalDateTime.now();
 	}
 	
