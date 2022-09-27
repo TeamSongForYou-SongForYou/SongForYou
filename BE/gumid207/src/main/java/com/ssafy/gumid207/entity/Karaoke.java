@@ -35,10 +35,10 @@ public class Karaoke {
 	private Long karaokeSeq;
 
 	@Column(name="karaoke_name", nullable = false)
-	private String karaoke_name;
+	private String karaokeName;
 	
 	@Column(name="karaoke_address", nullable = false)
-	private String karaoke_address;
+	private String karaokeAddress;
 	
 	@CreatedDate
 	@Column(name = "karaoke_reg_time")

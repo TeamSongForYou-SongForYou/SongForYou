@@ -45,8 +45,8 @@ public class KaraokeDto implements Serializable {
 		}
 		return new KaraokeDtoBuilder() //
 				.karaokeSeq(karaoke.getKaraokeSeq()) //
-				.karaokeName(karaoke.getKaraoke_name()) //
-				.karaokeAddress(karaoke.getKaraoke_address()) //
+				.karaokeName(karaoke.getKaraokeName()) //
+				.karaokeAddress(karaoke.getKaraokeAddress()) //
 				.karaokeRegTime(karaoke.getKaraokeRegTime()) //
 				.build();
 	}

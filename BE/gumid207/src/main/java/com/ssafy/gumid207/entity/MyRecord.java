@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -44,6 +45,10 @@ public class MyRecord {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_seq", nullable = false)
 	private User user;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "file_seq", nullable = false)
+	private File file;
 
 	@CreatedDate
 	@Column(name = "my_record_reg_time")
