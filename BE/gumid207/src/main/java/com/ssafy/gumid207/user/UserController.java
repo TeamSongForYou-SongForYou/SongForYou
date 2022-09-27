@@ -91,7 +91,7 @@ public class UserController {
 	@ApiOperation(value = "비밀번호 찾기", response = ResponseEntity.class)
 	public ResponseEntity<?> newPass(String email) throws UnsupportedEncodingException{
 		Optional<User> user = userRepository.findByEmail(email);
-		if(user.isEmpty()) {
+		if(user.isPresent()) {
 			return new ResponseEntity<>(ResponseFrame.of(false, "가입되지 않은 이메일 입니다."), HttpStatus.OK);
 		}
 		else {
