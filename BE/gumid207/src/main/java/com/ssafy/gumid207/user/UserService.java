@@ -37,7 +37,7 @@ public class UserService {
 	//이메일 중복 검사
 	public Boolean checkEmail(String email) {
 		Optional<User> result = userRepository.findByEmail(email);
-		if(result.isEmpty()) {
+		if(result.isPresent()) {
 			return true;
 		}
 		else {
@@ -49,7 +49,7 @@ public class UserService {
 	//이메일 중복 검사
 	public Boolean checkNickName(String nickName) {
 		Optional<User> result = userRepository.findByNickName(nickName);
-		if(result.isEmpty()) {
+		if(result.isPresent()) {
 			return true;
 		}
 		else {
@@ -64,7 +64,7 @@ public class UserService {
 	public Boolean modifyPass(String email, String newPass) {
 		Optional<User> result = userRepository.findByEmail(email);
 		System.out.println("new: " + newPass);
-		if(result.isEmpty()) {
+		if(result.isPresent()) {
 			return false;
 		}
 		else {
@@ -75,7 +75,7 @@ public class UserService {
 	
 	public Boolean loginUser(UserLoginDto params) {
 		Optional<User> result = userRepository.findByIdAndPass(params.getId(), params.getPass());
-		if(result.isEmpty()) {
+		if(result.isPresent()) {
 			return false;
 		}
 		else {
