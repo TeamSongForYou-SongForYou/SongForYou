@@ -8,7 +8,7 @@ import javax.inject.Singleton
 @Singleton
 class LoginUseCase @Inject constructor(
     private val userRepository: UserRepository
-): ViewModel() {
+){
     fun execute(map: HashMap<String, String>)
     = userRepository.loginUser(map)
 }
