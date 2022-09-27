@@ -8,6 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.gumid207.customexception.MyListAlreadyExistException;
 import com.ssafy.gumid207.customexception.MyListNotFoundException;
+import com.ssafy.gumid207.customexception.MyRecordNotFoundException;
+import com.ssafy.gumid207.customexception.MyRecordPermissionDeniedException;
 import com.ssafy.gumid207.customexception.SongNotFoundException;
 import com.ssafy.gumid207.customexception.UserNotFoundException;
 import com.ssafy.gumid207.entity.File;
@@ -78,5 +80,17 @@ public class SongBoxServiceImpl implements SongBoxService {
 				.build();
 		myRecordRepo.save(myRecord);
 		return MyRecordResDto.of(myRecord);
+	}
+
+	@Override
+	public Boolean deleteMySongRecord(Long userSeq, Long myRecordSeq) throws Exception {
+		User user = userRepo.findByUserSeq(userSeq).orElseThrow(() -> new UserNotFoundException("해당 유저를 찾을 수 없습니다."));
+		MyRecord myRecord = myRecordRepo.findById(myRecordSeq).orElseThrow(() -> new MyRecordNotFoundException("해당 녹음 정보를 찾을 수 없습니다."));
+		if (myRecord.getUser().getUserSeq() != user.getUserSeq()) {
+			throw new MyRecordPermissionDeniedException("본인의 녹음만 삭제할 수 있습니다.");
+		}
+		myRecordRepo.delete(myRecord);
+
+		return true;
 	}
 }

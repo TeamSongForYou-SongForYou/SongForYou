@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.ssafy.gumid207.customexception.CustomAlreadyExistException;
 import com.ssafy.gumid207.customexception.CustomNotFoundException;
+import com.ssafy.gumid207.customexception.CustomPermissionDeniedException;
 import com.ssafy.gumid207.res.ResponseFrame;
 
 @RestControllerAdvice
@@ -19,6 +20,11 @@ public class TotalRestControllerAdvice {
 	}
 	@ExceptionHandler({CustomAlreadyExistException.class})
 	public ResponseEntity<?> alreadyExistControll(CustomAlreadyExistException error) {
+
+		return new ResponseEntity<>(ResponseFrame.of(false, error.getMessage()), HttpStatus.OK);
+	}
+	@ExceptionHandler({CustomPermissionDeniedException.class})
+	public ResponseEntity<?> permissionDeniedControll(CustomPermissionDeniedException error) {
 
 		return new ResponseEntity<>(ResponseFrame.of(false, error.getMessage()), HttpStatus.OK);
 	}

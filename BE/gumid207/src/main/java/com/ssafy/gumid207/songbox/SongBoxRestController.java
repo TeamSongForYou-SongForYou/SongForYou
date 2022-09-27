@@ -77,5 +77,13 @@ public class SongBoxRestController {
 		return new ResponseEntity<>(new ResponseFrame<>(true, result, 1, "녹음파일을 저장했습니다."), HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "녹음 파일 삭제")
+	@DeleteMapping(value="/my-record/{myRecordSeq}")
+	public ResponseEntity<?> deleteMySongRecord(@PathVariable Long myRecordSeq) throws Exception {
+		UserDto userDto = getLoginUser();
+		Boolean result = songBoxServ.deleteMySongRecord(userDto.getUserSeq(), myRecordSeq);
+		return new ResponseEntity<>(new ResponseFrame<>(true, result, 1, "녹음파일을 삭제했습니다."), HttpStatus.OK);
+	}
+	
 
 }

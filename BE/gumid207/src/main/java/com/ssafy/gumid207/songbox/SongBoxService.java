@@ -14,4 +14,6 @@ public interface SongBoxService {
 
 	MyRecordResDto saveMySongRecord(Long userSeq, Long songSeq, MultipartFile recordFile) throws Exception;
 
+	Boolean deleteMySongRecord(Long userSeq, Long myRecordSeq) throws Exception;
+
 }
