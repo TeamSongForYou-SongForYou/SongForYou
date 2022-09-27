@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ssafy.gumid207.entity.Review;
+import com.ssafy.gumid207.customexception.ReviewUploadDtoIllegalParameterException;
 
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -23,10 +23,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReviewDto implements Serializable {
+public class ReviewUploadDto implements Serializable {
 
-	private Long reviewSeq;
-
+	@ApiParam(value = "노래방 이름", required = true)
+	private String karaokeName;
+	
+	@ApiParam(value = "노래방 주소", required = true)
+	private String karaokeAddress;
+	
 	@ApiParam(value = "노래방 가격, 시간/곡 수 등 타입")
 	private String reviewPrice;
 
@@ -39,35 +43,29 @@ public class ReviewDto implements Serializable {
 	@ApiParam(value = "화장실")
 	private String reviewToilet;
 
-	@ApiParam(value = "청결")
+	@ApiParam(value = "청결", required = true)
 	private Integer reviewCleanness;
 
-	@ApiParam(value = "음질")
+	@ApiParam(value = "음질", required = true)
 	private Integer reviewSoundQuality;
 
-	@ApiParam(value = "리뷰 내용")
+	@ApiParam(value = "리뷰 내용", required = true)
 	private String reviewContent;
 	
 	@ApiParam(value = "등록 시간. (yyyy-MM-dd 00:00:00)")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime reviewRegTime;
-
-	public static ReviewDto of(Review review) {
-		if (review == null) {
-			return null;
+	
+	public void validate() throws Exception {
+		if (karaokeName == null || //
+			karaokeAddress == null || //
+			reviewCleanness == null || //
+			reviewSoundQuality == null ||
+			reviewContent == null //
+				) {
+			throw new ReviewUploadDtoIllegalParameterException("필수 정보가 부족합니다.");
 		}
-		return new ReviewDtoBuilder() //
-				.reviewSeq(review.getReviewSeq()) //
-				.reviewPrice(review.getReviewPrice()) //
-				.reviewPayType(review.getReviewPayType()) //
-				.reviewEmployee(review.getReviewEmployee()) //
-				.reviewToilet(review.getReviewToilet()) //
-				.reviewCleanness(review.getReviewCleanness()) //
-				.reviewSoundQuality(review.getReviewSoundQuality()) //
-				.reviewContent(review.getReviewContent()) //
-				.reviewRegTime(review.getReviewRegTime()) //
-				.build();
 	}
 
 }
