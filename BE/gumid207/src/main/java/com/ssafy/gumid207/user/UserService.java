@@ -38,10 +38,10 @@ public class UserService {
 	public Boolean checkEmail(String email) {
 		Optional<User> result = userRepository.findByEmail(email);
 		if(result.isPresent()) {
-			return true;
+			return false;
 		}
 		else {
-			return false;
+			return true;
 		}
 	}
 	
@@ -50,10 +50,10 @@ public class UserService {
 	public Boolean checkNickName(String nickName) {
 		Optional<User> result = userRepository.findByNickName(nickName);
 		if(result.isPresent()) {
-			return true;
+			return false;
 		}
 		else {
-			return false;
+			return true;
 		}      
 	
 
@@ -65,21 +65,21 @@ public class UserService {
 		Optional<User> result = userRepository.findByEmail(email);
 		System.out.println("new: " + newPass);
 		if(result.isPresent()) {
-			return false;
+			return true;
 		}
 		else {
 			result.get().modifyPass(newPass);
-			return true;
+			return false;
 		}
 	}
 	
 	public Boolean loginUser(UserLoginDto params) {
 		Optional<User> result = userRepository.findByIdAndPass(params.getId(), params.getPass());
 		if(result.isPresent()) {
-			return false;
+			return true;
 		}
 		else {
-			return true;
+			return false;
 		}
 	}
 }
