@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.ssafy.gumid207.dto.FileDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -48,5 +50,20 @@ public class File {
 	@CreatedDate
 	@Column(name = "file_reg_time")
 	private LocalDateTime regTime;
-
+	
+	public static File of (FileDto fileDto) {
+		if (fileDto == null) {
+			return null;
+		}
+		else {
+			return File.builder() //
+					.fileSeq(fileDto.getFileSeq()) //
+					.originalName(fileDto.getFileOriginalName()) //
+					.regTime(fileDto.getFileRegTime()) //
+					.savedName(fileDto.getFileSavedName()) //
+					.savedPath(fileDto.getFileSavedPath()) //
+					.type(fileDto.getFileType()) //
+					.build();
+		}
+	}
 }

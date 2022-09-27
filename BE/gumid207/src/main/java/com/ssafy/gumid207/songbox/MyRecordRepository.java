@@ -11,4 +11,5 @@ import com.ssafy.gumid207.entity.User;
 public interface MyRecordRepository extends JpaRepository<MyRecord, Long>{
 	List<MyRecord> findByUserAndMyRecordRegTimeAfter(User user, LocalDateTime splitTime);
 	List<MyRecord> findTop1000ByOrderByMyRecordRegTimeDesc();
+	List<MyRecord> findByUserOrderByMyRecordRegTimeDesc(User user);
 }
