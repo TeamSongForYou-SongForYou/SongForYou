@@ -4,7 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View" />
 
+        <variable
+            name="joinVM"
+            type="com.hanyeop.songforyou.view.login.UserViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,7 +16,7 @@
         android:layout_height="match_parent"
         android:background="@color/seed">
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_socialJoin_header"
+            android:id="@+id/tv_Join_header"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="83dp"
@@ -30,7 +34,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_socialJoin_header">
+            app:layout_constraintTop_toBottomOf="@id/tv_Join_header">
             <FrameLayout
                 android:id="@+id/frameLayout_form"
                 android:layout_width="match_parent"
@@ -97,7 +101,7 @@
                             app:boxCornerRadiusTopStart="5dp"
                             app:boxStrokeColor="@color/seed"
                             app:boxStrokeWidth="1dp"
-                            app:layout_constraintEnd_toStartOf="@id/btn_email_auth_send"
+                            app:layout_constraintEnd_toStartOf="@id/btn_email_auth_number_request"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_email_header">
 
@@ -105,11 +109,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:textSize="14sp"
-                                android:hint="ssafy@naver.com" />
+                                android:hint="ssafy@naver.com"
+                                android:text="@={joinVM.email}"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <Button
-                            android:id="@+id/btn_email_auth_send"
+                            android:id="@+id/btn_email_auth_number_request"
                             style="@style/BtnBasic"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -144,7 +149,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:textSize="14sp"
-                                android:hint="인증번호를 입력하세요" />
+                                android:hint="인증번호를 입력하세요"
+                         />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <Button
@@ -153,12 +159,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="25dp"
+                            android:visibility="invisible"
                             android:text="인증하기"
                             android:textColor="@color/light_grey"
                             app:layout_constraintBottom_toBottomOf="@+id/til_email_auth_number"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/til_email_auth_number"
-                            app:layout_constraintTop_toBottomOf="@id/btn_email_auth_send" />
+                            app:layout_constraintTop_toBottomOf="@id/btn_email_auth_number_request" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tv_nickname_header"
@@ -193,7 +200,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:textSize="14sp"
-                                android:hint="별명을 입력하세요" />
+                                android:hint="별명을 입력하세요"
+                                android:text="@={joinVM.nickname}"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <Button
@@ -243,7 +251,8 @@
                                 android:layout_height="match_parent"
                                 android:textSize="14sp"
                                 android:inputType="textPassword"
-                                android:hint="password"/>
+                                android:hint="password"
+                               />
                         </com.google.android.material.textfield.TextInputLayout>
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tv_password_check_header"
@@ -280,7 +289,8 @@
                                 android:layout_height="match_parent"
                                 android:textSize="14sp"
                                 android:inputType="textPassword"
-                                android:hint="password" />
+                                android:hint="password"
+                       />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <androidx.appcompat.widget.AppCompatTextView
