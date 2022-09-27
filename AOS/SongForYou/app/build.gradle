@@ -96,4 +96,6 @@ dependencies {
 
     // SimpleRatingBar
     implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
+
+    implementation 'io.github.francoiscampbell:circlelayout:0.3.0'
 }
