@@ -1,14 +1,16 @@
-package com.ssafy.gumid207.songbox;
+package com.ssafy.gumid207.mypage;
 
 import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.gumid207.dto.UserDto;
 import com.ssafy.gumid207.entity.User;
@@ -21,11 +23,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/song-box")
+@RequestMapping("/my-page")
 @RequiredArgsConstructor
 @Slf4j
-@Api(tags = "보관함 컨트롤러")
-public class SongBoxRestController {
+@Api(tags = "마이페이지 컨트롤러")
+public class MypageRestController {
 	private final UserRepository userRepo;
 
 	public UserDto getLoginUser() {
@@ -46,22 +48,15 @@ public class SongBoxRestController {
 		return UserDto.of(user);
 	}
 	
-	private final SongBoxService songBoxServ;
+	private final MypageService mypageServ;
 
-	@ApiOperation(value = "노래 보관함에 추가")
-	@PostMapping(value="/my-box/{songSeq}")
-	public ResponseEntity<?> addMyList(@PathVariable Long songSeq) throws Exception {
+	@ApiOperation(value = "녹음 파일을 서버에 저장하기")
+	@PostMapping(value="/{userSeq}/record",consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE})
+	public ResponseEntity<?> saveMyRecord(@PathVariable Long userSeq,
+			@RequestPart(value = "recordFile", required = true) MultipartFile recordFile) throws Exception {
 		UserDto userDto = getLoginUser();
-		Boolean result = songBoxServ.addMyList(userDto.getUserSeq(), songSeq);
-		return new ResponseEntity<>(new ResponseFrame<>(true, result, 1, "보관함에 추가했습니다."), HttpStatus.OK);
-	}
-	
-	@ApiOperation(value = "노래 보관함에서 삭제")
-	@DeleteMapping(value="/my-box/{songSeq}")
-	public ResponseEntity<?> deleteMyList(@PathVariable Long songSeq) throws Exception {
-		UserDto userDto = getLoginUser();
-		Boolean result = songBoxServ.deleteMyList(userDto.getUserSeq(), songSeq);
-		return new ResponseEntity<>(new ResponseFrame<>(true, result, 1, "보관함에서 삭제했습니다."), HttpStatus.OK);
+		Boolean result = mypageServ.saveMyRecord(userDto.getUserSeq(), recordFile);
+		return new ResponseEntity<>(new ResponseFrame<>(true, result, 1, "사용자 음성 정보를 저장했습니다."), HttpStatus.OK);
 	}
 	
 

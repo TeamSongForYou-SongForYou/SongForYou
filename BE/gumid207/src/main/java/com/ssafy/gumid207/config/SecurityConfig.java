@@ -144,7 +144,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
                 .authorizeRequests()
-                    .antMatchers("/user/**").permitAll()
+                    .antMatchers("/**").permitAll()
                     .antMatchers("/manage/**", "/dashboard/**").hasRole("MANAGER")
                     .antMatchers("/kickboard/**").hasAnyRole("USER", "MANAGER")
             .and()
