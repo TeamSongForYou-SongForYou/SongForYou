@@ -1,6 +1,8 @@
 package com.ssafy.gumid207.songbox;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -92,5 +94,15 @@ public class SongBoxServiceImpl implements SongBoxService {
 		myRecordRepo.delete(myRecord);
 
 		return true;
+	}
+
+	@Override
+	public List<MyRecordResDto> getMySongRecordList(Long userSeq) throws Exception {
+		User user = userRepo.findByUserSeq(userSeq).orElseThrow(() -> new UserNotFoundException("해당 유저를 찾을 수 없습니다."));
+		return myRecordRepo.findByUserOrderByMyRecordRegTimeDesc(user).stream().map( //
+				(myRecord) -> //
+				MyRecordResDto.of(myRecord) //
+				) //
+				.collect(Collectors.toList());
 	}
 }
