@@ -21,6 +21,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.circle_view.CircleViewActivity"
+            android:exported="false"
+            android:theme="@style/Transparent"
+            >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".view.detail.SongDetailActivity"
             android:exported="false">
             <meta-data
@@ -67,28 +76,26 @@
             android:exported="false" />
         <activity
             android:name=".view.audio.AudioRecordActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.login.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-<!--        <activity-->
-<!--            android:name=".view.login.LoginActivity"-->
-<!--            android:exported="false" />-->
-        <activity
-            android:name=".view.main.MainActivity"
             android:exported="true">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".view.main.MainActivity"
+            android:exported="true">
+
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+
+
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
 
         <meta-data
