@@ -14,11 +14,12 @@
         tools:context=".view.circle_view.CircleViewActivity">
 
         <io.github.francoiscampbell.circlelayout.CircleLayout
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:id="@+id/layout_circle"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
             android:layout_marginBottom="40dp"
             android:background="@drawable/ellipse"
-            android:padding="10dp"
+            android:padding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -33,50 +34,112 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/center_circle" />
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/layout_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12" />
+                android:orientation="vertical">
 
-            <TextView
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    cl:srcCompat="@drawable/search_50" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="노래 검색"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_karaoke"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1" />
+                android:orientation="vertical">
 
-            <TextView
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    cl:srcCompat="@drawable/karaoke_64" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="내 주변 노래방"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_before"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2" />
+                android:orientation="vertical">
 
-            <TextView
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    cl:srcCompat="@drawable/volume_64" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="다음 노래 추천"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_random"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3" />
+                android:orientation="vertical">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    cl:srcCompat="@drawable/random_64" />
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="노래 랜덤 추천"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
-            <SeekBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
         </io.github.francoiscampbell.circlelayout.CircleLayout>
 
-        <Button
-            android:id="@+id/button3"
+        <ImageView
+            android:id="@+id/btn_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
+            app:layout_constraintBottom_toBottomOf="@+id/layout_circle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/layout_circle"
+            app:layout_constraintTop_toTopOf="@+id/layout_circle"
+            cl:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
+
+        <ImageView
+            android:id="@+id/btn_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/layout_circle"
+            app:layout_constraintEnd_toStartOf="@+id/layout_circle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/layout_circle"
+            cl:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
