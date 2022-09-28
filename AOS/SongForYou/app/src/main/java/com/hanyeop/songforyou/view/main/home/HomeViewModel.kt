@@ -78,12 +78,16 @@ class HomeViewModel @Inject constructor(
     fun getSbRecommendRandomList(){
         viewModelScope.launch(Dispatchers.IO) {
             getSbRecommendRandomUseCase.execute().collectLatest {
-                Log.d(TAG, "getIbRecommendMyRecord: $it")
+                Log.d(TAG, "getSbRecommendMyRecord:$it")
                 if(it is ResultType.Success){
                     _recommendRandomList.value = it.data.data
+                    Log.d(TAG, _recommendRandomList.toString())
+                }else{
+                    Log.d(TAG,"else")
                 }
             }
         }
     }
+
 
 }
