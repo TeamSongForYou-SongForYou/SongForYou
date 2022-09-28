@@ -6,6 +6,7 @@ import com.hanyeop.songforyou.api.*
 import com.hanyeop.songforyou.utils.BASE_URL
 import com.hanyeop.songforyou.utils.KAKAO_BASE_URL
 import com.hanyeop.songforyou.utils.WEATHER_BASE_URL
+import com.hanyeop.songforyou.utils.XAccessTokenInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -58,9 +59,11 @@ object RemoteDataModule {
     // OkHttpClient DI
     @Provides
     @Singleton
-    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideOkHttpClient(xAccessTokenInterceptor: XAccessTokenInterceptor,
+                            httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
+            .addNetworkInterceptor(xAccessTokenInterceptor)
             .build()
     }
 
