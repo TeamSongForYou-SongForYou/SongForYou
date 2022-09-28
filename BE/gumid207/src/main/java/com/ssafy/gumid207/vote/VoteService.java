@@ -1,5 +1,6 @@
 package com.ssafy.gumid207.vote;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -14,5 +15,7 @@ import com.ssafy.gumid207.res.MyRecordResDto;
 public interface VoteService {
 
 	List<CompetitionResDto> getBeforeStartList() throws Exception;
+
+	Boolean addCompetition(Long songSeq, LocalDateTime startDateTime, Integer days) throws Exception;
 
 }

@@ -1,12 +1,18 @@
 package com.ssafy.gumid207.vote;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,6 +56,16 @@ public class VoteRestController {
 	private final ObjectMapper objectMapper;
 	
 	private final VoteService voteServ;
+	
+	@ApiParam(value = "신청 노래 추가")
+	@PostMapping(value = "/{songSeq}/competition")
+	public ResponseEntity<?> addCompetition(@PathVariable Long songSeq, //
+			@RequestParam(name = "yyyy-MM-dd 형태 시작일자") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+			@RequestParam Integer days) throws Exception {
+		LocalDateTime startDateTime = LocalDateTime.of(startDate, LocalTime.MIN);
+		Boolean result = voteServ.addCompetition(songSeq, startDateTime, days);
+		return new ResponseEntity<>(new ResponseFrame<>(true, result, 1, "신청 노래 추가에 성공했습니다."), HttpStatus.OK);
+	}
 	
 	@ApiParam(value = "신청받고 있는 노래 리스트 조회")
 	@GetMapping(value = "/competition-song-before-start")
