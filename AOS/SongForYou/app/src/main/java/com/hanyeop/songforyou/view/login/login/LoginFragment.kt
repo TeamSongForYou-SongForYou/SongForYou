@@ -33,11 +33,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
     private fun initViewModelCallback() = with(binding){
         lifecycleScope.launch {
             userViewModel.isLoginChecked.collectLatest {
-                Intent(requireContext(), MainActivity::class.java).apply{
+                if(it){
+                    Intent(requireContext(), MainActivity::class.java).apply{
 //                                putExtra("user", user)
-                                startActivity(this)
-                                requireActivity().finish()
-                            }
+                        startActivity(this)
+                        requireActivity().finish()
+                    }
+                }
+
                 // 로그인 성공시
 //                if(it){
 //                    token = userViewModel.token.value!!
