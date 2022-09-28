@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -87,6 +88,13 @@ public class MypageRestController {
 		}
 		FileDto fileDto = mypageServ.changeProfileImg(userSeq, recordFile);
 		return new ResponseEntity<>(new ResponseFrame<>(true, fileDto, 1, "프로플 사진을 변경했습니다."), HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "프로필 사진 조회하기")
+	@GetMapping(value="/{userSeq}/profile-img")
+	public ResponseEntity<?> changeProfileImg(@PathVariable Long userSeq) throws Exception {
+		FileDto fileDto = mypageServ.getProfileImg(userSeq);
+		return new ResponseEntity<>(new ResponseFrame<>(true, fileDto, 1, "프로플 사진을 조회했습니다."), HttpStatus.OK);
 	}
 
 }

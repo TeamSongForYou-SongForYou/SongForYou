@@ -13,4 +13,6 @@ public interface MypageService {
 
 	FileDto changeProfileImg(Long userSeq, MultipartFile profileImg) throws Exception;
 
+	FileDto getProfileImg(Long userSeq) throws Exception;
+
 }
