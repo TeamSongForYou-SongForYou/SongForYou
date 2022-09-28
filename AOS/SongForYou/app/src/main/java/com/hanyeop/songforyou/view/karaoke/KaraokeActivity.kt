@@ -21,10 +21,15 @@ import net.daum.mf.map.api.MapView
 class KaraokeActivity : BaseActivity<ActivityKaraokeBinding>(R.layout.activity_karaoke) {
 
     private val karaokeViewModel by viewModels<KaraokeViewModel>()
+    private lateinit var reviewAdapter: ReviewAdapter
 
     private val eventListener = MarkerEventListener()   // 마커 클릭 이벤트 리스너
 
     override fun init() {
+        binding.apply {
+            reviewAdapter = ReviewAdapter()
+        }
+
         startTracking()
 
         initViewModelCallback()
@@ -49,6 +54,13 @@ class KaraokeActivity : BaseActivity<ActivityKaraokeBinding>(R.layout.activity_k
         lifecycleScope.launch {
             karaokeViewModel.karaokeList.collectLatest {
                 addItemsAndMarkers(it)
+            }
+        }
+
+        lifecycleScope.launch {
+            karaokeViewModel.reviewList.collectLatest {
+                reviewAdapter.submitList(it)
+                binding.tvReviewCount.text = "(${it.size})"
             }
         }
     }
@@ -84,6 +96,8 @@ class KaraokeActivity : BaseActivity<ActivityKaraokeBinding>(R.layout.activity_k
                 tvNumber.text = curItem.address_name
                 tvDistance.text = "${curItem.distance}m"
             }
+
+            karaokeViewModel.getReview(curItem.place_name, curItem.road_address_name)
         }
 
         override fun onCalloutBalloonOfPOIItemTouched(mapView: MapView?, poiItem: MapPOIItem?) {

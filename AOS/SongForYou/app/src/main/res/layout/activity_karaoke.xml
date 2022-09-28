@@ -138,7 +138,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="20dp"
-                        android:text="(2)"
+                        android:text="(0)"
                         android:textSize="24sp" />
                 </LinearLayout>
 
