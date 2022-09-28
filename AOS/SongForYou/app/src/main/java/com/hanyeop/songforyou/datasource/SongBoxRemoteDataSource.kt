@@ -2,6 +2,7 @@ package com.hanyeop.songforyou.datasource
 
 import com.hanyeop.songforyou.api.SongBoxApi
 import com.hanyeop.songforyou.base.BaseResponse
+import com.hanyeop.songforyou.model.response.RecordResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -17,5 +18,9 @@ class SongBoxRemoteDataSource @Inject constructor(
 
     fun deleteSongBox(songSeq: Int): Flow<BaseResponse<String>> = flow {
         emit(songBoxApi.deleteSongBox(songSeq))
+    }
+
+    fun getRecordList(): Flow<BaseResponse<List<RecordResponse>>> = flow {
+        emit(songBoxApi.getRecordList())
     }
 }
