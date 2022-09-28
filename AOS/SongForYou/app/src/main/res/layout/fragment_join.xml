@@ -252,6 +252,7 @@
                                 android:textSize="14sp"
                                 android:inputType="textPassword"
                                 android:hint="password"
+                                android:text="@={joinVM.password}"
                                />
                         </com.google.android.material.textfield.TextInputLayout>
                         <androidx.appcompat.widget.AppCompatTextView
@@ -290,6 +291,7 @@
                                 android:textSize="14sp"
                                 android:inputType="textPassword"
                                 android:hint="password"
+                                android:text="@={joinVM.passwordCheck}"
                        />
                         </com.google.android.material.textfield.TextInputLayout>
 

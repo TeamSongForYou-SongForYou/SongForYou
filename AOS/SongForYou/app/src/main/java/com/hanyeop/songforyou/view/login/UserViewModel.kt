@@ -38,15 +38,21 @@ class UserViewModel @Inject constructor(
     private val findPasswordUseCase: FindPasswordUseCase
 ): ViewModel() {
 
+    var job: Job? = null
+
     val email =  MutableLiveData<String>()
 
     val nickname = MutableLiveData<String>()
 
     val password = MutableLiveData<String>()
 
+    val passwordCheck = MutableLiveData<String>()
+
     val gender = MutableLiveData<String>()
 
     val year = MutableLiveData<String>()
+
+
 
     private val _isPasswordChecked = MutableStateFlow("")
     val isPasswordChecked get() = _isPasswordChecked.asStateFlow()
@@ -63,7 +69,12 @@ class UserViewModel @Inject constructor(
     private val _isJoinChecked = MutableStateFlow(false)
     val isJoinChecked get() = _isJoinChecked.asStateFlow()
 
+    private val _isLoginChecked = MutableStateFlow(false)
+    val isLoginChecked get() = _isLoginChecked.asStateFlow()
 
+    val loginEmail = MutableLiveData<String>()
+
+    val loginPassword = MutableLiveData<String>()
 
     // viewModel에서 Toast 메시지 띄우기 위한 Event
     private val _message = MutableLiveData<Event<String>>()
@@ -104,41 +115,35 @@ class UserViewModel @Inject constructor(
      }
     // 이메일 인증번호 전송
     fun requestEmailAuthNumber(textInputLayout: TextInputLayout){
+//            // 이메일 중복검사
+//            checkEmail(email.value!!, textInputLayout)
+        Log.d(TAG, isEmailChecked.value.toString())
 
-        val pattern: Pattern = Patterns.EMAIL_ADDRESS
-
-        // 이메일 형식이 맞을 경우
-        if(!email.value.isNullOrBlank() && pattern.matcher(email.value).matches()) {
-
-            // 이메일 중복검사
-            checkEmail(email.value!!, textInputLayout)
-            Log.d(TAG, isEmailChecked.value.toString())
-            // 중복검사 통과시
-            if(isEmailChecked.value){
-                // 서버로 인증 번호 전송 요청
-                viewModelScope.launch(Dispatchers.IO) {
-                    requestEmailUseCase.execute(email.value!!).collectLatest {
-                        if(it is ResultType.Success){
-                            // 인증 번호 저장
-                            _emailAuthNumberCheck.value = it.data.data
-                        }
+        // 중복검사 통과시
+        if(isEmailChecked.value){
+            // 서버로 인증 번호 전송 요청
+            viewModelScope.launch(Dispatchers.IO) {
+                requestEmailUseCase.execute(email.value!!).collectLatest {
+                    if(it is ResultType.Success){
+                        // 인증 번호 저장
+                        _emailAuthNumberCheck.value = it.data.data
+                        makeToast("인증이 완료되었습니다")
+                        Log.d(TAG, _emailAuthNumberCheck.value)
                     }
                 }
-                true
-            }else{
-                // 중복검사 실패시
-                makeToast("중복된 이메일입니다")
-                makeTextInputLayoutError(textInputLayout, "중복된 이메일입니다")
-                false
             }
+            true
         }else{
-            makeTextInputLayoutError(textInputLayout, "이메일 형식이 올바르지 않습니다")
-            makeToast("이메일 형식이 올바르지 않습니다")
+            // 중복검사 실패시
+            makeToast("중복된 이메일입니다")
+            makeTextInputLayoutError(textInputLayout, "중복된 이메일입니다")
             false
         }
     }
+
     // 이메일 인증번호 확인
     fun checkEmailAuthNumber(textInputLayout: TextInputLayout){
+
         // 입력된 인증번호와 받은 인증번호가 일치한지 확인
         if(emailAuthNumberCheck == emailAuthNumber){
             _isEmailAuthChecked.value = true
@@ -146,25 +151,36 @@ class UserViewModel @Inject constructor(
     }
 
     // 이메일 중복 검사
-    private fun checkEmail(userEmail: String, textInputLayout: TextInputLayout){
-        viewModelScope.launch(Dispatchers.IO) {
-             checkEmailUseCase.execute(userEmail).collectLatest {
-                if(it is ResultType.Success){
-                    Log.d(TAG, it.data.data)
-                    if(it.data.data.equals(true)){
-                        Log.d(TAG, "true")
-                        _isEmailChecked.value = true
-                    }else{
-                        Log.d(TAG, "${it.data}......")
-                        makeTextInputLayoutError(textInputLayout, "중복된 이메일입니다")
-                        makeToast("중복된 이메일입니다")
-                        _isEmailChecked.value = false
-                    }
+    fun checkEmail(textInputLayout: TextInputLayout){
 
+        val pattern: Pattern = Patterns.EMAIL_ADDRESS
+
+        // 이메일 형식이 맞을 경우
+        if(!email.value.isNullOrBlank() && pattern.matcher(email.value).matches()) {
+            viewModelScope.launch(Dispatchers.IO) {
+                checkEmailUseCase.execute(email.value!!).collectLatest {
+                    if(it is ResultType.Success){
+                        Log.d(TAG, it.data.data)
+                        if(it.data.data.toBoolean()){
+                            Log.d(TAG, "true")
+                            _isEmailChecked.value = true
+                        }else{
+                            Log.d(TAG, "${it.data}......")
+                            makeTextInputLayoutError(textInputLayout, "중복된 이메일입니다")
+                            makeToast("중복된 이메일입니다")
+                            _isEmailChecked.value = false
+                        }
+
+                    }
                 }
             }
+        }else{
+            makeTextInputLayoutError(textInputLayout, "이메일 형식이 올바르지 않습니다")
+            makeToast("이메일 형식이 올바르지 않습니다")
+            false
         }
     }
+
     // 비밀번호 유효성 검사 실행
     fun validatePassword(tilPw: TextInputLayout, tilPwCheck: TextInputLayout): Boolean {
 
@@ -187,13 +203,13 @@ class UserViewModel @Inject constructor(
         }
 
         // 비밀번호 재확인 입력했는지 검사
-        if (isPasswordChecked.value.isNullOrBlank()) {
+        if (passwordCheck.value.isNullOrBlank()) {
             makeTextInputLayoutError(tilPwCheck, "비밀번호를 입력해주세요")
             makeToast("비밀번호를 입력해주세요")
             return false
         }
         // 두 비밀번호가 일치하지 않는 경우
-        if (password.value != isPasswordChecked.value) {
+        if (password.value != passwordCheck.value) {
             makeTextInputLayoutError(tilPwCheck, "비밀번호가 일치하지 않습니다")
             makeToast("비밀번호가 일치하지 않습니다")
             return false
@@ -216,11 +232,15 @@ class UserViewModel @Inject constructor(
     // 일반 회원가입
     fun signUpUser(){
         val user = UserDto(year.value!!.toInt(), email.value!!, gender.value!!, email.value!!,nickname.value!!, password.value!!,0,"")
+        Log.d(TAG, user.toString())
         viewModelScope.launch(Dispatchers.IO) {
             signUpUseCase.execute(user).collectLatest {
+                Log.d(TAG,"signUpUser"+it.toString())
                 if(it is ResultType.Success) {
                     _joinMsgEvent.value = it.data.msg
                     _isJoinChecked.value = true
+                    Log.d(TAG, "signUpUser_joinMsgEvent"+_joinMsgEvent.toString())
+                    Log.d(TAG, "signUpUser_isJoinChecked"+_isJoinChecked.toString())
                 }
             }
         }
@@ -230,13 +250,23 @@ class UserViewModel @Inject constructor(
     fun loginUser(map: HashMap<String, String>){
         viewModelScope.launch(Dispatchers.IO) {
             loginUseCase.execute(map).collectLatest {
-
+                map["id"] = loginEmail.value!!
+                map["pass"] = loginPassword.value!!
+                // 서버로 로그인 요청
+                if(it is ResultType.Success) {
+                    _isLoginChecked.value = true
+                    // 토큰값 반환
+                }else{
+                    Log.d(TAG, "${it}")
+                    makeToast("아이디, 비밀번호를 확인해주세요")
+                    null
+                }
             }
         }
     }
 
     fun makeToast(msg: String) {
-        _message.value = Event(msg)
+        _message.postValue(Event(msg))
     }
 
     fun makeTextInputLayoutError(textInputLayout: TextInputLayout, msg: String) {
