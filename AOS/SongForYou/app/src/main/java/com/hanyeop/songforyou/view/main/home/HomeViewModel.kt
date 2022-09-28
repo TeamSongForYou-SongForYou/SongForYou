@@ -20,9 +20,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getWeatherUseCase: GetWeatherUseCase,
-
-    private val getIbRecommendMyListUseCase: GetIbRecommendMyListUseCase
-
     private val getIbRecommendMyListUseCase: GetIbRecommendMyListUseCase,
     private val getIbRecommendMyRecordUseCase: GetIbRecommendMyRecordUseCase
 
@@ -34,7 +31,7 @@ class HomeViewModel @Inject constructor(
     private val _recommendMyRecord: MutableStateFlow<List<SongResponse>> = MutableStateFlow(listOf())
     val recommendMyRecord get() = _recommendMyRecord.asStateFlow()
 
->>>>>>> origin/AOS
+
     private val _weatherResponse : MutableStateFlow<ResultType<Weather>> = MutableStateFlow(ResultType.Uninitialized)
     val weatherResponse get() = _weatherResponse.asStateFlow()
 

@@ -2,11 +2,13 @@ package com.hanyeop.songforyou.view.main.home
 
 import android.annotation.SuppressLint
 import android.location.Location
+import android.location.LocationRequest
 import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.location.*
+import com.google.android.gms.location.FusedLocationProviderClient
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseFragment
 import com.hanyeop.songforyou.databinding.FragmentHomeBinding
@@ -38,7 +40,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         binding.apply {
             recyclerMyList.adapter = recommendMyListAdapter
-
+        }
         recommendMyRecordAdapter = RecommendMyRecordAdapter()
 
         binding.apply {
