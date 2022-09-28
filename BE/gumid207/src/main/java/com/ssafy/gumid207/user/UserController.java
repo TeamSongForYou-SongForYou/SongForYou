@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.gumid207.dto.TokenDto;
+import com.ssafy.gumid207.dto.TokenRequestDto;
 import com.ssafy.gumid207.dto.UserDto;
 import com.ssafy.gumid207.dto.UserLoginDto;
 import com.ssafy.gumid207.dto.UserRegisterDto;
@@ -110,4 +111,9 @@ public class UserController {
 
 		return new ResponseEntity<>(ResponseUser.of(true, tokenDto, "로그인 성공했습니다."), HttpStatus.OK);
 	}
+	
+	@PostMapping("/reissue")
+    public ResponseEntity<TokenDto> reissue(@RequestBody TokenRequestDto tokenRequestDto) {
+        return ResponseEntity.ok(userService.reissue(tokenRequestDto));
+    }
 }
