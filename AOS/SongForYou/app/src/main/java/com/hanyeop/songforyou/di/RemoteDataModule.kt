@@ -127,6 +127,7 @@ object RemoteDataModule {
     fun provideSongBoxApi(@Named("retrofit") retrofit: Retrofit): SongBoxApi {
         return retrofit.create(SongBoxApi::class.java)
     }
+
     // UserApi DI
     @Provides
     @Singleton
@@ -134,9 +135,17 @@ object RemoteDataModule {
         return retrofit.create(UserApi::class.java)
     }
 
+    // WeatherApi DI
     @Provides
     @Singleton
     fun provideWeatherApi(@Named("weatherRetrofit") retrofit : Retrofit) : WeatherApi {
         return retrofit.create(WeatherApi::class.java)
+    }
+
+    // ReviewApi DI
+    @Provides
+    @Singleton
+    fun provideReviewApi(@Named("retrofit") retrofit: Retrofit): ReviewApi {
+        return retrofit.create(ReviewApi::class.java)
     }
 }
