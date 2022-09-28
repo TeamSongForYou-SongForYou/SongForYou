@@ -98,4 +98,7 @@ dependencies {
     implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
 
     implementation 'io.github.francoiscampbell:circlelayout:0.3.0'
+
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+
 }
