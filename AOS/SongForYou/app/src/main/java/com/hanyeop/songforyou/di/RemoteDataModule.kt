@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder
 import com.hanyeop.songforyou.api.*
 import com.hanyeop.songforyou.utils.BASE_URL
 import com.hanyeop.songforyou.utils.KAKAO_BASE_URL
+import com.hanyeop.songforyou.utils.WEATHER_BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,6 +41,17 @@ object RemoteDataModule {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(client)
+            .build()
+    }
+
+    // WeatherRetrofit DI
+    @Provides
+    @Singleton
+    @Named("weatherRetrofit")
+    fun provideWeatherRetrofitInstance(gson: Gson): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(WEATHER_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 
@@ -120,6 +132,11 @@ object RemoteDataModule {
     @Singleton
     fun UserApi(@Named("retrofit") retrofit: Retrofit): UserApi {
         return retrofit.create(UserApi::class.java)
+    }
 
+    @Provides
+    @Singleton
+    fun provideWeatherApi(@Named("weatherRetrofit") retrofit : Retrofit) : WeatherApi {
+        return retrofit.create(WeatherApi::class.java)
     }
 }
