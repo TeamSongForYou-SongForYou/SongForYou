@@ -31,8 +31,10 @@ class KaraokeActivity : BaseActivity<ActivityKaraokeBinding>(R.layout.activity_k
     private val eventListener = MarkerEventListener()   // 마커 클릭 이벤트 리스너
 
     override fun init() {
+        reviewAdapter = ReviewAdapter()
+
         binding.apply {
-            reviewAdapter = ReviewAdapter()
+            recyclerReview.adapter = reviewAdapter
         }
 
         startTracking()

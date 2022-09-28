@@ -3,17 +3,14 @@ package com.hanyeop.songforyou.view.karaoke.review
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.gson.Gson
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivityCreateReviewBinding
 import com.hanyeop.songforyou.model.dto.ReviewDto
-import com.hanyeop.songforyou.model.response.ReviewResponse
 import com.hanyeop.songforyou.utils.resizeBitmapFormUri
 import com.hanyeop.songforyou.view.karaoke.KaraokeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +29,9 @@ class CreateReviewActivity : BaseActivity<ActivityCreateReviewBinding>(R.layout.
     private var imgFile : MultipartBody.Part? = null
 
     override fun init() {
+        binding.apply {
+            tvName.text = intent.getStringExtra("name")!!
+        }
         initClickListener()
 
         initViewModelCallBack()
