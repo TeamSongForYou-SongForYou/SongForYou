@@ -107,9 +107,7 @@ public class UserController {
 	public ResponseEntity<?> login(@RequestBody UserLoginDto params) {
 		
 		TokenDto tokenDto = userService.loginUser(params);
-		if(tokenDto == null) {
-			return new ResponseEntity<>(ResponseUser.of(false, tokenDto, "가입되지 않거나 틀린 비밀번호입니다."), HttpStatus.OK);
-		}
+
 		return new ResponseEntity<>(ResponseUser.of(true, tokenDto, "로그인 성공했습니다."), HttpStatus.OK);
 	}
 }
