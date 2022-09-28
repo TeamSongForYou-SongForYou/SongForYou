@@ -1,6 +1,7 @@
 package com.hanyeop.songforyou.view.karaoke
 
 import android.content.Context
+import android.content.Intent
 import android.location.Location
 import android.location.LocationManager
 import android.util.Log
@@ -10,6 +11,7 @@ import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivityKaraokeBinding
 import com.hanyeop.songforyou.model.response.Place
+import com.hanyeop.songforyou.view.karaoke.review.CreateReviewActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -23,6 +25,9 @@ class KaraokeActivity : BaseActivity<ActivityKaraokeBinding>(R.layout.activity_k
     private val karaokeViewModel by viewModels<KaraokeViewModel>()
     private lateinit var reviewAdapter: ReviewAdapter
 
+    private var curName: String = "타임동전노래방"
+    private var curAddress: String = "구미시"
+
     private val eventListener = MarkerEventListener()   // 마커 클릭 이벤트 리스너
 
     override fun init() {
@@ -33,6 +38,17 @@ class KaraokeActivity : BaseActivity<ActivityKaraokeBinding>(R.layout.activity_k
         startTracking()
 
         initViewModelCallback()
+
+        initClickListener()
+    }
+
+    private fun initClickListener(){
+        binding.tvCreateReview.setOnClickListener {
+            val intent = Intent(this, CreateReviewActivity::class.java)
+            intent.putExtra("name", curName)
+            intent.putExtra("address", curAddress)
+            startActivity(intent)
+        }
     }
 
     private fun startTracking(){
@@ -92,7 +108,9 @@ class KaraokeActivity : BaseActivity<ActivityKaraokeBinding>(R.layout.activity_k
             val curItem = poiItem!!.userObject as Place
             binding.apply {
                 tvKaraokeName.text = curItem.place_name
+                curName = curItem.place_name
                 tvAddress.text = curItem.road_address_name
+                curAddress = curItem.road_address_name
                 tvNumber.text = curItem.address_name
                 tvDistance.text = "${curItem.distance}m"
             }

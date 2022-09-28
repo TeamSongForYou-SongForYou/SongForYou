@@ -101,7 +101,7 @@
                     android:background="@color/real_light_grey" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/tv_create_review"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
