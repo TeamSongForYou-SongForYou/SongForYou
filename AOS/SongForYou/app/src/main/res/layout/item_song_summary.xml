@@ -20,6 +20,7 @@
             android:layout_margin="16dp"
             android:background="@drawable/image_round"
             android:clipToOutline="true"
+            android:scaleType="fitXY"
             app:summaryImage="@{song.songThumbnailUrl}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
