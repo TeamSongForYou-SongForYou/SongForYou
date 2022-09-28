@@ -8,6 +8,6 @@ data class ReviewResponse(
     val reviewToilet: String,
     val reviewCleanness: Int,
     val reviewSoundQuality: Int,
-    val reviewContent: String,
+    val reviewContent: String = " ",
     val reviewRegTime: String
 )

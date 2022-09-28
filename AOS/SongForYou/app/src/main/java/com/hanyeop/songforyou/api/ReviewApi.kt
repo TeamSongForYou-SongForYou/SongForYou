@@ -7,11 +7,11 @@ import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface ReviewApi {
-
+    
     @GET("review/list")
     suspend fun getReview(
-        @Query ("name") name: String,
-        @Query ("address") address: String
+        @Query ("karaokeName") name: String,
+        @Query ("karaokeAddress") address: String
     ): BaseResponse<List<ReviewResponse>>
 
     @Multipart

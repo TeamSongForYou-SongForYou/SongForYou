@@ -7,6 +7,7 @@ import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivityCircleViewBinding
 import com.hanyeop.songforyou.view.karaoke.KaraokeActivity
 import com.hanyeop.songforyou.view.random.RandomRecommendActivity
+import com.hanyeop.songforyou.view.search.SongSearchActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -42,6 +43,10 @@ class CircleViewActivity : BaseActivity<ActivityCircleViewBinding>(R.layout.acti
             }
             layoutRandom.setOnClickListener {
                 startActivity(Intent(this@CircleViewActivity, RandomRecommendActivity::class.java))
+                finish()
+            }
+            layoutSearch.setOnClickListener {
+                startActivity(Intent(this@CircleViewActivity, SongSearchActivity::class.java))
                 finish()
             }
         }

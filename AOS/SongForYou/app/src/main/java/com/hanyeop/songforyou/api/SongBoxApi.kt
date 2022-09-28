@@ -2,10 +2,8 @@ package com.hanyeop.songforyou.api
 
 import com.hanyeop.songforyou.base.BaseResponse
 import com.hanyeop.songforyou.model.response.RecordResponse
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import okhttp3.MultipartBody
+import retrofit2.http.*
 
 interface SongBoxApi {
 
@@ -21,4 +19,11 @@ interface SongBoxApi {
 
     @GET("song-box/my-record")
     suspend fun getRecordList(): BaseResponse<List<RecordResponse>>
+
+    @Multipart
+    @POST("song-box/my-record/{songSeq}")
+    suspend fun uploadRecord(
+        @Path ("songSeq") songSeq: Int,
+        @Part recordFile : MultipartBody.Part
+    )
 }

@@ -1,6 +1,7 @@
 package com.hanyeop.songforyou.model.response
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class SongResponse (
     @SerializedName("songSeq") val SongSeq: Int,
@@ -11,4 +12,4 @@ data class SongResponse (
     @SerializedName("songThumbnailUrl") val songThumbnailUrl: String,
     @SerializedName("songYoutubeUrl") val songYoutubeUrl: String,
 //    @SerializedName("songRegTime") val songRegTime: String,
-)
+): Serializable
