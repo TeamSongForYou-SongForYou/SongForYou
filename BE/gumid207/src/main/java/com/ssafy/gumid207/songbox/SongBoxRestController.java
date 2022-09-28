@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.gumid207.dto.UserDto;
 import com.ssafy.gumid207.entity.User;
+import com.ssafy.gumid207.jwt.SecurityUtil;
 import com.ssafy.gumid207.res.MyRecordResDto;
 import com.ssafy.gumid207.res.ResponseFrame;
 import com.ssafy.gumid207.user.UserRepository;
@@ -37,7 +38,7 @@ public class SongBoxRestController {
 	public UserDto getLoginUser() {
 		User user = null;
 		try {
-			user = userRepo.findById(3l).get();
+			user = userRepo.findById(SecurityUtil.getCurrentMemberId()).get();
 		} catch (Exception e) {
 			user = new User();
 			user.setBirthday(1996);
