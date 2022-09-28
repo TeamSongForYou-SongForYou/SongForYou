@@ -1,9 +1,11 @@
 package com.hanyeop.songforyou.view.circle_view
 
+import android.content.Intent
 import androidx.lifecycle.lifecycleScope
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivityCircleViewBinding
+import com.hanyeop.songforyou.view.karaoke.KaraokeActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -32,6 +34,10 @@ class CircleViewActivity : BaseActivity<ActivityCircleViewBinding>(R.layout.acti
                         delay(3)
                     }
                 }
+            }
+            layoutKaraoke.setOnClickListener {
+                startActivity(Intent(this@CircleViewActivity, KaraokeActivity::class.java))
+                finish()
             }
         }
     }
