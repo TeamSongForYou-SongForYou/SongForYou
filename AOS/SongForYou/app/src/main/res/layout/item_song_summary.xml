@@ -4,7 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <variable
+            name="song"
+            type="com.hanyeop.songforyou.model.response.SongResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +20,7 @@
             android:layout_margin="16dp"
             android:background="@drawable/image_round"
             android:clipToOutline="true"
+            app:summaryImage="@{song.songThumbnailUrl}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,7 +30,8 @@
             android:id="@+id/tv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="비도 오고 그래서"
+            android:text="@{song.songTitle}"
+            tools:text="비도 오고 그래서"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="@+id/img_song"
             app:layout_constraintStart_toStartOf="@+id/img_song"
@@ -37,7 +41,8 @@
             android:id="@+id/tv_artist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="헤이즈"
+            android:text="@{song.songArtistName}"
+            tools:text="헤이즈"
             android:textSize="11sp"
             android:textColor="@color/light_grey"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
