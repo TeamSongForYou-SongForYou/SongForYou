@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View" />
 
-        <variable
-            name="randomVM"
-            type="com.hanyeop.songforyou.view.main.home.HomeViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
