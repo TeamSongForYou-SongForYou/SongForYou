@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/reivew")
+@RequestMapping("/review")
 @RequiredArgsConstructor
 @Slf4j
 @Api(tags = "노래방 리뷰 컨트롤러")
