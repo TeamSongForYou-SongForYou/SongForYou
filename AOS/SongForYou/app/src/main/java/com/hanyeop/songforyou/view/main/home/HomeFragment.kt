@@ -1,14 +1,16 @@
 package com.hanyeop.songforyou.view.main.home
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.location.Location
-import android.location.LocationRequest
 import android.os.Looper
 import android.util.Log
+import android.view.View
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.location.*
-import com.google.android.gms.location.FusedLocationProviderClient
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseFragment
 import com.hanyeop.songforyou.databinding.FragmentHomeBinding
@@ -26,37 +28,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private val homeViewModel by viewModels<HomeViewModel>()
 
-    private lateinit var recommendMyListAdapter: RecommendMyListAdapter
-
-    private lateinit var recommendMyRecordAdapter: RecommendMyRecordAdapter
-
-
     private var mFusedLocationProviderClient: FusedLocationProviderClient? = null // 현재 위치를 가져오기 위한 변수
     lateinit var mLastLocation: Location // 위치 값을 가지고 있는 객체
     private lateinit var mLocationRequest: LocationRequest// 위치 정보 요청의 매개변수를 저장하는
 
     override fun init() {
-        recommendMyListAdapter = RecommendMyListAdapter()
-
-        binding.apply {
-            recyclerMyList.adapter = recommendMyListAdapter
-        }
-        recommendMyRecordAdapter = RecommendMyRecordAdapter()
-
-        binding.apply {
-            recyclerMyList.adapter = recommendMyListAdapter
-            recyclerMyRecord.adapter = recommendMyRecordAdapter
-
-        }
-
         startLocationUpdates()
 
         initViewModelCallBack()
-
-        homeViewModel.getIbRecommendMyList()
-
-        homeViewModel.getIbRecommendMyRecord()
-
     }
 
     private fun initViewModelCallBack(){
@@ -84,19 +63,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 }
             }
         }
-
-        lifecycleScope.launch {
-            homeViewModel.recommendMyList.collectLatest {
-                recommendMyListAdapter.submitList(it)
-            }
-        }
-
-        lifecycleScope.launch {
-            homeViewModel.recommendMyRecord.collectLatest {
-                recommendMyRecordAdapter.submitList(it)
-            }
-        }
-
     }
 
     private fun initWeather(lat: Double, long: Double){
