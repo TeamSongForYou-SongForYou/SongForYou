@@ -33,25 +33,30 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
     private fun initViewModelCallback() = with(binding){
         lifecycleScope.launch {
             userViewModel.isLoginChecked.collectLatest {
-                // 로그인 성공시
-                if(it){
-                    token = "user 정보"
-                    // 토큰이 있다면
-                    if(token != null) {
-                        ApplicationClass.sharedPreferencesUtil.saveToken(token)
-                        // 토큰 저장
-                        val user = JWTUtils.decoded(token)
-                        if(user != null){
-                            Intent(requireContext(), MainActivity::class.java).apply{
-                               // putExtra("user", user)
+                Intent(requireContext(), MainActivity::class.java).apply{
+//                                putExtra("user", user)
                                 startActivity(this)
                                 requireActivity().finish()
                             }
-                        }else{
-                            makeToast("유저 정보 획득에 실패하였습니다")
-                        }
-                    }
-                }
+                // 로그인 성공시
+//                if(it){
+//                    token = userViewModel.token.value!!
+//                    // 토큰이 있다면
+//                    if(token != null) {
+//                       ApplicationClass.sharedPreferencesUtil.saveToken(token)
+//                        // 토큰 저장
+//                        val user = JWTUtils.decoded(token)
+//                        if(user != null){
+//                            Intent(requireContext(), MainActivity::class.java).apply{
+//                               // putExtra("user", user)
+//                                startActivity(this)
+//                                requireActivity().finish()
+//                            }
+//                        }else{
+//                            makeToast("유저 정보 획득에 실패하였습니다")
+//                        }
+//                    }
+//                }
             }
         }
     }

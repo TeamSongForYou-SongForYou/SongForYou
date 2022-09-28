@@ -12,32 +12,33 @@ private const val TAG = "JWTUtils___"
 
 object JWTUtils {
     @Throws(Exception::class)
-    fun decoded(JWTEncoded: String): UserDto? {
+    fun decoded(JWTEncoded: String): String? {
         try {
             Log.d(TAG, "decoded: $JWTEncoded")
             val split = JWTEncoded.split(".").toTypedArray()
             val body = getJson(split[1])
             Log.d(TAG, "decoded: $body")
 
-            val userBirthday = JSONObject(body)["userBirthday"] as Int
-            val userEmail = JSONObject(body)["userEmail"] as String
-            val userGender = JSONObject(body)["userGender"] as String
-            val userId = JSONObject(body)["userId"] as String
-            val userNickname = JSONObject(body)["userNickname"] as String
-            val userPass = JSONObject(body)["userPass"] as String
-            val userProfileImgSeq = JSONObject(body)["userProfileImgSeq"] as Int
-            val userRegTime = JSONObject(body)["userRegTime"] as String
-
-            return UserDto(
-                userBirthday = userBirthday,
-                userEmail = userEmail,
-                userGender = userGender,
-                userId = userId,
-                userNickname = userNickname,
-                userPass = userPass,
-                userProfileImgSeq = userProfileImgSeq,
-                userRegTime = userRegTime
-            )
+            // 수정
+//            val userBirthday = JSONObject(body)["birthday"] as Int
+            val userEmail = JSONObject(body)["email"] as String
+//            val userGender = JSONObject(body)["gender"] as String
+//            val userId = JSONObject(body)["id"] as String
+//            val userNickname = JSONObject(body)["nickName"] as String
+//            val userPass = JSONObject(body)["pass"] as String
+//            val userProfileImgSeq = JSONObject(body)["profileImgSeq"] as Int
+//            val userRegTime = JSONObject(body)["regTime"] as String
+            return userEmail
+//            return UserDto(
+//                userBirthday = userBirthday,
+//                userEmail = userEmail,
+//                userGender = userGender,
+//                userId = userId,
+//                userNickname = userNickname,
+//                userPass = userPass,
+//                userProfileImgSeq = userProfileImgSeq,
+//                userRegTime = userRegTime
+//            )
         } catch (e: UnsupportedEncodingException) {
             Log.e(TAG, "decoded: $e")
             ApplicationClass.sharedPreferencesUtil.deleteToken()

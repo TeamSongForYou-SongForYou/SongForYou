@@ -76,6 +76,10 @@ class UserViewModel @Inject constructor(
 
     val loginPassword = MutableLiveData<String>()
 
+
+    private val _token = MutableStateFlow("")
+    val token get() = _token.asStateFlow()
+
     // viewModel에서 Toast 메시지 띄우기 위한 Event
     private val _message = MutableLiveData<Event<String>>()
     val message: LiveData<Event<String>>
@@ -256,6 +260,9 @@ class UserViewModel @Inject constructor(
                 if(it is ResultType.Success) {
                     _isLoginChecked.value = true
                     // 토큰값 반환
+                    Log.d(TAG, "TOKEN : "+  it.data.data.accessToken)
+                    _token.value = it.data.data.accessToken
+                    Log.d(TAG, "TOKEN : "+  _token.value)
                 }else{
                     Log.d(TAG, "${it}")
                     makeToast("아이디, 비밀번호를 확인해주세요")
