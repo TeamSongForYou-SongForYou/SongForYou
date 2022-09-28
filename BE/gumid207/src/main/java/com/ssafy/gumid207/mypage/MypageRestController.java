@@ -19,6 +19,7 @@ import com.ssafy.gumid207.dto.FileDto;
 import com.ssafy.gumid207.dto.UserDto;
 import com.ssafy.gumid207.entity.User;
 import com.ssafy.gumid207.res.ResponseFrame;
+import com.ssafy.gumid207.res.UserResDto;
 import com.ssafy.gumid207.user.UserRepository;
 
 import io.swagger.annotations.Api;
@@ -95,6 +96,13 @@ public class MypageRestController {
 	public ResponseEntity<?> changeProfileImg(@PathVariable Long userSeq) throws Exception {
 		FileDto fileDto = mypageServ.getProfileImg(userSeq);
 		return new ResponseEntity<>(new ResponseFrame<>(true, fileDto, 1, "프로플 사진을 조회했습니다."), HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "회원 정보 조회하기")
+	@GetMapping(value="/{userSeq}")
+	public ResponseEntity<?> getUserInfo(@PathVariable Long userSeq) throws Exception {
+		UserResDto userResDto = mypageServ.getUserInfo(userSeq);
+		return new ResponseEntity<>(new ResponseFrame<>(true, userResDto, 1, "프로플 사진을 조회했습니다."), HttpStatus.OK);
 	}
 
 }

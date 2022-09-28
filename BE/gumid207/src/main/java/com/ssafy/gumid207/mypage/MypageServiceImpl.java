@@ -19,6 +19,7 @@ import com.ssafy.gumid207.customexception.UserNotFoundException;
 import com.ssafy.gumid207.dto.FileDto;
 import com.ssafy.gumid207.entity.File;
 import com.ssafy.gumid207.entity.User;
+import com.ssafy.gumid207.res.UserResDto;
 import com.ssafy.gumid207.s3.FileRepository;
 import com.ssafy.gumid207.s3.S3FileService;
 import com.ssafy.gumid207.song.SongRepository;
@@ -89,6 +90,12 @@ public class MypageServiceImpl implements MypageService {
 	public FileDto getProfileImg(Long userSeq) throws Exception {
 		User user = userRepo.findById(userSeq).orElseThrow(() -> new UserNotFoundException("해당 유저를 찾을 수 없습니다."));
 		return FileDto.of(user.getProfileImgSeq());
+	}
+	
+	@Override
+	public UserResDto getUserInfo(Long userSeq) throws Exception {
+		User user = userRepo.findById(userSeq).orElseThrow(() -> new UserNotFoundException("해당 유저를 찾을 수 없습니다."));
+		return UserResDto.of(user);
 	}
 	
 }
