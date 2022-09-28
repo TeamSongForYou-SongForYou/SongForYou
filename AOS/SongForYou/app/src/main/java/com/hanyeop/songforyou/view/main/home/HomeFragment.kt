@@ -32,20 +32,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     lateinit var mLastLocation: Location // 위치 값을 가지고 있는 객체
     private lateinit var mLocationRequest: LocationRequest// 위치 정보 요청의 매개변수를 저장하는
 
+    private lateinit var weatherRecommendMyListAdapter: RecommendMyListAdapter
+    private lateinit var ageRecommendMyListAdapter: RecommendMyListAdapter
     private lateinit var recommendMyListAdapter: RecommendMyListAdapter
     private lateinit var recommendMyRecordAdapter: RecommendMyRecordAdapter
 
     override fun init() {
+        ageRecommendMyListAdapter = RecommendMyListAdapter()
+        weatherRecommendMyListAdapter = RecommendMyListAdapter()
         recommendMyListAdapter = RecommendMyListAdapter()
         recommendMyRecordAdapter = RecommendMyRecordAdapter()
 
         binding.apply {
-            recyclerMyList.adapter = recommendMyListAdapter
-            recyclerMyRecord.adapter = recommendMyRecordAdapter
-        }
-        recommendMyRecordAdapter = RecommendMyRecordAdapter()
-
-        binding.apply {
+            recyclerAge.adapter = ageRecommendMyListAdapter
+            recyclerWeather.adapter = weatherRecommendMyListAdapter
             recyclerMyList.adapter = recommendMyListAdapter
             recyclerMyRecord.adapter = recommendMyRecordAdapter
         }
@@ -53,6 +53,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         startLocationUpdates()
 
         initViewModelCallBack()
+
+        homeViewModel.getSbRecommendList("발라드", 20, "female", 3)
 
         homeViewModel.getIbRecommendMyList()
 
@@ -84,7 +86,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 }
             }
         }
-
+        lifecycleScope.launch{
+            homeViewModel.weatherRecommendList.collectLatest {
+                weatherRecommendMyListAdapter.submitList(it)
+            }
+        }
+        lifecycleScope.launch{
+            homeViewModel.ageRecommendList.collectLatest {
+                ageRecommendMyListAdapter.submitList(it)
+            }
+        }
         lifecycleScope.launch {
             homeViewModel.recommendMyList.collectLatest {
                 recommendMyListAdapter.submitList(it)
