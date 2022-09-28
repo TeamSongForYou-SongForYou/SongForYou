@@ -33,6 +33,8 @@
             android:layout_height="wrap_content"
             android:text="@{song.songTitle}"
             tools:text="비도 오고 그래서"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="@+id/img_song"
             app:layout_constraintStart_toStartOf="@+id/img_song"

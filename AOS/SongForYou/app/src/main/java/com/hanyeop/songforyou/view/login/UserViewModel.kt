@@ -12,9 +12,7 @@ import com.hanyeop.songforyou.model.dto.UserDto
 import com.hanyeop.songforyou.repository.Oauth2Repository
 import com.hanyeop.songforyou.repository.UserRepository
 import com.hanyeop.songforyou.usecase.user.*
-import com.hanyeop.songforyou.utils.Event
-import com.hanyeop.songforyou.utils.ResultType
-import com.hanyeop.songforyou.utils.SingleLiveEvent
+import com.hanyeop.songforyou.utils.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -35,7 +33,8 @@ class UserViewModel @Inject constructor(
     private val checkEmailUseCase: CheckEmailUseCase,
     private val checkNicknameUseCase: CheckNicknameUseCase,
     private val requestEmailUseCase: RequestEmailAuthUseCase,
-    private val findPasswordUseCase: FindPasswordUseCase
+    private val findPasswordUseCase: FindPasswordUseCase,
+    private val sharedPreferences: SharedPreferences,
 ): ViewModel() {
 
     var job: Job? = null
@@ -235,13 +234,13 @@ class UserViewModel @Inject constructor(
     }
     // 일반 회원가입
     fun signUpUser(){
-        val user = UserDto(year.value!!.toInt(), email.value!!, gender.value!!, email.value!!,nickname.value!!, password.value!!,0,"")
+        val user = UserDto(year.value!!.toInt(), email.value!!, gender.value!!, email.value!!,nickname.value!!, password.value!!)
         Log.d(TAG, user.toString())
         viewModelScope.launch(Dispatchers.IO) {
             signUpUseCase.execute(user).collectLatest {
                 Log.d(TAG,"signUpUser"+it.toString())
                 if(it is ResultType.Success) {
-                    _joinMsgEvent.value = it.data.msg
+                    _joinMsgEvent.postValue(it.data.msg)
                     _isJoinChecked.value = true
                     Log.d(TAG, "signUpUser_joinMsgEvent"+_joinMsgEvent.toString())
                     Log.d(TAG, "signUpUser_isJoinChecked"+_isJoinChecked.toString())
@@ -263,6 +262,8 @@ class UserViewModel @Inject constructor(
                     Log.d(TAG, "TOKEN : "+  it.data.data.accessToken)
                     _token.value = it.data.data.accessToken
                     Log.d(TAG, "TOKEN : "+  _token.value)
+
+                    sharedPreferences.edit().putString(JWT, it.data.data.accessToken).apply()
                 }else{
                     Log.d(TAG, "${it}")
                     makeToast("아이디, 비밀번호를 확인해주세요")

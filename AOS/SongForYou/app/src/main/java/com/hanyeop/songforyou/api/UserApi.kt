@@ -19,7 +19,7 @@ interface UserApi {
     @POST("/user/signUp")
     suspend fun signUpUser(
         @Body userDto: UserDto
-    ): BaseResponse<String>
+    ): BaseResponse<UserDto>
 
     // 일반 로그인
     @POST("/user/login")

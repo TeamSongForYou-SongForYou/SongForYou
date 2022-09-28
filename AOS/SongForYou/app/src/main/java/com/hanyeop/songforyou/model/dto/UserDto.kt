@@ -20,7 +20,7 @@ data class UserDto(
     @SerializedName("id") val userId: String,                               // id
     @SerializedName("nickName") val userNickname: String,                   // 별명
     @SerializedName("pass") val userPass: String,                           // 비밀번호
-    @SerializedName("userProfileImgSeq") val userProfileImgSeq: Int,            // 프로필
-    @SerializedName("userRegTime") val userRegTime: String,                     // 등록시간
+//    @SerializedName("userProfileImgSeq") val userProfileImgSeq: Int,            // 프로필
+//    @SerializedName("userRegTime") val userRegTime: String,                     // 등록시간
 )
 // id, 프로필 이미지 번호 왜 필요한지 물어보기

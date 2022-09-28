@@ -16,7 +16,7 @@ class UserRemoteDataSource @Inject constructor(
     // 일반 회원가입
     fun signUpUser(
         userDto: UserDto
-    ): Flow<BaseResponse<String>> = flow {
+    ): Flow<BaseResponse<UserDto>> = flow {
         emit(userApi.signUpUser(userDto))
     }
 

@@ -32,10 +32,31 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     lateinit var mLastLocation: Location // 위치 값을 가지고 있는 객체
     private lateinit var mLocationRequest: LocationRequest// 위치 정보 요청의 매개변수를 저장하는
 
+    private lateinit var recommendMyListAdapter: RecommendMyListAdapter
+    private lateinit var recommendMyRecordAdapter: RecommendMyRecordAdapter
+
     override fun init() {
+        recommendMyListAdapter = RecommendMyListAdapter()
+        recommendMyRecordAdapter = RecommendMyRecordAdapter()
+
+        binding.apply {
+            recyclerMyList.adapter = recommendMyListAdapter
+            recyclerMyRecord.adapter = recommendMyRecordAdapter
+        }
+        recommendMyRecordAdapter = RecommendMyRecordAdapter()
+
+        binding.apply {
+            recyclerMyList.adapter = recommendMyListAdapter
+            recyclerMyRecord.adapter = recommendMyRecordAdapter
+        }
+
         startLocationUpdates()
 
         initViewModelCallBack()
+
+        homeViewModel.getIbRecommendMyList()
+
+        homeViewModel.getIbRecommendMyRecord()
     }
 
     private fun initViewModelCallBack(){
@@ -61,6 +82,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                         }
                     }
                 }
+            }
+        }
+
+        lifecycleScope.launch {
+            homeViewModel.recommendMyList.collectLatest {
+                recommendMyListAdapter.submitList(it)
+            }
+        }
+
+        lifecycleScope.launch {
+            homeViewModel.recommendMyRecord.collectLatest {
+                recommendMyRecordAdapter.submitList(it)
             }
         }
     }
