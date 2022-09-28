@@ -41,7 +41,7 @@
             android:id="@+id/tv_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3"
+            android:text="0"
             android:layout_marginStart="8dp"
             android:textColor="@color/CustomColor1"
             android:textSize="18sp"
@@ -50,6 +50,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView7" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_search"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

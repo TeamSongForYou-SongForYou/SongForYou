@@ -4,7 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <variable
+            name="song"
+            type="com.hanyeop.songforyou.model.response.SongResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +20,8 @@
             android:layout_marginStart="16dp"
             android:background="@drawable/image_round"
             android:clipToOutline="true"
+            android:scaleType="fitXY"
+            app:summaryImage="@{song.songThumbnailUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,7 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Permission To Dance"
+            tools:text="Permission To Dance"
+            android:text="@{song.songTitle}"
             app:layout_constraintStart_toEndOf="@+id/img_recommend"
             app:layout_constraintTop_toTopOf="@+id/img_recommend" />
 
@@ -36,7 +41,8 @@
             android:id="@+id/tv_artist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BTS"
+            tools:text="BTS"
+            android:text="@{song.songArtistName}"
             android:textColor="@color/light_grey"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
