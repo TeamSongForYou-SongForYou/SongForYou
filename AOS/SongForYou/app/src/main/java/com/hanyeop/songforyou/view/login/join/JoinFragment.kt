@@ -26,8 +26,10 @@ class JoinFragment : BaseFragment<FragmentJoinBinding>(R.layout.fragment_join) {
     private val type by lazy { arguments?.getString("type") ?: "" }
 
     override fun init(){
+        Log.d(TAG, "111")
         binding.joinVM = userViewModel
 
+        Log.d(TAG, "222")
         initObserver()
 
 //        initView()
@@ -51,6 +53,13 @@ class JoinFragment : BaseFragment<FragmentJoinBinding>(R.layout.fragment_join) {
         }
     }
     private fun initViewModelCallback() = with(binding){
+        lifecycleScope.launch {
+            userViewModel.isEmailChecked.collectLatest {
+                if(it){
+                    userViewModel.requestEmailAuthNumber(tilEmail)
+                }
+            }
+        }
         lifecycleScope.launch {
             // 인증 번호 전송 성공 시
             userViewModel.emailAuthNumber.collectLatest {
@@ -79,7 +88,9 @@ class JoinFragment : BaseFragment<FragmentJoinBinding>(R.layout.fragment_join) {
             }
         }
         lifecycleScope.launch {
+
             userViewModel.isJoinChecked.collectLatest {
+                Log.d(TAG, it.toString())
                 // 회원가입에 성공한 경우
                 if(it){
                     findNavController().navigate(R.id.action_joinFragment_to_loginFragment)
@@ -88,12 +99,13 @@ class JoinFragment : BaseFragment<FragmentJoinBinding>(R.layout.fragment_join) {
                 }
             }
         }
+
     }
     private fun initClickListener() = with(binding) {
 
         // 인증번호 전송(본인확인) 클릭시
         btnEmailAuthNumberRequest.setOnClickListener {
-            userViewModel.requestEmailAuthNumber(tilEmail)
+            userViewModel.checkEmail(tilEmail)
         }
 
         // 인증번호 확인 클릭시
@@ -110,7 +122,7 @@ class JoinFragment : BaseFragment<FragmentJoinBinding>(R.layout.fragment_join) {
         btnJoin.setOnClickListener {
 
             // 닉네임 중복 검사 확인
-            if(userViewModel.isNicknameChecked.value == false){
+            if(!userViewModel.isNicknameChecked.value){
                 makeTextInputLayoutError(tilNickname, "닉네임 중복검사를 해주세요")
                 makeToast("닉네임 중복검사를 해주세요")
                 return@setOnClickListener

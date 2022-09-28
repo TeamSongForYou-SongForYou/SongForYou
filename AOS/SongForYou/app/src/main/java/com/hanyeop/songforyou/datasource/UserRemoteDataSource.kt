@@ -3,6 +3,7 @@ package com.hanyeop.songforyou.datasource
 import com.hanyeop.songforyou.api.UserApi
 import com.hanyeop.songforyou.base.BaseResponse
 import com.hanyeop.songforyou.model.dto.UserDto
+import com.hanyeop.songforyou.model.response.TokenResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -22,7 +23,7 @@ class UserRemoteDataSource @Inject constructor(
     // 일반 로그인
     fun loginUser(
         map: HashMap<String, String>
-    ): Flow<BaseResponse<String>> = flow {
+    ): Flow<BaseResponse<TokenResponse>> = flow {
         emit(userApi.loginUser(map))
     }
 

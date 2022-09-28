@@ -3,6 +3,7 @@ package com.hanyeop.songforyou.api
 import android.provider.ContactsContract.CommonDataKinds.Email
 import com.hanyeop.songforyou.base.BaseResponse
 import com.hanyeop.songforyou.model.dto.UserDto
+import com.hanyeop.songforyou.model.response.TokenResponse
 import com.hanyeop.songforyou.utils.JWT
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -10,6 +11,7 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface UserApi {
 
@@ -23,24 +25,24 @@ interface UserApi {
     @POST("/user/login")
     suspend fun loginUser(
         @Body map: HashMap<String, String>
-    ): BaseResponse<String>
+    ): BaseResponse<TokenResponse>
 
     // 이메일 중복 검사
-    @GET("/user/isUsedEmail/{email}")
+    @GET("/user/isUsedEmail")
     suspend fun checkEmail(
-        @Path("email") userEmail: String
+        @Query("email") email: String
     ): BaseResponse<String>
 
     // 닉네임 중복 검사
-    @GET("/user/isUsednickName/{nickName}")
+    @GET("/user/isUsednickName")
     suspend fun checkNickname(
-        @Path("nickName") userNickname: String
+        @Query("nickName") nickName: String
     ): BaseResponse<String>
 
     // 이메일 인증번호 전송
-    @GET("/user/emailAuth/{email}")
+    @GET("/user/emailAuth")
     suspend fun requestEmailAuth(
-        @Path("email") userEmail: String
+        @Query("email") userEmail: String
     ): BaseResponse<String>
 
 

@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="loginVM"
+            type="com.hanyeop.songforyou.view.login.UserViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,6 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
+                android:text="@={loginVM.loginEmail}"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,6 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:text="@={loginVM.loginPassword}"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -1,8 +1,10 @@
 package com.hanyeop.songforyou.repository
 
+import android.util.Log
 import com.hanyeop.songforyou.base.BaseResponse
 import com.hanyeop.songforyou.datasource.UserRemoteDataSource
 import com.hanyeop.songforyou.model.dto.UserDto
+import com.hanyeop.songforyou.model.response.TokenResponse
 import com.hanyeop.songforyou.utils.ResultType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -31,10 +33,12 @@ class UserRepository @Inject constructor(
         emit(ResultType.Error(e))
     }
 
+    private val TAG = "test5"
     // 일반 로그인
-    fun loginUser(map: HashMap<String, String>): Flow<ResultType<BaseResponse<String>>> = flow {
+    fun loginUser(map: HashMap<String, String>): Flow<ResultType<BaseResponse<TokenResponse>>> = flow {
         emit(ResultType.Loading)
         userRemoteDataSource.loginUser(map).collect {
+            Log.d(TAG, "loginUser: $it")
             if (it.success) {
                 emit(ResultType.Success(it))
             } else if (!it.success) {
@@ -46,6 +50,7 @@ class UserRepository @Inject constructor(
 
     }.catch { e ->
         emit(ResultType.Error(e))
+        Log.d(TAG, "loginUser: $e")
     }
 
     // 이메일 중복 검사
