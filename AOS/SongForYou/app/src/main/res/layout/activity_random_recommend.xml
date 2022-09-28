@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
 
+        <variable
+            name="randomVM"
+            type="com.hanyeop.songforyou.view.main.home.HomeViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +46,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="Title"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:fontFamily="@font/noto_sans_bold"
@@ -62,6 +65,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
         <SeekBar
             android:id="@+id/seek_play_time"
             android:layout_width="0dp"
@@ -128,6 +132,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_song"
             app:srcCompat="@drawable/thumb_down_64" />
+
         <TextView
             android:id="@+id/tv_dislike"
             android:layout_width="0dp"

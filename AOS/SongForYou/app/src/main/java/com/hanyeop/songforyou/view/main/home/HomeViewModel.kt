@@ -1,12 +1,14 @@
 package com.hanyeop.songforyou.view.main.home
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hanyeop.songforyou.model.response.SongResponse
 import com.hanyeop.songforyou.model.response.Weather
 import com.hanyeop.songforyou.usecase.ib_recommend.GetIbRecommendMyListUseCase
 import com.hanyeop.songforyou.usecase.ib_recommend.GetIbRecommendMyRecordUseCase
+import com.hanyeop.songforyou.usecase.sb_recommend.GetSbRecommendRandomUseCase
 import com.hanyeop.songforyou.usecase.weather.GetWeatherUseCase
 import com.hanyeop.songforyou.utils.ResultType
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,12 +19,14 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+private const val TAG = "HomeViewModel___"
+
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getWeatherUseCase: GetWeatherUseCase,
     private val getIbRecommendMyListUseCase: GetIbRecommendMyListUseCase,
-    private val getIbRecommendMyRecordUseCase: GetIbRecommendMyRecordUseCase
-
+    private val getIbRecommendMyRecordUseCase: GetIbRecommendMyRecordUseCase,
+    private val getSbRecommendRandomUseCase: GetSbRecommendRandomUseCase
 ): ViewModel() {
 
     private val _recommendMyList: MutableStateFlow<List<SongResponse>> = MutableStateFlow(listOf())
@@ -31,9 +35,13 @@ class HomeViewModel @Inject constructor(
     private val _recommendMyRecord: MutableStateFlow<List<SongResponse>> = MutableStateFlow(listOf())
     val recommendMyRecord get() = _recommendMyRecord.asStateFlow()
 
+    private val _recommendRandomList: MutableStateFlow<List<SongResponse>> = MutableStateFlow(listOf())
+    val recommendRandomList get() = _recommendRandomList.asStateFlow()
 
     private val _weatherResponse : MutableStateFlow<ResultType<Weather>> = MutableStateFlow(ResultType.Uninitialized)
     val weatherResponse get() = _weatherResponse.asStateFlow()
+
+    val recommendRandomRecord = MutableLiveData<SongResponse>()
 
     fun getWeather(dataType : String, numOfRows : Int, pageNo : Int,
                    baseDate : String, baseTime : String, nx : Int, ny : Int){
@@ -62,6 +70,17 @@ class HomeViewModel @Inject constructor(
                 Log.d("test5", "getIbRecommendMyRecord: $it")
                 if(it is ResultType.Success){
                     _recommendMyRecord.value = it.data.data
+                }
+            }
+        }
+    }
+
+    fun getSbRecommendRandomList(){
+        viewModelScope.launch(Dispatchers.IO) {
+            getSbRecommendRandomUseCase.execute().collectLatest {
+                Log.d(TAG, "getIbRecommendMyRecord: $it")
+                if(it is ResultType.Success){
+                    _recommendRandomList.value = it.data.data
                 }
             }
         }
