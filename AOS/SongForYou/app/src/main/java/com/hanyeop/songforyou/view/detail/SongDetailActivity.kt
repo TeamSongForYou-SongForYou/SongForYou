@@ -5,6 +5,7 @@ import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivitySongDetailBinding
 import com.hanyeop.songforyou.model.response.SongResponse
+import com.hanyeop.songforyou.utils.SONG
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,12 +14,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class SongDetailActivity : BaseActivity<ActivitySongDetailBinding>(R.layout.activity_song_detail) {
 
     private val songDetailViewModel by viewModels<SongDetailViewModel>()
-    private lateinit var songInfo: SongResponse
+    private var songInfo: SongResponse = SongResponse(0,"","","",0,"","")
 
     override fun init() {
-        songInfo = intent.getSerializableExtra("Song") as SongResponse
+        songInfo = intent.getSerializableExtra(SONG) as SongResponse
 
         binding.apply {
+            song = songInfo
             youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
                 override fun onReady(youTubePlayer: YouTubePlayer) {
                     super.onReady(youTubePlayer)

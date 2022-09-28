@@ -9,3 +9,5 @@ const val WEATHER_BASE_URL = "http://apis.data.go.kr/1360000/VilageFcstInfoServi
 // JWT
 const val JWT = "Authorization"
 
+const val SONG = "song"
+

@@ -1,11 +1,16 @@
 package com.hanyeop.songforyou.view.search
 
+import android.content.Intent
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivitySongSearchBinding
+import com.hanyeop.songforyou.model.response.SongResponse
+import com.hanyeop.songforyou.utils.SONG
+import com.hanyeop.songforyou.view.detail.SongDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -17,7 +22,7 @@ class SongSearchActivity : BaseActivity<ActivitySongSearchBinding>(R.layout.acti
     private val songSearchViewModel by viewModels<SongSearchViewModel>()
 
     override fun init() {
-        songSearchAdapter = SongSearchAdapter()
+        songSearchAdapter = SongSearchAdapter(songSearchListener)
 
         binding.apply {
             recyclerSearch.adapter = songSearchAdapter
@@ -46,6 +51,15 @@ class SongSearchActivity : BaseActivity<ActivitySongSearchBinding>(R.layout.acti
                 songSearchAdapter.submitList(it)
                 binding.tvCount.text = it.size.toString()
             }
+        }
+    }
+
+    private val songSearchListener = object : SongSearchListener{
+        override fun onItemClick(song: SongResponse) {
+            Log.d("test5", "onItemClick: $song")
+            val intent = Intent(this@SongSearchActivity, SongDetailActivity::class.java)
+            intent.putExtra(SONG,song)
+            startActivity(intent)
         }
     }
 }
