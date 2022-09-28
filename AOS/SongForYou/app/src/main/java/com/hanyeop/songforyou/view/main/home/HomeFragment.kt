@@ -26,6 +26,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private lateinit var recommendMyListAdapter: RecommendMyListAdapter
 
+    private lateinit var recommendMyRecordAdapter: RecommendMyRecordAdapter
+
+
     private var mFusedLocationProviderClient: FusedLocationProviderClient? = null // 현재 위치를 가져오기 위한 변수
     lateinit var mLastLocation: Location // 위치 값을 가지고 있는 객체
     private lateinit var mLocationRequest: LocationRequest// 위치 정보 요청의 매개변수를 저장하는
@@ -35,6 +38,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         binding.apply {
             recyclerMyList.adapter = recommendMyListAdapter
+
+        recommendMyRecordAdapter = RecommendMyRecordAdapter()
+
+        binding.apply {
+            recyclerMyList.adapter = recommendMyListAdapter
+            recyclerMyRecord.adapter = recommendMyRecordAdapter
+
         }
 
         startLocationUpdates()
@@ -42,6 +52,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         initViewModelCallBack()
 
         homeViewModel.getIbRecommendMyList()
+
+        homeViewModel.getIbRecommendMyRecord()
+
     }
 
     private fun initViewModelCallBack(){
@@ -75,6 +88,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 recommendMyListAdapter.submitList(it)
             }
         }
+
+        lifecycleScope.launch {
+            homeViewModel.recommendMyRecord.collectLatest {
+                recommendMyRecordAdapter.submitList(it)
+            }
+        }
+
     }
 
     private fun initWeather(lat: Double, long: Double){

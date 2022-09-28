@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.hanyeop.songforyou.model.response.SongResponse
 import com.hanyeop.songforyou.model.response.Weather
 import com.hanyeop.songforyou.usecase.ib_recommend.GetIbRecommendMyListUseCase
+import com.hanyeop.songforyou.usecase.ib_recommend.GetIbRecommendMyRecordUseCase
 import com.hanyeop.songforyou.usecase.weather.GetWeatherUseCase
 import com.hanyeop.songforyou.utils.ResultType
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,12 +20,21 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getWeatherUseCase: GetWeatherUseCase,
+
     private val getIbRecommendMyListUseCase: GetIbRecommendMyListUseCase
+
+    private val getIbRecommendMyListUseCase: GetIbRecommendMyListUseCase,
+    private val getIbRecommendMyRecordUseCase: GetIbRecommendMyRecordUseCase
+
 ): ViewModel() {
 
     private val _recommendMyList: MutableStateFlow<List<SongResponse>> = MutableStateFlow(listOf())
     val recommendMyList get() = _recommendMyList.asStateFlow()
 
+    private val _recommendMyRecord: MutableStateFlow<List<SongResponse>> = MutableStateFlow(listOf())
+    val recommendMyRecord get() = _recommendMyRecord.asStateFlow()
+
+>>>>>>> origin/AOS
     private val _weatherResponse : MutableStateFlow<ResultType<Weather>> = MutableStateFlow(ResultType.Uninitialized)
     val weatherResponse get() = _weatherResponse.asStateFlow()
 
@@ -47,4 +57,17 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
+
+    fun getIbRecommendMyRecord(){
+        viewModelScope.launch(Dispatchers.IO) {
+            getIbRecommendMyRecordUseCase.execute(7).collectLatest {
+                Log.d("test5", "getIbRecommendMyRecord: $it")
+                if(it is ResultType.Success){
+                    _recommendMyRecord.value = it.data.data
+                }
+            }
+        }
+    }
+
 }
