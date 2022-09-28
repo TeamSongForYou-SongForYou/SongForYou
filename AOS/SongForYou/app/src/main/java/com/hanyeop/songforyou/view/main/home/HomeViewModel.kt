@@ -3,8 +3,8 @@ package com.hanyeop.songforyou.view.main.home
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hanyeop.songforyou.model.response.SongResponse
-import com.hanyeop.songforyou.usecase.ib_recommend.GetIbRecommendBeforeUseCase
+import com.hanyeop.songforyou.model.response.Weather
+import com.hanyeop.songforyou.usecase.weather.GetWeatherUseCase
 import com.hanyeop.songforyou.utils.ResultType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,22 +16,18 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getIbRecommendBeforeUseCase: GetIbRecommendBeforeUseCase
+    private val getWeatherUseCase: GetWeatherUseCase
 ): ViewModel() {
 
-    private val _recommendList = MutableStateFlow<List<SongResponse>>(listOf())
-    val recommendList get() = _recommendList.asStateFlow()
+    private val _weatherResponse : MutableStateFlow<ResultType<Weather>> = MutableStateFlow(ResultType.Uninitialized)
+    val weatherResponse get() = _weatherResponse.asStateFlow()
 
-    fun getIbRecommendBefore(songSeq: Int){
-        Log.d("test5", "getIbRecommendBefore: ???")
+    fun getWeather(dataType : String, numOfRows : Int, pageNo : Int,
+                   baseDate : String, baseTime : String, nx : Int, ny : Int){
         viewModelScope.launch(Dispatchers.IO) {
-            getIbRecommendBeforeUseCase.execute(songSeq).collectLatest {
-                Log.d("test5", "getIbRecommendBefore: ${it}")
-                if(it is ResultType.Success){
-                    _recommendList.value = it.data.data
-                }else{
-
-                }
+            getWeatherUseCase.execute(dataType, numOfRows, pageNo, baseDate, baseTime, nx, ny).collectLatest {
+                Log.d("test5", "getWeather: $it")
+                _weatherResponse.value = it
             }
         }
     }
