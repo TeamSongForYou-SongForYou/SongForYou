@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.gumid207.dto.SongDto;
 import com.ssafy.gumid207.dto.UserDto;
 import com.ssafy.gumid207.entity.User;
+import com.ssafy.gumid207.jwt.SecurityUtil;
 import com.ssafy.gumid207.res.ResponseFrame;
 import com.ssafy.gumid207.user.UserRepository;
 
@@ -31,7 +32,7 @@ public class UbRecommendRestController {
 	public UserDto getLoginUser() {
 		User user = null;
 		try {
-			user = userRepo.findById(3l).get();
+			user = userRepo.findById(SecurityUtil.getCurrentMemberId()).get();
 		} catch (Exception e) {
 			user = new User();
 			user.setBirthday(1996);
