@@ -18,20 +18,23 @@ class RandomRecommendActivity : BaseActivity<ActivityRandomRecommendBinding>(R.l
 
     override fun init() {
 
-        homeViewModel.getSbRecommendRandomList()
         initViewModelCallback()
         initClickListener()
+
+        homeViewModel.getSbRecommendRandomList()
     }
 
     private fun initViewModelCallback() = with(binding){
         lifecycleScope.launch {
             homeViewModel.recommendRandomList.collectLatest {
-//                Glide.with(this@RandomRecommendActivity)
-//                    .load(it[0].songThumbnailUrl)
-//                    .into(imgSong)
 
-                tvTitle.text = it[0].SongTitle
-                tvArtist.text = it[0].SongArtistName
+                if(it.isNotEmpty()) {
+                    Glide.with(this@RandomRecommendActivity)
+                        .load(it[0].songThumbnailUrl)
+                        .into(imgSong)
+                    tvTitle.text = it[0].SongTitle
+                    tvArtist.text = it[0].SongArtistName
+                }
             }
         }
     }
