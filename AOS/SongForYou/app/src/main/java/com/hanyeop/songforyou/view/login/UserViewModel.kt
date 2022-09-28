@@ -263,7 +263,7 @@ class UserViewModel @Inject constructor(
                     _token.value = it.data.data.accessToken
                     Log.d(TAG, "TOKEN : "+  _token.value)
 
-                    sharedPreferences.edit().putString(JWT, it.data.data.accessToken).apply()
+                    sharedPreferences.edit().putString(JWT, "Bearer ${it.data.data.accessToken}").apply()
                 }else{
                     Log.d(TAG, "${it}")
                     makeToast("아이디, 비밀번호를 확인해주세요")

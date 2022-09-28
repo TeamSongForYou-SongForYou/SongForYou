@@ -7,5 +7,5 @@ const val KAKAO_BASE_URL = "https://dapi.kakao.com"
 const val WEATHER_BASE_URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/"
 
 // JWT
-const val JWT = "JWT-AUTHENTICATION"
+const val JWT = "Authorization"
 
