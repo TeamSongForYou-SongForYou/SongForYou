@@ -8,14 +8,16 @@ import retrofit2.http.*
 
 interface ReviewApi {
 
-    @GET("review/list")
+    // TODO : 스펠링 수정.
+
+    @GET("reivew/list")
     suspend fun getReview(
-        @Query ("name") name: String,
-        @Query ("address") address: String
+        @Query ("karaokeName") name: String,
+        @Query ("karaokeAddress") address: String
     ): BaseResponse<List<ReviewResponse>>
 
     @Multipart
-    @POST("review/upload")
+    @POST("reivew/upload")
     suspend fun uploadReview(
         @Part("reviewUploadDto") review: RequestBody,
         @Part imgFile : MultipartBody.Part
