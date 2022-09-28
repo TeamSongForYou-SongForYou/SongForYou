@@ -16,6 +16,7 @@ import com.ssafy.gumid207.devutil.DevUtil;
 import com.ssafy.gumid207.dto.SongDto;
 import com.ssafy.gumid207.dto.UserDto;
 import com.ssafy.gumid207.entity.User;
+import com.ssafy.gumid207.jwt.SecurityUtil;
 import com.ssafy.gumid207.res.ResponseFrame;
 import com.ssafy.gumid207.user.UserRepository;
 
@@ -31,13 +32,12 @@ import lombok.extern.slf4j.Slf4j;
 @Api(tags = "노래 정보 컨트롤러")
 public class SongRestController {
 	private final UserRepository userRepo;
-	
+
 	public UserDto getLoginUser() {
 		User user = null;
 		try {
-			user = userRepo.findById(3l).get();
-		}
-		catch (Exception e) {			
+			user = userRepo.findById(SecurityUtil.getCurrentMemberId()).get();
+		} catch (Exception e) {
 			user = new User();
 			user.setBirthday(1996);
 			user.setGender("male");
