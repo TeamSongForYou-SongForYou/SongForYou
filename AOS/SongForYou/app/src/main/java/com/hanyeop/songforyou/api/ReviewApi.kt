@@ -7,17 +7,15 @@ import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface ReviewApi {
-
-    // TODO : 스펠링 수정.
-
-    @GET("reivew/list")
+    
+    @GET("review/list")
     suspend fun getReview(
         @Query ("karaokeName") name: String,
         @Query ("karaokeAddress") address: String
     ): BaseResponse<List<ReviewResponse>>
 
     @Multipart
-    @POST("reivew/upload")
+    @POST("review/upload")
     suspend fun uploadReview(
         @Part("reviewUploadDto") review: RequestBody,
         @Part imgFile : MultipartBody.Part
