@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ssafy.gumid207.dto.MyListDto;
 import com.ssafy.gumid207.dto.UserDto;
 import com.ssafy.gumid207.entity.User;
 import com.ssafy.gumid207.jwt.SecurityUtil;
@@ -69,6 +70,14 @@ public class SongBoxRestController {
 		UserDto userDto = getLoginUser();
 		Boolean result = songBoxServ.deleteMyList(userDto.getUserSeq(), songSeq);
 		return new ResponseEntity<>(new ResponseFrame<>(true, result, 1, "보관함에서 삭제했습니다."), HttpStatus.OK);
+	}
+
+	@ApiOperation(value = "노래 보관함 목록 받아오기")
+	@GetMapping(value="/my-box")
+	public ResponseEntity<?> getMyList() throws Exception {
+		UserDto userDto = getLoginUser();
+		List<MyListDto> results = songBoxServ.getMyList(userDto.getUserSeq());
+		return new ResponseEntity<>(new ResponseFrame<>(true, results, results.size(), "내 보관함 목록을 가져왔습니다."), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "곡 녹음 저장")

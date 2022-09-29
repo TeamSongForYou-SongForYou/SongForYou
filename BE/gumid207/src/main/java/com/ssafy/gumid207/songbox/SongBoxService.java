@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ssafy.gumid207.dto.MyListDto;
 import com.ssafy.gumid207.res.MyRecordResDto;
 
 @Service
@@ -19,5 +20,7 @@ public interface SongBoxService {
 	Boolean deleteMySongRecord(Long userSeq, Long myRecordSeq) throws Exception;
 
 	List<MyRecordResDto> getMySongRecordList(Long userSeq) throws Exception;
+
+	List<MyListDto> getMyList(Long userSeq) throws Exception;
 
 }

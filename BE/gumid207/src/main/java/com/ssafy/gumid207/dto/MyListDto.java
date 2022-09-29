@@ -26,6 +26,8 @@ import lombok.Setter;
 public class MyListDto implements Serializable {
 
 	private Long myListSeq;
+	
+	private SongDto songSeq;
 
 	@ApiParam(value = "등록 시간. (yyyy-MM-dd 00:00:00)")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -38,6 +40,7 @@ public class MyListDto implements Serializable {
 		}
 		return new MyListDtoBuilder() //
 				.myListSeq(myList.getMyListSeq()) //
+				.songSeq(SongDto.of(myList.getSong())) //
 				.myListRegTime(myList.getMyListRegTime()) //
 				.build();
 	}
