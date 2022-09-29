@@ -7,7 +7,9 @@ import com.hanyeop.songforyou.base.BaseFragment
 import com.hanyeop.songforyou.databinding.FragmentPlayListBinding
 import com.hanyeop.songforyou.view.main.play_list.tab.record.PlayListRecordTabFragment
 import com.hanyeop.songforyou.view.main.play_list.tab.saved.PlayListSavedTabFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PlayListFragment : BaseFragment<FragmentPlayListBinding>(R.layout.fragment_play_list) {
 
     private lateinit var playListSavedTabFragment: PlayListSavedTabFragment
