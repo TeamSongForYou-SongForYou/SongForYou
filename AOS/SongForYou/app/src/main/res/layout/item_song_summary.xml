@@ -43,13 +43,16 @@
 
         <TextView
             android:id="@+id/tv_artist"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="@{song.songArtistName}"
-            tools:text="헤이즈"
-            android:textSize="11sp"
             android:textColor="@color/light_grey"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            tools:text="헤이즈" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
