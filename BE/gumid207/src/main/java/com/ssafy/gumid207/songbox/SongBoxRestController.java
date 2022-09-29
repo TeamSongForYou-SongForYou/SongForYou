@@ -84,7 +84,7 @@ public class SongBoxRestController {
 	@PostMapping(value="/my-record")
 	public ResponseEntity<?> saveMySongRecord(
 			@RequestPart(name = "reviewUploadDto", required = true) String reviewUploadString,
-			@RequestPart(required = true) MultipartFile imgFile) throws Exception {
+			@RequestPart(required = true) MultipartFile recordFile) throws Exception {
 		Long songSeq = 9l;
 		UserDto userDto = getLoginUser();
 		MyRecordResDto result = songBoxServ.saveMySongRecord(userDto.getUserSeq(), songSeq, imgFile);
