@@ -1,6 +1,7 @@
 package com.hanyeop.songforyou.view.main.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.location.Location
 import android.os.Looper
 import android.util.Log
@@ -10,8 +11,11 @@ import com.google.android.gms.location.*
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseFragment
 import com.hanyeop.songforyou.databinding.FragmentHomeBinding
+import com.hanyeop.songforyou.model.response.SongResponse
 import com.hanyeop.songforyou.utils.Common
 import com.hanyeop.songforyou.utils.ResultType
+import com.hanyeop.songforyou.utils.SONG
+import com.hanyeop.songforyou.view.detail.SongDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -19,7 +23,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-private const val TAG = "test5"
+private const val TAG = "HomeFragment"
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
@@ -33,18 +37,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private lateinit var ageRecommendMyListAdapter: RecommendMyListAdapter
     private lateinit var recommendMyListAdapter: RecommendMyListAdapter
     private lateinit var recommendMyRecordAdapter: RecommendMyRecordAdapter
+    private lateinit var ubRecommendListAdapter: UbRecommendListAdapter
 
     override fun init() {
-        ageRecommendMyListAdapter = RecommendMyListAdapter()
-        weatherRecommendMyListAdapter = RecommendMyListAdapter()
-        recommendMyListAdapter = RecommendMyListAdapter()
-        recommendMyRecordAdapter = RecommendMyRecordAdapter()
+        ageRecommendMyListAdapter = RecommendMyListAdapter(songDetailListener)
+        weatherRecommendMyListAdapter = RecommendMyListAdapter(songDetailListener)
+        recommendMyListAdapter = RecommendMyListAdapter(songDetailListener)
+        recommendMyRecordAdapter = RecommendMyRecordAdapter(songDetailListener)
+        ubRecommendListAdapter = UbRecommendListAdapter(songDetailListener)
 
         binding.apply {
             recyclerAge.adapter = ageRecommendMyListAdapter
             recyclerWeather.adapter = weatherRecommendMyListAdapter
             recyclerMyList.adapter = recommendMyListAdapter
             recyclerMyRecord.adapter = recommendMyRecordAdapter
+            recyclerChart.adapter = ubRecommendListAdapter
         }
 
         startLocationUpdates()
@@ -154,5 +161,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         Log.d(TAG, "경도 : " + mLastLocation.longitude)  // 갱신 된 위도")
 
         initWeather(mLastLocation.latitude, mLastLocation.longitude)
+    }
+
+    private val songDetailListener = object : SongDetailListener{
+        override fun onItemClick(song: SongResponse) {
+            Log.d(TAG, "onItemClick: $song")
+            val intent = Intent(context, SongDetailActivity::class.java)
+            intent.putExtra(SONG,song)
+            startActivity(intent)
+        }
     }
 }

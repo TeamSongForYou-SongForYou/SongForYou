@@ -8,10 +8,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hanyeop.songforyou.databinding.ItemSongSummaryBinding
 import com.hanyeop.songforyou.model.response.SongResponse
 
-class RecommendMyListAdapter(): ListAdapter<SongResponse, RecommendMyListAdapter.ViewHolder>(diffUtil) {
+class RecommendMyListAdapter(private val listener: SongDetailListener): ListAdapter<SongResponse, RecommendMyListAdapter.ViewHolder>(diffUtil) {
 
     inner class ViewHolder(private val binding: ItemSongSummaryBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.apply {
+                this.root.setOnClickListener {
+                    listener.onItemClick(getItem(adapterPosition))
+                }
+            }
+        }
 
         fun bind(song: SongResponse) {
             binding.song = song
