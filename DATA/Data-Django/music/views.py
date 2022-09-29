@@ -14,7 +14,8 @@ import os
 import urllib.request
 
 # Create your views here.
-@ api_view(['POST'])
+@ api_view(['POST','PUT'])
+# @ api_view(['GET'])
 def record(request,userSeq):
     # 나의 노래 분석
     # 오디오 파일 가져와서 분석
@@ -25,19 +26,29 @@ def record(request,userSeq):
     # 오디오 s3 주소
     # 오디오 저장
     song_url = request.data.get('url')
-    save_name = 'music\music\my.wav'
-    urllib.request.urlretrieve(song_url,save_name)
-
-    # 오디오 파일이 저장이 안되면 false
-    if not (os.path.isfile(save_name)):
+    print(request.data.get('url'))
+    # https://songforyou.s3.ap-northeast-2.amazonaws.com/songRecord/626296fe-70f3-4e99-bbc8-a4a8057229f1.mp3
+    # 오디오 링크를 주지 않으면 false
+    if not (song_url):
+        print(song_url)
         result = {
-            'success' : 'false'
+            'message': "녹음파일 분석",
+            'status': "false",
+	        "data": {
+            }
         }
         return Response(result)
+    # 녹음 파일 다운
+    save_name = 'music\music\my.mp3'
+    urllib.request.urlretrieve(song_url,save_name)
+
+    # 노래 음원 분석
     data = {}
     data['user_pk'] = userSeq
     # 노래 음원
     y,sr = librosa.load(save_name)
+    print('good')
+    
     # 템포
     tempo, _ = librosa.beat.beat_track(y, sr=sr)
     data['tempo'] = tempo
@@ -64,12 +75,22 @@ def record(request,userSeq):
     mfccs = librosa.feature.mfcc(y, sr=sr)
     for i in range(len(mfccs)):
         data['mfcc'+ str(i) + '_mean'], data['mfcc' + str(i) + '_var'] = mfccs[i].mean(),mfccs[i].var()
-    
-    serializer = SoundSerializer(data=data)
+
+    # 녹음 처음 -> 등록 / 아니라면 -> 수정
+    if SoundFeature.objects.filter(user_pk = userSeq).exists():
+        sound = SoundFeature.objects.get(user_pk=userSeq)
+        # print(sound)
+        serializer = SoundSerializer(sound,data=data)
+    else:
+        serializer = SoundSerializer(data=data)
+
     if serializer.is_valid(raise_exception=True):
         serializer.save()
         result = {
-            'success' : 'true',
+            'message': "녹음파일 분석",
+            'status': "true",
+            "data": {
+            }
         }
         # 오디오 파일 삭제
         os.remove(save_name)
@@ -78,6 +99,7 @@ def record(request,userSeq):
 
 @ api_view(['GET'])
 def recommend(request,userSeq,cnt):
+
     # userSeq와 비슷한 음색 가진 유저 찾아서 상위 cnt명 돌려주기
     sound = SoundFeature.objects.all()
     sound_df = pd.DataFrame(list(sound.values()))
@@ -95,5 +117,10 @@ def recommend(request,userSeq,cnt):
     me = sim_df.loc[userSeq].sort_values(ascending=False)[1:cnt]
     # 유사도가 0.5보다는 커야하지 않을까?
     # return Response(me[me>0.5].index)
-    return Response(me.index)
+    result = {
+        'message': "비슷한 목소리 유저 리스트",
+        'status': "true",
+        "data": me.index
+    }
+    return Response(result)
 
