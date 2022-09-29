@@ -14,6 +14,7 @@ import com.ssafy.gumid207.customexception.MyRecordNotFoundException;
 import com.ssafy.gumid207.customexception.MyRecordPermissionDeniedException;
 import com.ssafy.gumid207.customexception.SongNotFoundException;
 import com.ssafy.gumid207.customexception.UserNotFoundException;
+import com.ssafy.gumid207.dto.MyListDto;
 import com.ssafy.gumid207.entity.File;
 import com.ssafy.gumid207.entity.MyList;
 import com.ssafy.gumid207.entity.MyRecord;
@@ -66,6 +67,16 @@ public class SongBoxServiceImpl implements SongBoxService {
 		}
 		myListRepo.delete(oMyList.get());
 		return true;
+	}
+
+	@Override
+	public List<MyListDto> getMyList(Long userSeq) throws Exception {
+		User user = userRepo.findByUserSeq(userSeq).orElseThrow(() -> new UserNotFoundException("해당 유저를 찾을 수 없습니다."));
+		return myListRepo.findByUserOrderByMyListRegTimeDesc(user).stream().map( //
+				(myList) -> //
+				MyListDto.of(myList) //
+				) //
+				.collect(Collectors.toList());
 	}
 
 	@Override

@@ -12,4 +12,5 @@ import com.ssafy.gumid207.entity.User;
 public interface MyListRepository extends JpaRepository<MyList, Long>{
 	List<MyList> findByUser(User user);
 	Optional<MyList> findByUserAndSong(User user, Song song);
+	List<MyList> findByUserOrderByMyListRegTimeDesc(User user);
 }
