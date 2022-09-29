@@ -96,6 +96,13 @@ public class User {
 		this.pass = pass;
 	}
 	
+	public User update(String name, String picture) {
+	       this.id = name;
+	       this.nickName = picture;
+
+	       return this;
+	   }
+	
 	
 
 }
