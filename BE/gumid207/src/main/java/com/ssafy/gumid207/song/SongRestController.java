@@ -59,6 +59,12 @@ public class SongRestController {
 		return new ResponseEntity<>(new ResponseFrame<>(true, songServ.getSongDetail(songSeq), 1, "곡 정보를 반환합니다."), HttpStatus.OK);
 	}
 	
+	@ApiParam(value = "곡 가사 반환")
+	@GetMapping(value = "/{songSeq}/lyrics")
+	public ResponseEntity<?> getSongLyrics(@PathVariable Long songSeq) throws Exception{
+		return new ResponseEntity<>(new ResponseFrame<>(true, songServ.getSongLyrics(songSeq), 1, "곡 가사를 반환합니다."), HttpStatus.OK);
+	}
+	
 	@ApiParam(value = "곡 URL 반환")
 	@GetMapping(value = "/{songSeq}/sound-file")
 	public ResponseEntity<?> getSongSoundFileURL(@PathVariable Long songSeq) throws Exception{
