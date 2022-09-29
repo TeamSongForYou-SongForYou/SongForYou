@@ -1,5 +1,6 @@
 package com.hanyeop.songforyou.view.detail
 
+import android.util.Log
 import androidx.activity.viewModels
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
@@ -9,7 +10,7 @@ import com.hanyeop.songforyou.utils.SONG
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import dagger.hilt.android.AndroidEntryPoint
-
+private const val TAG = "SongDetailActivity___"
 @AndroidEntryPoint
 class SongDetailActivity : BaseActivity<ActivitySongDetailBinding>(R.layout.activity_song_detail) {
 
@@ -26,7 +27,8 @@ class SongDetailActivity : BaseActivity<ActivitySongDetailBinding>(R.layout.acti
                     super.onReady(youTubePlayer)
 
                     val tmp = songInfo.songYoutubeUrl.split("=")
-                    youTubePlayer.loadVideo(tmp[1],0F)
+                    val videoId = tmp[1]
+                    youTubePlayer.loadVideo(videoId, 0f)
                 }
             })
         }
