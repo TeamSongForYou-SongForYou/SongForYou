@@ -29,7 +29,7 @@ class SongDetailViewModel @Inject constructor(
             songDisLikeUseCase.execute(songSeq).collectLatest {
                 if(it is ResultType.Success){
                     _successMsgEvent.postValue("성공")
-                }else{
+                }else if(it is ResultType.Fail){
                     _failMsgEvent.postValue("실패")
                 }
             }
@@ -41,7 +41,7 @@ class SongDetailViewModel @Inject constructor(
             addSongBoxUseCase.execute(songSeq).collectLatest {
                 if(it is ResultType.Success){
                     _successMsgEvent.postValue("성공")
-                }else{
+                }else if(it is ResultType.Fail){
                     _failMsgEvent.postValue("실패")
                 }
             }

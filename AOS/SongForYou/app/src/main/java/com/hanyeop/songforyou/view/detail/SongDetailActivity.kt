@@ -1,5 +1,6 @@
 package com.hanyeop.songforyou.view.detail
 
+import android.content.Intent
 import android.util.Log
 import androidx.activity.viewModels
 import com.hanyeop.songforyou.R
@@ -7,6 +8,7 @@ import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivitySongDetailBinding
 import com.hanyeop.songforyou.model.response.SongResponse
 import com.hanyeop.songforyou.utils.SONG
+import com.hanyeop.songforyou.view.audio.AudioRecordActivity
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,6 +47,11 @@ class SongDetailActivity : BaseActivity<ActivitySongDetailBinding>(R.layout.acti
             }
             imgAdd.setOnClickListener {
                 songDetailViewModel.addSongBox(songInfo.SongSeq)
+            }
+            btnRecord.setOnClickListener {
+                val intent = Intent(this@SongDetailActivity, AudioRecordActivity::class.java)
+                intent.putExtra(SONG,songInfo)
+                startActivity(intent)
             }
         }
     }

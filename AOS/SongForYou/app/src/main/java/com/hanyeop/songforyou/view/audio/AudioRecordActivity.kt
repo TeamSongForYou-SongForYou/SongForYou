@@ -1,15 +1,28 @@
 package com.hanyeop.songforyou.view.audio
 
-import android.Manifest
 import android.media.MediaPlayer
 import android.media.MediaRecorder
+import android.util.Log
 import android.widget.Button
+import androidx.activity.viewModels
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivityAudioRecordBinding
+import com.hanyeop.songforyou.model.response.SongResponse
+import com.hanyeop.songforyou.utils.SONG
 import com.hanyeop.songforyou.utils.State
+import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.File
+import java.io.FileInputStream
 
+@AndroidEntryPoint
 class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding>(R.layout.activity_audio_record) {
+
+    private val audioViewModel by viewModels<AudioViewModel>()
+    private var songInfo: SongResponse = SongResponse(0,"","","",0,"","")
 
     private val soundVisualizerView: SoundVisualizerView by lazy {
         findViewById(R.id.soundVisualizerView)
@@ -44,6 +57,30 @@ class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding>(R.layout.ac
         initViews()
         bindViews()
         initVariables()
+
+        songInfo = intent.getSerializableExtra(SONG) as SongResponse
+        binding.tvTitle.text = songInfo.SongTitle
+
+        initClickListener()
+        initViewModelCallBack()
+    }
+
+    private fun initClickListener(){
+        binding.apply {
+            btnSave.setOnClickListener {
+                upload()
+            }
+        }
+    }
+
+    private fun initViewModelCallBack(){
+        audioViewModel.successMsgEvent.observe(this){
+            showToast(it)
+            finish()
+        }
+        audioViewModel.failMsgEvent.observe(this){
+            showToast(it)
+        }
     }
 
     private fun initViews() {
@@ -143,5 +180,16 @@ class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding>(R.layout.ac
         recordTimeTextView.stopCountup()
 
         state = State.AFTER_RECORDING
+    }
+
+    private fun upload(){
+        val fis = FileInputStream(File(recordingFilePath))
+        val byteArray = fis.readBytes()
+        val partFile = MultipartBody.Part.createFormData(
+            name = "recordFile",
+            filename = "${System.currentTimeMillis()}record.mp3",
+            body = byteArray.toRequestBody(contentType = "multipart/form-data".toMediaTypeOrNull())
+        )
+        audioViewModel.uploadRecord(songInfo.SongSeq,partFile)
     }
 }

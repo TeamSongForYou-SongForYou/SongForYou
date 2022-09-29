@@ -25,5 +25,6 @@ interface SongBoxApi {
     suspend fun uploadRecord(
         @Path ("songSeq") songSeq: Int,
         @Part recordFile : MultipartBody.Part
-    )
+    ): BaseResponse<RecordResponse>
+
 }
