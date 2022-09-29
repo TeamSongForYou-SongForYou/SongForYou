@@ -81,10 +81,9 @@ public class SongBoxRestController {
 	}
 
 	@ApiOperation(value = "곡 녹음 저장")
-	@PostMapping(value="/my-record")
-	public ResponseEntity<?> saveMySongRecord(
+	@PostMapping(value="/my-record/{songSeq}")
+	public ResponseEntity<?> saveMySongRecord(@PathVariable Long songSeq, //
 			@RequestPart(required = true) MultipartFile recordFile) throws Exception {
-		Long songSeq = 9l;
 		UserDto userDto = getLoginUser();
 		MyRecordResDto result = songBoxServ.saveMySongRecord(userDto.getUserSeq(), songSeq, recordFile);
 		return new ResponseEntity<>(new ResponseFrame<>(true, result, 1, "녹음파일을 저장했습니다."), HttpStatus.OK);
