@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ssafy.gumid207.dto.MyListDto;
 import com.ssafy.gumid207.dto.UserDto;
 import com.ssafy.gumid207.entity.User;
 import com.ssafy.gumid207.jwt.SecurityUtil;
@@ -71,10 +72,18 @@ public class SongBoxRestController {
 		return new ResponseEntity<>(new ResponseFrame<>(true, result, 1, "보관함에서 삭제했습니다."), HttpStatus.OK);
 	}
 
+	@ApiOperation(value = "노래 보관함 목록 받아오기")
+	@GetMapping(value="/my-box")
+	public ResponseEntity<?> getMyList() throws Exception {
+		UserDto userDto = getLoginUser();
+		List<MyListDto> results = songBoxServ.getMyList(userDto.getUserSeq());
+		return new ResponseEntity<>(new ResponseFrame<>(true, results, results.size(), "내 보관함 목록을 가져왔습니다."), HttpStatus.OK);
+	}
+
 	@ApiOperation(value = "곡 녹음 저장")
-	@PostMapping(value="/my-record/{songSeq}", consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE})
-	public ResponseEntity<?> saveMySongRecord(@PathVariable Long songSeq,
-			@RequestPart(value = "recordFile", required = true) MultipartFile recordFile) throws Exception {
+	@PostMapping(value="/my-record/{songSeq}")
+	public ResponseEntity<?> saveMySongRecord(@PathVariable Long songSeq, //
+			@RequestPart(required = true) MultipartFile recordFile) throws Exception {
 		UserDto userDto = getLoginUser();
 		MyRecordResDto result = songBoxServ.saveMySongRecord(userDto.getUserSeq(), songSeq, recordFile);
 		return new ResponseEntity<>(new ResponseFrame<>(true, result, 1, "녹음파일을 저장했습니다."), HttpStatus.OK);
