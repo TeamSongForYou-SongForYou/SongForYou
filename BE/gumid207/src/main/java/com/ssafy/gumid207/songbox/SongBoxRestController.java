@@ -87,7 +87,7 @@ public class SongBoxRestController {
 			@RequestPart(required = true) MultipartFile recordFile) throws Exception {
 		Long songSeq = 9l;
 		UserDto userDto = getLoginUser();
-		MyRecordResDto result = songBoxServ.saveMySongRecord(userDto.getUserSeq(), songSeq, imgFile);
+		MyRecordResDto result = songBoxServ.saveMySongRecord(userDto.getUserSeq(), songSeq, recordFile);
 		return new ResponseEntity<>(new ResponseFrame<>(true, result, 1, "녹음파일을 저장했습니다."), HttpStatus.OK);
 	}
 	
