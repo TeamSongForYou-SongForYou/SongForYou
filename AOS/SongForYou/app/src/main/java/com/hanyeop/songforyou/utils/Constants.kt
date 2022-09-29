@@ -11,3 +11,5 @@ const val JWT = "Authorization"
 
 const val SONG = "song"
 
+const val RECORD = "record"
+

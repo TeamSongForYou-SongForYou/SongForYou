@@ -6,16 +6,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hanyeop.songforyou.databinding.ItemRecordListBinding
-import com.hanyeop.songforyou.databinding.ItemSongSummaryBinding
 import com.hanyeop.songforyou.model.response.RecordResponse
-import com.hanyeop.songforyou.model.response.SongResponse
-import com.hanyeop.songforyou.view.main.home.RecommendMyListAdapter
-import com.hanyeop.songforyou.view.main.home.SongDetailListener
 
-class RecordAdapter (): ListAdapter<RecordResponse, RecordAdapter.ViewHolder>(diffUtil) {
+class RecordAdapter (private val listener: RecordListener): ListAdapter<RecordResponse, RecordAdapter.ViewHolder>(diffUtil) {
 
     inner class ViewHolder(private val binding: ItemRecordListBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                listener.onItemClick(getItem(adapterPosition))
+            }
+        }
 
         fun bind(record: RecordResponse) {
             binding.record = record

@@ -1,5 +1,7 @@
 package com.hanyeop.songforyou.model.dto
 
+import java.io.Serializable
+
 data class FileDto(
     val fileSeq: Int,
     val fileOriginalName: String,
@@ -7,4 +9,4 @@ data class FileDto(
     val fileSavedPath: String,
     val fileType: String,
     val fileRegTime: String
-)
+): Serializable
