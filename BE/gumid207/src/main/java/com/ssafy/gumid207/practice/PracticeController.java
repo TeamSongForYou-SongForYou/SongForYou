@@ -1,5 +1,7 @@
 package com.ssafy.gumid207.practice;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.gumid207.dto.UserDto;
 import com.ssafy.gumid207.dto.UserRegisterDto;
 import com.ssafy.gumid207.jwt.SecurityUtil;
+import com.ssafy.gumid207.oauth.SessionUser;
 import com.ssafy.gumid207.res.ResponseUser;
 import com.ssafy.gumid207.user.UserController;
 import com.ssafy.gumid207.user.UserRepository;
@@ -35,6 +38,7 @@ public class PracticeController {
 	UserRepository userRepository;
 	@Autowired
 	UserService userService;
+	private final HttpSession httpSession;
 	
 	@PostMapping("/practice1")
     @ApiOperation(value = "연습1", response = ResponseEntity.class)	
@@ -45,14 +49,15 @@ public class PracticeController {
 	
 	@GetMapping("/practice2")
     @ApiOperation(value = "연습2", response = ResponseEntity.class)
-    public ResponseEntity<?> practice2(String email) throws Exception{
+    public SessionUser practice2() throws Exception{
     	
-        Boolean result = userService.checkEmail(email);
-        System.out.println("결과는:" + result);
-        String msg = result == true ? "사용 가능한 이메일입니다." : "이미 사용중인 이메일입니다.";
-        
-        
-        return new ResponseEntity<>(ResponseUser.of(result, result, msg), HttpStatus.OK);
+		SessionUser user = (SessionUser)httpSession.getAttribute("user");
+		if(user == null) {
+			return null;
+		}
+		else {
+			return user;
+		}
     }
 
 }
