@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.ssafy.gumid207.customexception.DislikeNotFoundException;
 import com.ssafy.gumid207.customexception.SongNotFoundException;
 import com.ssafy.gumid207.customexception.UserNotFoundException;
+import com.ssafy.gumid207.dto.LyricsDto;
 import com.ssafy.gumid207.dto.SongDto;
 import com.ssafy.gumid207.entity.Dislike;
 import com.ssafy.gumid207.entity.Song;
@@ -26,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SongServiceImpl implements SongService {
 	private final UserRepository userRepo;
 	private final SongRepository songRepo;
+	private final LyricsRepository lyricsRepo;
 	private final SongDislikeRepository dislikeRepo;
 
 	@Override
@@ -35,6 +37,12 @@ public class SongServiceImpl implements SongService {
 						.songSeq(-1l) //
 						.build());
 		return SongDto.of(song);
+	}
+	
+	@Override
+	public LyricsDto getSongLyrics(Long songSeq) throws Exception {
+		Song song = songRepo.findBySongSeq(songSeq).orElseThrow(() -> new SongNotFoundException("해당 곡을 찾을 수 없습니다."));
+		return LyricsDto.of(lyricsRepo.findById(songSeq).orElse(null));
 	}
 
 	@Override
