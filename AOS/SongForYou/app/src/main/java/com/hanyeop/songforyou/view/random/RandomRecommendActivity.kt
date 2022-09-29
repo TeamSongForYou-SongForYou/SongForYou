@@ -22,12 +22,12 @@ class RandomRecommendActivity : BaseActivity<ActivityRandomRecommendBinding>(R.l
         initClickListener()
 
         homeViewModel.getSbRecommendRandomList()
+        homeViewModel.getUbRecommendList()
     }
 
     private fun initViewModelCallback() = with(binding){
         lifecycleScope.launch {
             homeViewModel.recommendRandomList.collectLatest {
-
                 if(it.isNotEmpty()) {
                     Glide.with(this@RandomRecommendActivity)
                         .load(it[0].songThumbnailUrl)
@@ -35,6 +35,12 @@ class RandomRecommendActivity : BaseActivity<ActivityRandomRecommendBinding>(R.l
                     tvTitle.text = it[0].SongTitle
                     tvArtist.text = it[0].SongArtistName
                 }
+            }
+        }
+
+        lifecycleScope.launch{
+            homeViewModel.ubRecommendList.collectLatest {
+
             }
         }
     }

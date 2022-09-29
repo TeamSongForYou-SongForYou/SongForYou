@@ -10,6 +10,7 @@ import com.hanyeop.songforyou.usecase.ib_recommend.GetIbRecommendMyListUseCase
 import com.hanyeop.songforyou.usecase.ib_recommend.GetIbRecommendMyRecordUseCase
 import com.hanyeop.songforyou.usecase.sb_recommend.GetSbRecommendRandomUseCase
 import com.hanyeop.songforyou.usecase.sb_recommend.GetSbRecommendUseCase
+import com.hanyeop.songforyou.usecase.ub_recommend.GetUbRecommendMySoundUseCase
 import com.hanyeop.songforyou.usecase.weather.GetWeatherUseCase
 import com.hanyeop.songforyou.utils.ResultType
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,7 +29,8 @@ class HomeViewModel @Inject constructor(
     private val getIbRecommendMyListUseCase: GetIbRecommendMyListUseCase,
     private val getIbRecommendMyRecordUseCase: GetIbRecommendMyRecordUseCase,
     private val getSbRecommendRandomUseCase: GetSbRecommendRandomUseCase,
-    private val getSbRecommendUseCase: GetSbRecommendUseCase
+    private val getSbRecommendUseCase: GetSbRecommendUseCase,
+    private val getUbRecommendMySoundUseCase: GetUbRecommendMySoundUseCase
 ): ViewModel() {
 
     private val _recommendMyList: MutableStateFlow<List<SongResponse>> = MutableStateFlow(listOf())
@@ -55,6 +57,9 @@ class HomeViewModel @Inject constructor(
 
     private val _weatherResponse : MutableStateFlow<ResultType<Weather>> = MutableStateFlow(ResultType.Uninitialized)
     val weatherResponse get() = _weatherResponse.asStateFlow()
+
+    private val _ubRecommendList: MutableStateFlow<List<SongResponse>> = MutableStateFlow(listOf())
+    val ubRecommendList get() = _ubRecommendList.asStateFlow()
 
 
 
@@ -118,7 +123,7 @@ class HomeViewModel @Inject constructor(
     fun getSbRecommendRandomList(){
         viewModelScope.launch(Dispatchers.IO) {
             getSbRecommendRandomUseCase.execute().collectLatest {
-                Log.d(TAG, "getSbRecommendMyRecord:$it")
+                Log.d(TAG, "getSbRecommendRandomList:$it")
                 if(it is ResultType.Success){
                     _recommendRandomList.value = it.data.data
                     Log.d(TAG, _recommendRandomList.toString())
@@ -129,5 +134,16 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun getUbRecommendList(){
+        viewModelScope.launch(Dispatchers.IO) {
+            getUbRecommendMySoundUseCase.execute().collectLatest {
+                Log.d(TAG, "getUbRecommendList:$it")
+                if(it is ResultType.Success){
+                    _ubRecommendList.value = it.data.data
+                    Log.d(TAG, _ubRecommendList.toString())
+                }
+            }
+        }
+    }
 
 }

@@ -4,7 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <variable
+            name="song"
+            type="com.hanyeop.songforyou.model.response.SongResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +27,8 @@
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="1"
+            android:text="@{String.valueOf(song.songSeq+1)}"
+            tools:text="1"
             app:layout_constraintBottom_toBottomOf="@+id/img_song"
             app:layout_constraintStart_toEndOf="@+id/img_song"
             app:layout_constraintTop_toTopOf="@+id/img_song" />
@@ -34,7 +37,8 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="After Like"
+            android:text="@{song.songArtistName}"
+            tools:text="After Like"
             app:layout_constraintBottom_toTopOf="@+id/tv_artist"
             app:layout_constraintStart_toEndOf="@+id/tv_ranking"
             app:layout_constraintTop_toTopOf="@+id/img_song"
@@ -45,7 +49,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
-            android:text="IVE (아이브)"
+            android:text="@{song.songTitle}"
+            tools:text="IVE (아이브)"
             android:textColor="@color/light_grey"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/img_song"
