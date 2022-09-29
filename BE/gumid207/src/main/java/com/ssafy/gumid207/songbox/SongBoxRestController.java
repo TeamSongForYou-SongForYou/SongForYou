@@ -81,7 +81,7 @@ public class SongBoxRestController {
 	}
 
 	@ApiOperation(value = "곡 녹음 저장")
-	@PostMapping(value="/myrecord")
+	@PostMapping(value="/my-record")
 	public ResponseEntity<?> saveMySongRecord(
 			@RequestPart(name = "reviewUploadDto", required = true) String reviewUploadString,
 			@RequestPart(required = true) MultipartFile imgFile) throws Exception {
