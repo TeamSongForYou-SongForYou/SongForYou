@@ -2,6 +2,7 @@ package com.hanyeop.songforyou.repository
 
 import com.hanyeop.songforyou.base.BaseResponse
 import com.hanyeop.songforyou.datasource.SongBoxRemoteDataSource
+import com.hanyeop.songforyou.model.response.MyListResponse
 import com.hanyeop.songforyou.model.response.RecordResponse
 import com.hanyeop.songforyou.model.response.SongResponse
 import com.hanyeop.songforyou.utils.ResultType
@@ -68,7 +69,7 @@ class SongBoxRepository @Inject constructor(
         emit(ResultType.Error(e))
     }
 
-    fun getSongList(): Flow<ResultType<BaseResponse<List<SongResponse>>>> = flow {
+    fun getSongList(): Flow<ResultType<BaseResponse<List<MyListResponse>>>> = flow {
         emit(ResultType.Loading)
         songBoxRemoteDataSource.getSongList().collect {
             if (it.success) {

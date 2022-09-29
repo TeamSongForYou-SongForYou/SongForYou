@@ -13,6 +13,7 @@
         tools:context=".view.main.play_list.tab.saved.PlayListSavedTabFragment">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_my_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

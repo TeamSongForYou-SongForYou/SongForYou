@@ -1,8 +1,8 @@
 package com.hanyeop.songforyou.api
 
 import com.hanyeop.songforyou.base.BaseResponse
+import com.hanyeop.songforyou.model.response.MyListResponse
 import com.hanyeop.songforyou.model.response.RecordResponse
-import com.hanyeop.songforyou.model.response.SongResponse
 import okhttp3.MultipartBody
 import retrofit2.http.*
 
@@ -28,7 +28,7 @@ interface SongBoxApi {
         @Part recordFile : MultipartBody.Part
     ): BaseResponse<RecordResponse>
 
-    @GET("song-box.my-box")
-    suspend fun getSongList(): BaseResponse<List<SongResponse>>
+    @GET("song-box/my-box")
+    suspend fun getSongList(): BaseResponse<List<MyListResponse>>
 
 }
