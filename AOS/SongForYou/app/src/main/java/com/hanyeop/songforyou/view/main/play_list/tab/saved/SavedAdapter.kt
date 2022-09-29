@@ -10,11 +10,18 @@ import com.hanyeop.songforyou.databinding.ItemRecordListBinding
 import com.hanyeop.songforyou.model.response.MyListResponse
 import com.hanyeop.songforyou.model.response.RecordResponse
 import com.hanyeop.songforyou.model.response.SongResponse
+import com.hanyeop.songforyou.view.main.home.SongDetailListener
 
-class SavedAdapter (): ListAdapter<MyListResponse, SavedAdapter.ViewHolder>(diffUtil) {
+class SavedAdapter (private val listener: SongDetailListener): ListAdapter<MyListResponse, SavedAdapter.ViewHolder>(diffUtil) {
 
     inner class ViewHolder(private val binding: ItemRecommendListBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                listener.onItemClick(getItem(adapterPosition).songSeq)
+            }
+        }
 
         fun bind(myList: MyListResponse) {
             binding.song = myList.songSeq
