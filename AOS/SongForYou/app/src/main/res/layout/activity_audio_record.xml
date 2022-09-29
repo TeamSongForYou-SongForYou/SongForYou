@@ -57,15 +57,26 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:src="@drawable/ic_recorde" />
 
-        <ImageView
-            android:id="@+id/imageView5"
+        <Button
+            android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="저장하기"
             app:layout_constraintBottom_toBottomOf="@+id/recordButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/recordButton"
-            app:layout_constraintTop_toTopOf="@+id/recordButton"
-            app:srcCompat="@drawable/stop" />
+            app:layout_constraintTop_toTopOf="@+id/recordButton" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/recordButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/soundVisualizerView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

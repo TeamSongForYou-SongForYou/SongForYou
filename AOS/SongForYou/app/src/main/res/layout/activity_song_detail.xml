@@ -18,12 +18,12 @@
             android:id="@+id/img_detail"
             android:layout_width="140dp"
             android:layout_height="140dp"
+            android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:songImage="@{song.songThumbnailUrl}"
-            android:scaleType="fitXY"
             tools:srcCompat="@drawable/test" />
 
 
@@ -60,11 +60,11 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@{song.songTitle}"
-            tools:text="Pink Venom"
             android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/img_like"
             app:layout_constraintStart_toEndOf="@+id/img_dis_like"
-            app:layout_constraintTop_toTopOf="@+id/img_dis_like" />
+            app:layout_constraintTop_toTopOf="@+id/img_dis_like"
+            tools:text="Pink Venom" />
 
         <TextView
             android:id="@+id/tv_artist"
@@ -72,10 +72,10 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@{song.songArtistName}"
-            tools:text="블랙핑크"
             app:layout_constraintEnd_toStartOf="@+id/img_like"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            tools:text="블랙핑크" />
 
         <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
             android:id="@+id/youtube_player_view"
@@ -103,5 +103,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             tools:srcCompat="@drawable/test" />
+
+        <Button
+            android:id="@+id/btn_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="부르기"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/youtube_player_view" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
