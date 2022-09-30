@@ -24,9 +24,9 @@ class SongSearchActivity : BaseActivity<ActivitySongSearchBinding>(R.layout.acti
     override fun init() {
         songSearchAdapter = SongSearchAdapter(songSearchListener)
 
-        binding.apply {
-            recyclerSearch.adapter = songSearchAdapter
-        }
+//        binding.apply {
+//            recyclerSearch.adapter = songSearchAdapter
+//        }
         initViewModelCallBack()
         
         initSearchView()
@@ -49,7 +49,7 @@ class SongSearchActivity : BaseActivity<ActivitySongSearchBinding>(R.layout.acti
         lifecycleScope.launch {
             songSearchViewModel.resultList.collectLatest {
                 songSearchAdapter.submitList(it)
-                binding.tvCount.text = it.size.toString()
+               // binding.tvCount.text = it.size.toString()
             }
         }
     }
