@@ -59,6 +59,4 @@
             app:layout_constraintTop_toBottomOf="@+id/textView7"
             tools:listitem="@layout/item_recommend_list"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>
