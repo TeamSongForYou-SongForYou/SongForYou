@@ -57,15 +57,5 @@
             app:layout_constraintBottom_toBottomOf="@+id/img_recommend"
             app:layout_constraintStart_toStartOf="@+id/tv_artist" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="듣기"
-            android:background="@drawable/btn_round_lightgrey"
-            android:layout_marginEnd="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

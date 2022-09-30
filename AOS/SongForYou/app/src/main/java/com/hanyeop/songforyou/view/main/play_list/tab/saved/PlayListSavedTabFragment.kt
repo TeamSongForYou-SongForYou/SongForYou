@@ -9,6 +9,7 @@ import com.hanyeop.songforyou.base.BaseFragment
 import com.hanyeop.songforyou.databinding.FragmentPlayListSavedTabBinding
 import com.hanyeop.songforyou.model.response.SongResponse
 import com.hanyeop.songforyou.utils.SONG
+import com.hanyeop.songforyou.view.audio.AudioRecordActivity
 import com.hanyeop.songforyou.view.detail.SongDetailActivity
 import com.hanyeop.songforyou.view.main.home.SongDetailListener
 import com.hanyeop.songforyou.view.main.play_list.PlayListViewModel
@@ -45,6 +46,12 @@ class PlayListSavedTabFragment : BaseFragment<FragmentPlayListSavedTabBinding>(R
     private val songDetailListener = object: SongDetailListener{
         override fun onItemClick(song: SongResponse) {
             val intent = Intent(context, SongDetailActivity::class.java)
+            intent.putExtra(SONG,song)
+            startActivity(intent)
+        }
+
+        override fun onRecordClick(song: SongResponse) {
+            val intent = Intent(requireContext(), AudioRecordActivity::class.java)
             intent.putExtra(SONG,song)
             startActivity(intent)
         }

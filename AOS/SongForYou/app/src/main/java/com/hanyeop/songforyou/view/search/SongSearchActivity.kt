@@ -4,12 +4,14 @@ import android.content.Intent
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.lifecycleScope
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivitySongSearchBinding
 import com.hanyeop.songforyou.model.response.SongResponse
 import com.hanyeop.songforyou.utils.SONG
+import com.hanyeop.songforyou.view.audio.AudioRecordActivity
 import com.hanyeop.songforyou.view.detail.SongDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -58,6 +60,12 @@ class SongSearchActivity : BaseActivity<ActivitySongSearchBinding>(R.layout.acti
         override fun onItemClick(song: SongResponse) {
             Log.d("test5", "onItemClick: $song")
             val intent = Intent(this@SongSearchActivity, SongDetailActivity::class.java)
+            intent.putExtra(SONG,song)
+            startActivity(intent)
+        }
+
+        override fun onRecordClick(song: SongResponse) {
+            val intent = Intent(this@SongSearchActivity, AudioRecordActivity::class.java)
             intent.putExtra(SONG,song)
             startActivity(intent)
         }

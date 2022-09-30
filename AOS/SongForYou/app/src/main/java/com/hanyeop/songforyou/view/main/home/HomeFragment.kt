@@ -15,6 +15,7 @@ import com.hanyeop.songforyou.model.response.SongResponse
 import com.hanyeop.songforyou.utils.Common
 import com.hanyeop.songforyou.utils.ResultType
 import com.hanyeop.songforyou.utils.SONG
+import com.hanyeop.songforyou.view.audio.AudioRecordActivity
 import com.hanyeop.songforyou.view.detail.SongDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -167,6 +168,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         override fun onItemClick(song: SongResponse) {
             Log.d(TAG, "onItemClick: $song")
             val intent = Intent(context, SongDetailActivity::class.java)
+            intent.putExtra(SONG,song)
+            startActivity(intent)
+        }
+
+        override fun onRecordClick(song: SongResponse) {
+            val intent = Intent(requireContext(), AudioRecordActivity::class.java)
             intent.putExtra(SONG,song)
             startActivity(intent)
         }

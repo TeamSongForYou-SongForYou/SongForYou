@@ -18,6 +18,9 @@ class SongSearchAdapter (private val listener: SongSearchListener): ListAdapter<
                 this.root.setOnClickListener {
                     listener.onItemClick(getItem(adapterPosition))
                 }
+                btnRecord.setOnClickListener{
+                    listener.onRecordClick(getItem(adapterPosition))
+                }
             }
         }
 

@@ -28,7 +28,7 @@ class AudioViewModel @Inject constructor(
             uploadRecordUseCase.execute(songSeq, recordFile).collectLatest {
                 if(it is ResultType.Success){
                     _successMsgEvent.postValue("성공")
-                }else{
+                }else if(it is ResultType.Fail){
                     _failMsgEvent.postValue("실패")
                 }
             }

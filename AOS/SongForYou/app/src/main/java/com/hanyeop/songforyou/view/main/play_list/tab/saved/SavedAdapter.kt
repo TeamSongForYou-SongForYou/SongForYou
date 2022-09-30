@@ -21,6 +21,9 @@ class SavedAdapter (private val listener: SongDetailListener): ListAdapter<MyLis
             binding.root.setOnClickListener {
                 listener.onItemClick(getItem(adapterPosition).songSeq)
             }
+            binding.btnRecord.setOnClickListener{
+                listener.onRecordClick(getItem(adapterPosition).songSeq)
+            }
         }
 
         fun bind(myList: MyListResponse) {

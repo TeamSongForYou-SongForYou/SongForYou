@@ -15,11 +15,13 @@ import com.hanyeop.songforyou.utils.RECORD
 class AudioPlayActivity : BaseActivity<ActivityAudioPlayBinding>(R.layout.activity_audio_play) {
 
     private var simpleExoPlayer: SimpleExoPlayer? = null
-    private var videoUrl = "http://techslides.com/demos/sample-videos/small.mp4"
     private lateinit var recordInfo: RecordResponse
 
     override fun init() {
         recordInfo = intent.getSerializableExtra(RECORD) as RecordResponse
+        binding.apply {
+            record = recordInfo
+        }
         Log.d("test5", "init: $recordInfo")
         initPlayer()
     }
