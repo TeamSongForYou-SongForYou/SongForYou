@@ -13,3 +13,7 @@ const val SONG = "song"
 
 const val RECORD = "record"
 
+const val SEQ = "seq"
+
+const val NICKNAME = "nickName"
+
