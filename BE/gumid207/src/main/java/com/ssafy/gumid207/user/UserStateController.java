@@ -34,6 +34,7 @@ public class UserStateController {
 		String id = SecurityUtil.getCurrentMemberId();
 		UserStateDto userStateDto = new UserStateDto();
 		Optional<User> user = userRepository.findById(id);
+		userStateDto.setUserSeq(user.get().getUserSeq());
 		userStateDto.setId(user.get().getId());
 		userStateDto.setNickName(user.get().getNickName());
 		userStateDto.setEmail(user.get().getEmail());
