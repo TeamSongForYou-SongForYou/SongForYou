@@ -36,6 +36,7 @@ import com.ssafy.gumid207.jwt.JwtAccessDeniedHandler;
 import com.ssafy.gumid207.jwt.JwtAuthenticationEntryPoint;
 import com.ssafy.gumid207.jwt.JwtUtil;
 import com.ssafy.gumid207.oauth.CustomOAuth2UserService;
+import com.ssafy.gumid207.oauth.OAuth2SuccessHandler;
 
 import lombok.RequiredArgsConstructor;
 
@@ -48,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     private final CustomUserDetailsService customUserDetailsService;
     private final CustomOAuth2UserService customOAuth2UserService;
+    private final OAuth2SuccessHandler successHandler;
 ///oauth2/authorization/google
 //	private final UserRepository userRepo;
 //	private final JwtUtilsService jwtUtilService;
@@ -189,8 +191,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             
             .and()
             .oauth2Login() 
-                .userInfoEndpoint()
-                    .userService(customOAuth2UserService);
+            	.successHandler(successHandler)
+                	.userInfoEndpoint()
+                    	.userService(customOAuth2UserService);
 
             
     }
