@@ -7,5 +7,16 @@ import com.hanyeop.songforyou.databinding.FragmentMyPageBinding
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
     override fun init() {
 
+        binding.apply {
+            btnRecord.setOnClickListener {
+
+            }
+        }
+
+        initClickListener()
+    }
+
+    private fun initClickListener(){
+
     }
 }
