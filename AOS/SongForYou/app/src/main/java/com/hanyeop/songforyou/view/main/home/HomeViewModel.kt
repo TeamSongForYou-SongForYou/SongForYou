@@ -1,5 +1,6 @@
 package com.hanyeop.songforyou.view.main.home
 
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,8 +12,11 @@ import com.hanyeop.songforyou.usecase.ib_recommend.GetIbRecommendMyRecordUseCase
 import com.hanyeop.songforyou.usecase.sb_recommend.GetSbRecommendRandomUseCase
 import com.hanyeop.songforyou.usecase.sb_recommend.GetSbRecommendUseCase
 import com.hanyeop.songforyou.usecase.ub_recommend.GetUbRecommendMySoundUseCase
+import com.hanyeop.songforyou.usecase.user_state.GetUserInfoUseCase
 import com.hanyeop.songforyou.usecase.weather.GetWeatherUseCase
+import com.hanyeop.songforyou.utils.NICKNAME
 import com.hanyeop.songforyou.utils.ResultType
+import com.hanyeop.songforyou.utils.SEQ
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -30,7 +34,9 @@ class HomeViewModel @Inject constructor(
     private val getIbRecommendMyRecordUseCase: GetIbRecommendMyRecordUseCase,
     private val getSbRecommendRandomUseCase: GetSbRecommendRandomUseCase,
     private val getSbRecommendUseCase: GetSbRecommendUseCase,
-    private val getUbRecommendMySoundUseCase: GetUbRecommendMySoundUseCase
+    private val getUbRecommendMySoundUseCase: GetUbRecommendMySoundUseCase,
+    private val getUserInfoUseCase: GetUserInfoUseCase,
+    private val sharedPreferences: SharedPreferences,
 ): ViewModel() {
 
     private val _recommendMyList: MutableStateFlow<List<SongResponse>> = MutableStateFlow(listOf())
@@ -145,4 +151,14 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun getUserInfo(){
+        viewModelScope.launch(Dispatchers.IO) {
+            getUserInfoUseCase.execute().collectLatest {
+                if(it is ResultType.Success){
+                    sharedPreferences.edit().putInt(SEQ, it.data.data.userSeq).apply()
+                    sharedPreferences.edit().putString(NICKNAME, it.data.data.userNickname).apply()
+                }
+            }
+        }
+    }
 }

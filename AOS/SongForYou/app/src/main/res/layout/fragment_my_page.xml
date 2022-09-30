@@ -78,7 +78,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/tv_nickName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
@@ -97,8 +97,8 @@
                         android:text="SSAFY"
                         android:textColor="@color/light_grey"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/textView4"
-                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                        app:layout_constraintStart_toStartOf="@+id/tv_nickName"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_nickName" />
 
                     <TextView
                         android:id="@+id/tv_point"

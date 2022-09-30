@@ -64,6 +64,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         homeViewModel.getIbRecommendMyList()
 
         homeViewModel.getIbRecommendMyRecord()
+
+        homeViewModel.getUserInfo()
     }
 
     private fun initViewModelCallBack(){
