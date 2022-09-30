@@ -75,5 +75,13 @@ public class SbRecommendRestController {
 		return new ResponseEntity<>(new ResponseFrame<>(true, songDtoList, songDtoList.size(), "랜덤한 리스트를 반환합니다."),
 				HttpStatus.OK);
 	}
+	
+	@ApiParam(value = "추천 리스트 받기")
+	@GetMapping(value = "/{listNum}/recommend-list")
+	public ResponseEntity<?> getRecommendList(Integer listNum) throws Exception {
+
+		return new ResponseEntity<>(new ResponseFrame<>(true, sbRecommendServ.getRecommendList(listNum), 1, "지정 리스트를 반환합니다."),
+				HttpStatus.OK);
+	}
 
 }
