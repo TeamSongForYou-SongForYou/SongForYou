@@ -14,6 +14,7 @@ import com.hanyeop.songforyou.usecase.sb_recommend.GetSbRecommendUseCase
 import com.hanyeop.songforyou.usecase.ub_recommend.GetUbRecommendMySoundUseCase
 import com.hanyeop.songforyou.usecase.user_state.GetUserInfoUseCase
 import com.hanyeop.songforyou.usecase.weather.GetWeatherUseCase
+import com.hanyeop.songforyou.utils.BIRTHDAY
 import com.hanyeop.songforyou.utils.NICKNAME
 import com.hanyeop.songforyou.utils.ResultType
 import com.hanyeop.songforyou.utils.SEQ
@@ -157,6 +158,7 @@ class HomeViewModel @Inject constructor(
                 if(it is ResultType.Success){
                     sharedPreferences.edit().putInt(SEQ, it.data.data.userSeq).apply()
                     sharedPreferences.edit().putString(NICKNAME, it.data.data.userNickname).apply()
+                    sharedPreferences.edit().putInt(BIRTHDAY, it.data.data.userBirthday).apply()
                 }
             }
         }

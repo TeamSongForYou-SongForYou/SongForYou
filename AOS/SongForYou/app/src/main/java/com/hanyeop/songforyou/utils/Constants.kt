@@ -17,3 +17,5 @@ const val SEQ = "seq"
 
 const val NICKNAME = "nickName"
 
+const val BIRTHDAY = "birthday"
+
