@@ -2,6 +2,7 @@ package com.hanyeop.songforyou.view.main.home
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.location.Location
 import android.os.Looper
 import android.util.Log
@@ -22,6 +23,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 
 private const val TAG = "HomeFragment___"
@@ -33,6 +35,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private var mFusedLocationProviderClient: FusedLocationProviderClient? = null // 현재 위치를 가져오기 위한 변수
     lateinit var mLastLocation: Location // 위치 값을 가지고 있는 객체
     private lateinit var mLocationRequest: LocationRequest// 위치 정보 요청의 매개변수를 저장하는
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     private lateinit var weatherRecommendMyListAdapter: RecommendMyListAdapter
     private lateinit var ageRecommendMyListAdapter: RecommendMyListAdapter
@@ -60,6 +65,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         initViewModelCallBack()
 
         //homeViewModel.getSbRecommendList("발라드", 20, "female", 3)
+
+        homeViewModel.getUserInfo()
+
+//
+//
+//        val age = sharedPreferences.getInt("BIRTHDAY",0)
+//        Log.d(TAG, sharedPreferences.getInt("BIRTHDAY",0).toString())
+//
 
         homeViewModel.getIbRecommendMyList()
 
@@ -113,6 +126,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         lifecycleScope.launch {
             homeViewModel.recommendMyRecord.collectLatest {
                 recommendMyRecordAdapter.submitList(it)
+            }
+        }
+
+        lifecycleScope.launch{
+            homeViewModel.userAge.collectLatest {
+                homeViewModel.getAgeRecommendList(it)
+
+                Log.d(TAG, it.toString())
+                binding.tvAge.text = it.toString() + "살이 많이 듣는"
             }
         }
     }

@@ -20,6 +20,11 @@ interface SbRecommendApi {
         @Query ("weather") weather: Int
     ): BaseResponse<List<SongResponse>>
 
+    @GET("sb-recommend/list")
+    suspend fun getAgeRecommend(
+        @Query ("age") age: Int
+    ): BaseResponse<List<SongResponse>>
+
     @GET("sb-recommend/random-list")
     suspend fun getSbRecommendRandom(): BaseResponse<List<SongResponse>>
 

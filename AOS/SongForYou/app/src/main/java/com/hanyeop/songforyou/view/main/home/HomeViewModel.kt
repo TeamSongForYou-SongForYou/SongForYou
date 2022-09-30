@@ -9,6 +9,7 @@ import com.hanyeop.songforyou.model.response.SongResponse
 import com.hanyeop.songforyou.model.response.Weather
 import com.hanyeop.songforyou.usecase.ib_recommend.GetIbRecommendMyListUseCase
 import com.hanyeop.songforyou.usecase.ib_recommend.GetIbRecommendMyRecordUseCase
+import com.hanyeop.songforyou.usecase.sb_recommend.GetAgeRecommendUseCase
 import com.hanyeop.songforyou.usecase.sb_recommend.GetSbRecommendRandomUseCase
 import com.hanyeop.songforyou.usecase.sb_recommend.GetSbRecommendUseCase
 import com.hanyeop.songforyou.usecase.sb_recommend.GetWeatherRecommendUseCase
@@ -40,7 +41,10 @@ class HomeViewModel @Inject constructor(
     private val getUserInfoUseCase: GetUserInfoUseCase,
     private val sharedPreferences: SharedPreferences,
     private val getWeatherRecommendUseCase: GetWeatherRecommendUseCase,
+    private val getAgeRecommendUseCase: GetAgeRecommendUseCase
 ): ViewModel() {
+    private val _userAge: MutableStateFlow<Int> = MutableStateFlow(0)
+    val userAge get() = _userAge.asStateFlow()
 
     private val _recommendMyList: MutableStateFlow<List<SongResponse>> = MutableStateFlow(listOf())
     val recommendMyList get() = _recommendMyList.asStateFlow()
@@ -116,9 +120,13 @@ class HomeViewModel @Inject constructor(
 
     fun getAgeRecommendList(age: Int){
         viewModelScope.launch(Dispatchers.IO) {
-            getAge
+            getAgeRecommendUseCase.execute(age).collectLatest {
+                Log.d("test5", "getAgeRecommendList: $it")
+                if(it is ResultType.Success){
+                    _ageRecommendList.value = it.data.data
+                }
+            }
         }
-               _ageRecommendList.value = it.data.data
     }
 
 //    fun getGenreRecommendList(genre: String, age: Int, gender: String, weather: Int){
@@ -167,6 +175,8 @@ class HomeViewModel @Inject constructor(
                 if(it is ResultType.Success){
                     sharedPreferences.edit().putInt(SEQ, it.data.data.userSeq).apply()
                     sharedPreferences.edit().putString(NICKNAME, it.data.data.userNickname).apply()
+                    Log.d(TAG, it.data.data.userBirthday.toString())
+                    _userAge.value = 2022 - it.data.data.userBirthday
                     sharedPreferences.edit().putInt(BIRTHDAY, it.data.data.userBirthday).apply()
                 }
             }

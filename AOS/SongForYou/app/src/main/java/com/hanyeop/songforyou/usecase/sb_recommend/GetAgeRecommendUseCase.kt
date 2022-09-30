@@ -6,6 +6,6 @@ import javax.inject.Inject
 class GetAgeRecommendUseCase @Inject constructor(
     private val sbRecommendRepository: SbRecommendRepository
 ){
-//    fun execute( weather: Int)
-//            = sbRecommendRepository.getAgeRecommendUseCase(weather)
+    fun execute( weather: Int)
+            = sbRecommendRepository.getAgeRecommend(weather)
 }
