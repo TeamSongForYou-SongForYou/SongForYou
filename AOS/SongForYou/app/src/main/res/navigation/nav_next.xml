@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_next"
+    app:startDestination="@id/beforeSongSearchFragment">
+    <fragment
+        android:id="@+id/beforeSongSearchFragment"
+        android:name="com.hanyeop.songforyou.view.next.BeforeSongSearchFragment"
+        android:label="BeforeSongSearchFragment" >
+        <action
+            android:id="@+id/action_beforeSongSearchFragment_to_nextSongRecommendFragment"
+            app:destination="@id/nextSongRecommendFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nextSongRecommendFragment"
+        android:name="com.hanyeop.songforyou.view.next.NextSongRecommendFragment"
+        android:label="NextSongRecommendFragment" >
+        <action
+            android:id="@+id/action_nextSongRecommendFragment_to_beforeSongSearchFragment"
+            app:destination="@id/beforeSongSearchFragment" />
+    </fragment>
+</navigation>

@@ -42,7 +42,6 @@ class HomeViewModel @Inject constructor(
     private val _recommendRandomList: MutableStateFlow<List<SongResponse>> = MutableStateFlow(listOf())
     val recommendRandomList get() = _recommendRandomList.asStateFlow()
 
-
     private val _weatherRecommendList: MutableStateFlow<List<SongResponse>> = MutableStateFlow(listOf())
     val weatherRecommendList get() = _weatherRecommendList.asStateFlow()
 
