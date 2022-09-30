@@ -67,9 +67,10 @@ class BeforeSongSearchFragment : BaseFragment<FragmentBeforeSongSearchBinding>(R
             nextSongRecommendViewModel.getNextSongRecommend(song.SongSeq, song.SongTitle)
             val action = BeforeSongSearchFragmentDirections.actionBeforeSongSearchFragmentToNextSongRecommendFragment()
             findNavController().navigate(action)
-//            val intent = Intent(context,  SongDetailActivity::class.java)
-//            intent.putExtra(SONG,song)
-//            startActivity(intent)
+        }
+
+        override fun onRecordClick(song: SongResponse) {
+            TODO("Not yet implemented")
         }
     }
 }
