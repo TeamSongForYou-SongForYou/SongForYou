@@ -151,4 +151,11 @@ object RemoteDataModule {
     fun provideReviewApi(@Named("retrofit") retrofit: Retrofit): ReviewApi {
         return retrofit.create(ReviewApi::class.java)
     }
+
+    // MyPageApi DI
+    @Provides
+    @Singleton
+    fun provideMyPageApi(@Named("retrofit") retrofit: Retrofit): MyPageApi {
+        return retrofit.create(MyPageApi::class.java)
+    }
 }
