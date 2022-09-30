@@ -12,6 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserStateDto {
+	private Long userSeq;
 	private String id;
 	private String nickName;
 	private String email;
