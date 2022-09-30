@@ -11,6 +11,7 @@ import com.hanyeop.songforyou.usecase.ib_recommend.GetIbRecommendMyListUseCase
 import com.hanyeop.songforyou.usecase.ib_recommend.GetIbRecommendMyRecordUseCase
 import com.hanyeop.songforyou.usecase.sb_recommend.GetSbRecommendRandomUseCase
 import com.hanyeop.songforyou.usecase.sb_recommend.GetSbRecommendUseCase
+import com.hanyeop.songforyou.usecase.sb_recommend.GetWeatherRecommendUseCase
 import com.hanyeop.songforyou.usecase.ub_recommend.GetUbRecommendMySoundUseCase
 import com.hanyeop.songforyou.usecase.user_state.GetUserInfoUseCase
 import com.hanyeop.songforyou.usecase.weather.GetWeatherUseCase
@@ -38,6 +39,8 @@ class HomeViewModel @Inject constructor(
     private val getUbRecommendMySoundUseCase: GetUbRecommendMySoundUseCase,
     private val getUserInfoUseCase: GetUserInfoUseCase,
     private val sharedPreferences: SharedPreferences,
+    private val getWeatherRecommendUseCase: GetWeatherRecommendUseCase,
+    private val getUbRecommendMySoundUseCase: GetUbRecommendMySoundUseCase
 ): ViewModel() {
 
     private val _recommendMyList: MutableStateFlow<List<SongResponse>> = MutableStateFlow(listOf())
@@ -101,17 +104,24 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getSbRecommendList(genre: String, age: Int, gender: String, weather: Int){
+    fun getWeatherRecommendList(weather: Int){
         viewModelScope.launch(Dispatchers.IO) {
-            getSbRecommendUseCase.execute(genre, age, gender, weather).collectLatest {
-                Log.d("test5", "getSbRecommendList: $it")
+            getWeatherRecommendUseCase.execute(weather).collectLatest {
+                Log.d("test5", "getWeatherRecommendList: $it")
                 if(it is ResultType.Success){
                     _weatherRecommendList.value = it.data.data
-                    _ageRecommendList.value = it.data.data
                 }
             }
         }
     }
+
+//    fun getAgeRecommendList(age: Int){
+//        viewModelScope.launch(Dispatchers.IO) {
+//            getAge
+//        }
+//               _ageRecommendList.value = it.data.data
+//    }
+
 //    fun getGenreRecommendList(genre: String, age: Int, gender: String, weather: Int){
 //        viewModelScope.launch(Dispatchers.IO) {
 //            getSbRecommendUseCase.execute(genre, age, gender, weather).collectLatest {

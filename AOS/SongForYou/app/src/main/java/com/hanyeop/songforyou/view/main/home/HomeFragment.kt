@@ -59,7 +59,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         initViewModelCallBack()
 
-        homeViewModel.getSbRecommendList("발라드", 20, "female", 3)
+        //homeViewModel.getSbRecommendList("발라드", 20, "female", 3)
 
         homeViewModel.getIbRecommendMyList()
 
@@ -86,6 +86,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                                 /** 날씨 정보
                                  * 날씨 : 없음(0), 비(1), 비/눈(2), 눈(3), 빗방울(5), 빗방울눈날림(6), 눈날림(7)
                                  */
+                                homeViewModel.getWeatherRecommendList(3)
                                 Log.d(TAG, "initViewModelCallBack: ${i.obsrValue.toInt()}")
                             }
                         }

@@ -27,7 +27,18 @@ class SbRecommendRepository @Inject constructor(
     }.catch { e ->
         emit(ResultType.Error(e))
     }
-
+    fun getWeatherRecommend(weather: Int): Flow<ResultType<BaseResponse<List<SongResponse>>>> = flow{
+        emit(ResultType.Loading)
+        sbRecommendRemoteDataSource.getWeatherRecommend(weather).collect{
+            if(it.success){
+                emit(ResultType.Success(it))
+            }else if(!it.success){
+                emit(ResultType.Fail(it))
+            }
+        }
+    }.catch { e ->
+        emit(ResultType.Error(e))
+    }
     fun getSbRecommendRandom(): Flow<ResultType<BaseResponse<List<SongResponse>>>> = flow{
         emit(ResultType.Loading)
         sbRecommendRemoteDataSource.getSbRecommendRandom().collect{
