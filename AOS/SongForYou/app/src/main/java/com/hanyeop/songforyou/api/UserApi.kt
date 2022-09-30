@@ -3,6 +3,7 @@ package com.hanyeop.songforyou.api
 import android.provider.ContactsContract.CommonDataKinds.Email
 import com.hanyeop.songforyou.base.BaseResponse
 import com.hanyeop.songforyou.model.dto.UserDto
+import com.hanyeop.songforyou.model.response.OauthResponse
 import com.hanyeop.songforyou.model.response.TokenResponse
 import com.hanyeop.songforyou.utils.JWT
 import retrofit2.http.Body
@@ -52,4 +53,6 @@ interface UserApi {
         @Body map: HashMap<String, String>
     ): BaseResponse<String>
 
+    @GET("login/oauth2/code/google")
+    suspend fun googleLogin(@Query("code") code: String): OauthResponse
 }

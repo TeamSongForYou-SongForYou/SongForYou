@@ -3,6 +3,7 @@ package com.hanyeop.songforyou.datasource
 import com.hanyeop.songforyou.api.UserApi
 import com.hanyeop.songforyou.base.BaseResponse
 import com.hanyeop.songforyou.model.dto.UserDto
+import com.hanyeop.songforyou.model.response.OauthResponse
 import com.hanyeop.songforyou.model.response.TokenResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -54,5 +55,9 @@ class UserRemoteDataSource @Inject constructor(
         map: HashMap<String, String>
     ): Flow<BaseResponse<String>> = flow {
         emit(userApi.findPassword(map))
+    }
+
+    fun googleLogin(code: String): Flow<OauthResponse> = flow {
+        emit(userApi.googleLogin(code))
     }
 }

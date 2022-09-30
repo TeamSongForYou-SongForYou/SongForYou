@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_loginFragment_to_joinFragment"
             app:destination="@id/joinFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_socialJoinFragment"
+            app:destination="@id/socialJoinFragment" />
     </fragment>
     <fragment
         android:id="@+id/joinFragment"
@@ -19,5 +22,13 @@
         <action
             android:id="@+id/action_joinFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/socialJoinFragment"
+        android:name="com.hanyeop.songforyou.view.login.social.SocialJoinFragment"
+        android:label="SocialJoinFragment" >
+        <argument
+            android:name="tmptoken"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -35,6 +35,7 @@ class UserViewModel @Inject constructor(
     private val requestEmailUseCase: RequestEmailAuthUseCase,
     private val findPasswordUseCase: FindPasswordUseCase,
     private val sharedPreferences: SharedPreferences,
+    private val googleLoginUseCase: GoogleLoginUseCase
 ): ViewModel() {
 
     var job: Job? = null
@@ -75,6 +76,8 @@ class UserViewModel @Inject constructor(
 
     val loginPassword = MutableLiveData<String>()
 
+    private val _joinEvent = SingleLiveEvent<String>()
+    val joinEvent :LiveData<String> get() = _joinEvent
 
     private val _token = MutableStateFlow("")
     val token get() = _token.asStateFlow()
@@ -268,6 +271,28 @@ class UserViewModel @Inject constructor(
                     Log.d(TAG, "${it}")
                     makeToast("아이디, 비밀번호를 확인해주세요")
                     null
+                }
+            }
+        }
+    }
+
+    fun googleLogin(code: String){
+        viewModelScope.launch(Dispatchers.IO){
+            googleLoginUseCase.execute(code).collectLatest {
+                Log.d(TAG, "googleLogin: $it")
+                if(it is ResultType.Success) {
+                    // 등록 되지 않은 사용자 회원 가입
+                    if (!it.data.isRegistered) {
+//                        _email.value = it.data.email
+                        _joinEvent.postValue(it.data.jwtToken)
+                        _joinMsgEvent.postValue("회원 가입 페이지로 이동합니다.")
+                    } else {
+                        // 이미 등록된 사용자라서 토큰 바로 저장
+                        sharedPreferences.edit().putString(JWT, it.data.jwtToken).apply()
+                        _isLoginChecked.value = true
+                    }
+                }else if (it is ResultType.Error){
+                    _errorMsgEvent.postValue("서버 에러 발생")
                 }
             }
         }

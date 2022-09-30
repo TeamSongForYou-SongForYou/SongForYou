@@ -4,6 +4,7 @@ import android.util.Log
 import com.hanyeop.songforyou.base.BaseResponse
 import com.hanyeop.songforyou.datasource.UserRemoteDataSource
 import com.hanyeop.songforyou.model.dto.UserDto
+import com.hanyeop.songforyou.model.response.OauthResponse
 import com.hanyeop.songforyou.model.response.TokenResponse
 import com.hanyeop.songforyou.utils.ResultType
 import kotlinx.coroutines.flow.Flow
@@ -114,6 +115,15 @@ class UserRepository @Inject constructor(
             } else {
                 emit(ResultType.Empty)
             }
+        }
+    }.catch { e ->
+        emit(ResultType.Error(e))
+    }
+
+    fun googleLogin(code: String): Flow<ResultType<OauthResponse>> = flow {
+        emit(ResultType.Loading)
+        userRemoteDataSource.googleLogin(code).collect {
+            emit(ResultType.Success(it))
         }
     }.catch { e ->
         emit(ResultType.Error(e))
