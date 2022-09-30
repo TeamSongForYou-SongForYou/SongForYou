@@ -40,7 +40,6 @@ class HomeViewModel @Inject constructor(
     private val getUserInfoUseCase: GetUserInfoUseCase,
     private val sharedPreferences: SharedPreferences,
     private val getWeatherRecommendUseCase: GetWeatherRecommendUseCase,
-    private val getUbRecommendMySoundUseCase: GetUbRecommendMySoundUseCase
 ): ViewModel() {
 
     private val _recommendMyList: MutableStateFlow<List<SongResponse>> = MutableStateFlow(listOf())
@@ -115,12 +114,12 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-//    fun getAgeRecommendList(age: Int){
-//        viewModelScope.launch(Dispatchers.IO) {
-//            getAge
-//        }
-//               _ageRecommendList.value = it.data.data
-//    }
+    fun getAgeRecommendList(age: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            getAge
+        }
+               _ageRecommendList.value = it.data.data
+    }
 
 //    fun getGenreRecommendList(genre: String, age: Int, gender: String, weather: Int){
 //        viewModelScope.launch(Dispatchers.IO) {
