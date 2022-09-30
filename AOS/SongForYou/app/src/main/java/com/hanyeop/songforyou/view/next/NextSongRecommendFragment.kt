@@ -2,8 +2,8 @@ package com.hanyeop.songforyou.view.next
 
 import android.content.Intent
 import android.util.Log
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseFragment
 import com.hanyeop.songforyou.databinding.FragmentNextSongRecommendBinding
@@ -12,35 +12,38 @@ import com.hanyeop.songforyou.utils.SONG
 import com.hanyeop.songforyou.view.detail.SongDetailActivity
 import com.hanyeop.songforyou.view.search.SongSearchAdapter
 import com.hanyeop.songforyou.view.search.SongSearchListener
-import com.hanyeop.songforyou.view.search.SongSearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class NextSongRecommendFragment : BaseFragment<FragmentNextSongRecommendBinding>(R.layout.fragment_next_song_recommend) {
 
     private lateinit var songSearchAdapter: SongSearchAdapter
-    private val songSearchViewModel by viewModels<SongSearchViewModel>()
+    private val nextSongRecommendViewModel by activityViewModels<NextSongRecommendViewModel>()
 
     override fun init() {
         songSearchAdapter = SongSearchAdapter(songSearchListener)
-        binding.apply {
-            recyclerSearch.adapter = songSearchAdapter
-        }
-        initViewModelCallBack()
+        binding.recyclerNextRecommend.adapter = songSearchAdapter
+
+        initView()
     }
 
-    private fun initViewModelCallBack(){
-        lifecycleScope.launch {
-            songSearchViewModel.resultList.collectLatest {
-                //songSearchAdapter.submitList(it)
-                //binding.tvCount.text = it.size.toString()
-                binding.tvTitle.text = it[0].SongTitle
-                binding.tvNextSongTitle.text = it[0].SongTitle
-                binding.tvArtist.text = it[0].SongArtistName
-            }
-        }
+    private fun initView() = with(binding){
+        // 이전 곡 이름
+        tvBeforeSongTitle.text = nextSongRecommendViewModel.beforeSongTitle.value
+
+        // 첫번째 추천 곡
+        val list : MutableList<SongResponse>
+        = nextSongRecommendViewModel.nextSongRecommendList.value as MutableList<SongResponse>
+        Glide.with(this@NextSongRecommendFragment)
+            .load(list [0].songThumbnailUrl)
+            .into(imgSong)
+        tvTitle.text = list [0].SongTitle
+        tvNextSongTitle.text = list [0].SongTitle
+        tvArtist.text = list [0].SongArtistName
+
+        // 그 외 추천 리스트
+        list.removeAt(0)
+        songSearchAdapter.submitList(list)
     }
 
     private val songSearchListener = object : SongSearchListener {

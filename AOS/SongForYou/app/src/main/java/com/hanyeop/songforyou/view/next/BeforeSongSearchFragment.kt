@@ -3,8 +3,10 @@ package com.hanyeop.songforyou.view.next
 import android.content.Intent
 import android.util.Log
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseFragment
 import com.hanyeop.songforyou.databinding.FragmentBeforeSongSearchBinding
@@ -23,6 +25,7 @@ class BeforeSongSearchFragment : BaseFragment<FragmentBeforeSongSearchBinding>(R
 
     private lateinit var songSearchAdapter: SongSearchAdapter
     private val songSearchViewModel by viewModels<SongSearchViewModel>()
+    private val nextSongRecommendViewModel by activityViewModels<NextSongRecommendViewModel>()
 
     override fun init() {
         songSearchAdapter = SongSearchAdapter(songSearchListener)
@@ -30,12 +33,12 @@ class BeforeSongSearchFragment : BaseFragment<FragmentBeforeSongSearchBinding>(R
         binding.apply {
             recyclerSearch.adapter = songSearchAdapter
         }
-        initViewModelCallBack()
 
+        initViewModelCallBack()
         initSearchView()
     }
 
-    private fun initSearchView(){
+    private fun initSearchView() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 songSearchViewModel.songSearch(query!!)
@@ -47,6 +50,7 @@ class BeforeSongSearchFragment : BaseFragment<FragmentBeforeSongSearchBinding>(R
             }
         })
     }
+
     private fun initViewModelCallBack(){
         lifecycleScope.launch {
             songSearchViewModel.resultList.collectLatest {
@@ -55,13 +59,17 @@ class BeforeSongSearchFragment : BaseFragment<FragmentBeforeSongSearchBinding>(R
             }
         }
     }
+
     private val songSearchListener = object : SongSearchListener {
         override fun onItemClick(song: SongResponse) {
             Log.d("test5", "onItemClick: $song")
             // 아이템 클릭 시 해당 아이템의 정보가 다음 프레그먼트로 넘어감 // 뷰모델에 저장
-            val intent = Intent(context,  SongDetailActivity::class.java)
-            intent.putExtra(SONG,song)
-            startActivity(intent)
+            nextSongRecommendViewModel.getNextSongRecommend(song.SongSeq, song.SongTitle)
+            val action = BeforeSongSearchFragmentDirections.actionBeforeSongSearchFragmentToNextSongRecommendFragment()
+            findNavController().navigate(action)
+//            val intent = Intent(context,  SongDetailActivity::class.java)
+//            intent.putExtra(SONG,song)
+//            startActivity(intent)
         }
     }
 }
