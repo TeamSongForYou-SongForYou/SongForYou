@@ -22,4 +22,13 @@ object ViewBindingAdapter {
             .override(140 * 2,140 * 2)
             .into(this)
     }
+
+    @BindingAdapter("reviewImage")
+    @JvmStatic
+    fun ImageView.setreviewImage (imageUrl: String){
+        Glide.with(this.context)
+            .load(imageUrl)
+            .override(300 * 2,300 * 2)
+            .into(this)
+    }
 }
