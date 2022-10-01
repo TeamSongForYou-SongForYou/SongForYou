@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="review"
+            type="com.hanyeop.songforyou.model.response.ReviewResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -148,15 +150,15 @@
             android:id="@+id/tv_comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/btn_comment"
             android:padding="8dp"
             android:text="깨끗하고 넓었어요~!!"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView13"
-            app:layout_constraintTop_toBottomOf="@+id/rating_cleanness" />
+            app:layout_constraintStart_toStartOf="@+id/img_review"
+            app:layout_constraintTop_toBottomOf="@+id/img_review" />
 
         <View
             android:layout_width="match_parent"
@@ -169,5 +171,19 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_comment" />
+
+        <ImageView
+            android:id="@+id/img_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            app:reviewImage="@{review.reviewImage.fileSavedPath}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rating_cleanness"
+            tools:srcCompat="@tools:sample/avatars" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

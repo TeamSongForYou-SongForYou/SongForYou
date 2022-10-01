@@ -18,6 +18,8 @@ class ReviewAdapter(): ListAdapter<ReviewResponse, ReviewAdapter.ViewHolder>(dif
                 ratingCleanness.rating = review.reviewCleanness.toFloat()
                 ratingSoundQuality.rating = review.reviewSoundQuality.toFloat()
                 tvComment.text = review.reviewContent
+
+                this.review = review
             }
         }
     }

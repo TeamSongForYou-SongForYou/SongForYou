@@ -72,7 +72,7 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_margin="16dp"
-                        android:src="@color/black"
+                        android:src="@drawable/mombo"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

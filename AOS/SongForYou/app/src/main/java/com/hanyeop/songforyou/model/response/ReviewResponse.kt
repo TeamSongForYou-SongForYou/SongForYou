@@ -1,5 +1,7 @@
 package com.hanyeop.songforyou.model.response
 
+import com.hanyeop.songforyou.model.dto.FileDto
+
 data class ReviewResponse(
     val reviewSeq: Int,
     val reviewPrice: String,
@@ -9,5 +11,6 @@ data class ReviewResponse(
     val reviewCleanness: Int,
     val reviewSoundQuality: Int,
     val reviewContent: String = " ",
-    val reviewRegTime: String
+    val reviewRegTime: String,
+    val reviewImage: FileDto
 )
