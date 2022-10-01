@@ -13,7 +13,7 @@ import javax.inject.Singleton
 class MyPageRemoteDataSource @Inject constructor(
     private val myPageApi: MyPageApi
 ) {
-    fun uploadUserVoice(userSeq: Int, recordFile: MultipartBody.Part): Flow<BaseResponse<RecordResponse>> = flow {
+    fun uploadUserVoice(userSeq: Int, recordFile: MultipartBody.Part): Flow<BaseResponse<Boolean>> = flow {
         emit(myPageApi.uploadUserVoice(userSeq, recordFile))
     }
 }

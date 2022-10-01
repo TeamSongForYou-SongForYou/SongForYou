@@ -1,5 +1,6 @@
 package com.hanyeop.songforyou.view.user_voice
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hanyeop.songforyou.usecase.my_page.UploadUserVoiceUseCase
@@ -26,6 +27,7 @@ class UserVoiceViewModel @Inject constructor(
     fun uploadUserVoice(userSeq: Int, recordFile: MultipartBody.Part) {
         viewModelScope.launch(Dispatchers.IO) {
             uploadUserVoiceUseCase.execute(userSeq, recordFile).collectLatest {
+                Log.d("test5", "uploadUserVoice: $it")
                 if (it is ResultType.Success) {
                     _successMsgEvent.postValue("성공")
                 } else if (it is ResultType.Fail) {

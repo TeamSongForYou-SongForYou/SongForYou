@@ -79,6 +79,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         homeViewModel.getIbRecommendMyRecord()
 
         homeViewModel.getUserInfo()
+
+        homeViewModel.getUbRecommendList()
     }
 
     private fun initViewModelCallBack(){
@@ -135,6 +137,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
                 Log.d(TAG, it.toString())
                 binding.tvAge.text = it.toString() + "살이 많이 듣는"
+            }
+        }
+
+        lifecycleScope.launch{
+            homeViewModel.ubRecommendList.collectLatest {
+                ubRecommendListAdapter.submitList(it)
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.hanyeop.songforyou.repository
 
+import android.util.Log
 import com.hanyeop.songforyou.base.BaseResponse
 import com.hanyeop.songforyou.datasource.UbRecommendRemoteDataSource
 import com.hanyeop.songforyou.model.response.SongResponse
@@ -18,6 +19,7 @@ class UbRecommendRepository @Inject constructor(
     fun getUbRecommendMySound(): Flow<ResultType<BaseResponse<List<SongResponse>>>> = flow{
         emit(ResultType.Loading)
         ubRecommendRemoteDataSource.getUbRecommendMySound().collect{
+            Log.d("test5", "-------------getUbRecommendList:$it")
             if(it.success){
                 emit(ResultType.Success(it))
             }else if(!it.success){

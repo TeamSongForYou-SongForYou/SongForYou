@@ -1,5 +1,6 @@
 package com.hanyeop.songforyou.view.user_voice
 
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.widget.Button
@@ -8,6 +9,7 @@ import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivityUserVoiceBinding
 import com.hanyeop.songforyou.model.response.SongResponse
+import com.hanyeop.songforyou.utils.SEQ
 import com.hanyeop.songforyou.utils.SONG
 import com.hanyeop.songforyou.utils.State
 import com.hanyeop.songforyou.view.audio.AudioViewModel
@@ -21,11 +23,15 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.FileInputStream
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class UserVoiceActivity : BaseActivity<ActivityUserVoiceBinding>(R.layout.activity_user_voice) {
 
     private val userVoiceViewModel by viewModels<UserVoiceViewModel>()
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     private val soundVisualizerView: SoundVisualizerView by lazy {
         findViewById(R.id.soundVisualizerView)
@@ -190,6 +196,6 @@ class UserVoiceActivity : BaseActivity<ActivityUserVoiceBinding>(R.layout.activi
             filename = "${System.currentTimeMillis()}record.mp3",
             body = byteArray.toRequestBody(contentType = "multipart/form-data".toMediaTypeOrNull())
         )
-//        userVoiceViewModel.uploadUserVoice(songInfo.SongSeq,partFile)
+        userVoiceViewModel.uploadUserVoice(sharedPreferences.getInt(SEQ,0),partFile)
     }
 }

@@ -15,5 +15,5 @@ interface MyPageApi {
     suspend fun uploadUserVoice(
         @Path("userSeq") userSeq: Int,
         @Part recordFile : MultipartBody.Part
-    ): BaseResponse<RecordResponse>
+    ): BaseResponse<Boolean>
 }

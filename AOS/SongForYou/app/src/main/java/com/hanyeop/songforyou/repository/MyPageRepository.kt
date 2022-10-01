@@ -15,7 +15,7 @@ import javax.inject.Singleton
 class MyPageRepository @Inject constructor(
     private val myPageRemoteDataSource: MyPageRemoteDataSource
 ) {
-    fun uploadUserVoice(userSeq: Int, recordFile: MultipartBody.Part): Flow<ResultType<BaseResponse<RecordResponse>>> = flow {
+    fun uploadUserVoice(userSeq: Int, recordFile: MultipartBody.Part): Flow<ResultType<BaseResponse<Boolean>>> = flow {
         emit(ResultType.Loading)
         myPageRemoteDataSource.uploadUserVoice(userSeq, recordFile).collect {
             if (it.success) {

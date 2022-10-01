@@ -160,7 +160,6 @@ class HomeViewModel @Inject constructor(
     fun getUbRecommendList(){
         viewModelScope.launch(Dispatchers.IO) {
             getUbRecommendMySoundUseCase.execute().collectLatest {
-                Log.d(TAG, "getUbRecommendList:$it")
                 if(it is ResultType.Success){
                     _ubRecommendList.value = it.data.data
                     Log.d(TAG, _ubRecommendList.toString())
