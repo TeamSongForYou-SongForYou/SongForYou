@@ -111,4 +111,8 @@ dependencies {
 
     // auth
     implementation "com.google.android.gms:play-services-auth:20.2.0"
+
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
+
+    implementation 'com.github.magic-goop:tag-sphere:1.0.0'
 }

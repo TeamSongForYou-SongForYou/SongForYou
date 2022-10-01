@@ -3,4 +3,5 @@
     <dimen name="design_fab_size_normal" tools:override="true">58dp</dimen>
     <dimen name="design_fab_image_size" tools:override="true">40dp</dimen>
 
+    <dimen name="tag_text_size">20sp</dimen>
 </resources>
