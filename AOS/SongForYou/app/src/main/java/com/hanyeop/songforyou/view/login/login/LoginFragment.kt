@@ -1,26 +1,19 @@
 package com.hanyeop.songforyou.view.login.login
 
-import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.Scopes
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.common.api.Scope
-import com.google.android.gms.tasks.Task
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.gif.GifDrawable
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseFragment
 import com.hanyeop.songforyou.databinding.FragmentLoginBinding
-import com.hanyeop.songforyou.di.ApplicationClass
-import com.hanyeop.songforyou.utils.JWTUtils
 import com.hanyeop.songforyou.view.login.UserViewModel
 import com.hanyeop.songforyou.view.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,8 +31,35 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
 
         binding.loginVM = userViewModel
 
+        Glide.with(this)
+            .asGif()
+            .load(R.raw.songforyou_logo)
+            .listener(listener)
+            .into(binding.tvLoginTitle)
         initClickListener()
         initViewModelCallback()
+    }
+
+    val listener = object: RequestListener<GifDrawable> {
+        override fun onLoadFailed(
+            e: GlideException?,
+            model: Any?,
+            target: Target<GifDrawable>?,
+            isFirstResource: Boolean
+        ): Boolean {
+            return false
+        }
+
+        override fun onResourceReady(
+            resource: GifDrawable?,
+            model: Any?,
+            target: Target<GifDrawable>?,
+            dataSource: DataSource?,
+            isFirstResource: Boolean
+        ): Boolean {
+            resource!!.setLoopCount(1)
+            return false
+        }
     }
     private fun initViewModelCallback() = with(binding){
         lifecycleScope.launch {
