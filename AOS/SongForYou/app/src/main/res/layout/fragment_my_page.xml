@@ -17,7 +17,7 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/CustomColor1"
+            android:background="@color/background_color"
             android:paddingBottom="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -31,6 +31,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:text="Profile"
+                android:fontFamily="@font/noto_sans_medium"
                 android:textColor="@color/white"
                 android:textSize="28sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="My Information"
-                android:textColor="@color/black"
+                android:textColor="@color/bombay"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/textView2"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -65,6 +66,7 @@
                     android:id="@+id/layout_card_profile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/btn_mypage"
                     android:layout_gravity="center">
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -84,6 +86,7 @@
                         android:layout_marginStart="12dp"
                         android:layout_marginBottom="4dp"
                         android:text="잠만보"
+                        android:textColor="@color/white"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toTopOf="@+id/textView6"
                         app:layout_constraintStart_toEndOf="@+id/profile_image"
@@ -95,7 +98,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="SSAFY"
-                        android:textColor="@color/light_grey"
+                        android:textColor="@color/bombay"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/tv_nickName"
                         app:layout_constraintTop_toBottomOf="@+id/tv_nickName" />
@@ -106,6 +109,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="12dp"
                         android:text="50,000P"
+                        android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                         app:layout_constraintEnd_toStartOf="@+id/imageView2"
                         app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -115,7 +119,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="12dp"
-                        android:tint="@color/light_grey"
+                        app:tint="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -129,10 +133,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="음성 정보 등록하기"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/background_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/card_profile"
-                app:layout_constraintTop_toBottomOf="@+id/card_profile"
-                app:layout_constraintVertical_bias="0.875" />
+                app:layout_constraintTop_toBottomOf="@+id/card_profile" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -142,29 +147,22 @@
             android:layout_height="wrap_content"
             android:text="내가 부른 노래"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:text="임시"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_my_record_song"
-            app:layout_constraintTop_toBottomOf="@+id/tv_my_record_song" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_record"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_record_list"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_my_record_song"
+            tools:listitem="@layout/item_record_list" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
