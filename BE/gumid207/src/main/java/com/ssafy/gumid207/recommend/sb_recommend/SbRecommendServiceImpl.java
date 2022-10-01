@@ -301,4 +301,18 @@ public class SbRecommendServiceImpl implements SbRecommendService {
 		return dto;
 	}
 
+	@Override
+	public List<SongDto> getWeatherList(Integer weatherNum){
+		int[][] list = new int[][] {{},
+			{4310,495,4593,4418,4541,4525,500,3965,4347,4856},
+			{4733,1659,13373,4229,4580,11106,4890,4732},
+			{3309,1458,1520,3290,2154,3413,1574,3274}
+		};
+		List<SongDto> results = new ArrayList<>();
+		for(int num : list[weatherNum]) {
+			results.add(SongDto.of(SongStaticData.songList.get(num)));
+		}
+		Collections.shuffle(results);
+		return results;
+	}
 }

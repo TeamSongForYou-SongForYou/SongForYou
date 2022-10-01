@@ -17,4 +17,6 @@ public interface SbRecommendService {
 
 	RecommendListDto getRecommendList(Integer listNum) throws Exception;
 
+	List<SongDto> getWeatherList(Integer weatherNum);
+
 }

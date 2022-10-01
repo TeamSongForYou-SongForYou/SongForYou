@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -78,9 +79,35 @@ public class SbRecommendRestController {
 	
 	@ApiParam(value = "추천 리스트 받기")
 	@GetMapping(value = "/{listNum}/recommend-list")
-	public ResponseEntity<?> getRecommendList(Integer listNum) throws Exception {
+	public ResponseEntity<?> getRecommendList(@PathVariable Integer listNum) throws Exception {
 
 		return new ResponseEntity<>(new ResponseFrame<>(true, sbRecommendServ.getRecommendList(listNum), 1, "지정 리스트를 반환합니다."),
+				HttpStatus.OK);
+	}
+	@ApiParam(value = "통계 기반 추천받기")
+	@GetMapping(value = "/{weatherNum}/weather")
+	public ResponseEntity<?> getWeatherRecommend(@PathVariable Integer weatherNum) throws Exception {
+		
+		Integer temp = 0;
+		switch(weatherNum) {
+		case 0:
+			temp = 3;
+			break;
+		case 1:
+		case 5:
+		case 6:
+			temp = 1;
+			break;
+		case 2:
+		case 3:
+		case 7:
+			temp = 2;
+			break;
+		}
+		
+		List<SongDto> songDtoList = sbRecommendServ.getWeatherList(temp);
+		
+		return new ResponseEntity<>(new ResponseFrame<>(true, songDtoList, songDtoList.size(), "날씨 기반 리스트 반환."),
 				HttpStatus.OK);
 	}
 
