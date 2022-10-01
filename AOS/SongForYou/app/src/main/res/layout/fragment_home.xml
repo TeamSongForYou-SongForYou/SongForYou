@@ -10,15 +10,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/black"
         tools:context=".view.main.home.HomeFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@color/white"
+            android:background="@color/background_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,9 +30,10 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_bold"
                 android:text="Song For You"
                 android:textColor="@color/CustomColor1"
-                android:textSize="20sp" />
+                android:textSize="30sp" />
 
         </com.google.android.material.appbar.MaterialToolbar>
 
@@ -61,10 +64,12 @@
                     android:id="@+id/tv_weather"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
-                    android:drawablePadding="8dp"
+                    android:drawablePadding="10dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="40dp"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="오늘 날씨엔" />
 
@@ -80,12 +85,25 @@
                     android:id="@+id/tv_chart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:drawablePadding="8dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:textSize="30sp"
+                    android:drawablePadding="10dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="40dp"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="Song For You 차트" />
+
+                <TextView
+                    android:id="@+id/tv_chart_des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/noto_sans_light"
+                    android:textSize="15sp"
+                    android:drawablePadding="10dp"
+                    android:layout_marginStart="16dp"
+                    android:text="당신의 음성을 기반으로 추천해드립니다" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_chart"
@@ -104,10 +122,12 @@
                     android:id="@+id/tv_age"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
-                    android:drawablePadding="8dp"
+                    android:drawablePadding="10dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="40dp"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="20대가 많이 부르는" />
 
@@ -123,10 +143,12 @@
                     android:id="@+id/tv_my_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
-                    android:drawablePadding="8dp"
+                    android:drawablePadding="10dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="40dp"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="내가 좋아하는 음악과 관련된" />
 
@@ -142,10 +164,12 @@
                     android:id="@+id/tv_my_record"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
-                    android:drawablePadding="8dp"
+                    android:drawablePadding="10dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="40dp"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="내 녹음과 관련된" />
 

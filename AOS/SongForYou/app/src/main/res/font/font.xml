@@ -3,18 +3,20 @@
 
     <font android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/apple_sd_gothic_neo_b"/>
+        android:font="@font/noto_sans_medium"/>
     <font android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/apple_sd_gothic_neo_eb"/>
+        android:font="@font/noto_sans_regular"/>
     <font android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/apple_sd_gothic_neo_h"/>
+        android:font="@font/noto_sans_black"/>
     <font android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/apple_sd_gothic_neo_l"/>
+        android:font="@font/noto_sans_black"/>
     <font android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/apple_sd_gothic_neo_m"/>
-
+        android:font="@font/noto_sans_light"/>
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/noto_sans_bold"/>
 </font-family>
