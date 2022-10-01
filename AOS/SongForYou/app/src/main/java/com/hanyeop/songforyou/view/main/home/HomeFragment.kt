@@ -101,7 +101,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                                 /** 날씨 정보
                                  * 날씨 : 없음(0), 비(1), 비/눈(2), 눈(3), 빗방울(5), 빗방울눈날림(6), 눈날림(7)
                                  */
-                                homeViewModel.getWeatherRecommendList(3)
+                                // 수정 필요
+                                homeViewModel.getWeatherRecommendList(i.obsrValue.toInt())
                                 Log.d(TAG, "initViewModelCallBack: ${i.obsrValue.toInt()}")
                             }
                         }
@@ -133,10 +134,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         lifecycleScope.launch{
             homeViewModel.userAge.collectLatest {
+                // 수정 필요
                 homeViewModel.getAgeRecommendList(it)
-
                 Log.d(TAG, it.toString())
-                binding.tvAge.text = it.toString() + "살이 많이 듣는"
+                binding.tvAge.text = it.toString() + "살이 많이 부른"
             }
         }
 
