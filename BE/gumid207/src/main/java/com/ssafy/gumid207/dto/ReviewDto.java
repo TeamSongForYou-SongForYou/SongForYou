@@ -48,6 +48,8 @@ public class ReviewDto implements Serializable {
 	@ApiParam(value = "리뷰 내용")
 	private String reviewContent;
 	
+	private FileDto reviewImage;
+	
 	@ApiParam(value = "등록 시간. (yyyy-MM-dd 00:00:00)")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
@@ -67,6 +69,7 @@ public class ReviewDto implements Serializable {
 				.reviewSoundQuality(review.getReviewSoundQuality()) //
 				.reviewContent(review.getReviewContent()) //
 				.reviewRegTime(review.getReviewRegTime()) //
+				.reviewImage(FileDto.of(review.getFileSeq())) //
 				.build();
 	}
 
