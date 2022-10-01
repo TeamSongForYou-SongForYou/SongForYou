@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/black"
         tools:context=".view.main.my_page.MyPageFragment">
 
 
@@ -163,6 +164,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_my_record_song"
             tools:listitem="@layout/item_record_list" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_my_record_song"
+            app:layout_constraintStart_toEndOf="@+id/tv_my_record_song"
+            app:layout_constraintTop_toTopOf="@+id/tv_my_record_song"
+            app:srcCompat="@drawable/music_" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

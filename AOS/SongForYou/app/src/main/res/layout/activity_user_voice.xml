@@ -10,14 +10,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/black"
         tools:context=".view.user_voice.UserVoiceActivity">
 
         <com.hanyeop.songforyou.view.audio.SoundVisualizerView
             android:id="@+id/soundVisualizerView"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@id/recordTimeTextView"
+            android:layout_height="250dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,13 +37,27 @@
             android:id="@+id/recordTimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
             android:text="00:00"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@id/recordButton"
             app:layout_constraintLeft_toLeftOf="@id/recordButton"
             app:layout_constraintRight_toRightOf="@id/recordButton"
+            app:layout_constraintTop_toBottomOf="@+id/soundVisualizerView"
             tools:ignore="HardcodedText" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recordTimeTextView"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="karaoke.json"
+            app:lottie_loop="true" />
 
         <com.hanyeop.songforyou.view.audio.RecordButton
             android:id="@+id/recordButton"
@@ -71,13 +85,14 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:text="음성을 녹음해주세요!\n목소리에 맞는 음악을 추천해드려요."
+            android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/recordButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/soundVisualizerView" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
