@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:background="@color/bottom_navi_background"
             app:fabCradleMargin="5dp"
             app:fabCradleRoundedCornerRadius="10dp">
 
@@ -35,29 +36,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginRight="16dp"
-                android:background="@android:color/transparent"
+                android:background="@color/bottom_navi_background"
                 app:menu="@menu/menu_bottom_navi" />
 
         </com.google.android.material.bottomappbar.BottomAppBar>
+
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/bottom_navi_background"
             app:layout_anchor="@id/bottom_appbar">
 
-            <ImageView
-                android:id="@+id/fab_main"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/center_circle"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/fab_main"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:src="@drawable/btn_bottom"
+            app:layout_anchor="@+id/bottom_appbar"
+            app:layout_anchorGravity="center" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

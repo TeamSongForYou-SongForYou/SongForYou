@@ -152,7 +152,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="40dp"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:text="내가 좋아하는 음악과 관련된" />
+                    android:text="저장한 노래" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_my_list"

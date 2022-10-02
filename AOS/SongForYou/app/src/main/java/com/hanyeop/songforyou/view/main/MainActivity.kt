@@ -2,6 +2,8 @@ package com.hanyeop.songforyou.view.main
 
 import android.content.Intent
 import android.util.Log
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -35,6 +37,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.bottomNavigationView.setupWithNavController(navController)
 
         binding.bottomNavigationView.background = null
+
+        val hyperspaceJump: Animation = AnimationUtils.loadAnimation(this, R.xml.bottom_navi)
+        binding.fabMain.startAnimation(hyperspaceJump)
     }
 
     private fun initClickListener(){

@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.location.Location
 import android.os.Looper
 import android.util.Log
+import android.view.animation.Animation
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.location.*
@@ -46,6 +47,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private lateinit var ubRecommendListAdapter: UbRecommendListAdapter
 
     override fun init() {
+
         ageRecommendMyListAdapter = RecommendMyListAdapter(songDetailListener)
         weatherRecommendMyListAdapter = RecommendMyListAdapter(songDetailListener)
         recommendMyListAdapter = RecommendMyListAdapter(songDetailListener)
