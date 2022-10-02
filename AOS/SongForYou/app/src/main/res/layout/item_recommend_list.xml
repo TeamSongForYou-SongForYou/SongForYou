@@ -61,6 +61,7 @@
             android:layout_height="wrap_content"
             app:youtubeView="@{song.songYoutubeView}"
             tools:text="100000"
+            android:gravity="center"
             android:textColor="@color/bombay"
             android:drawableStart="@drawable/left_youtube"
             android:drawablePadding="4dp"
