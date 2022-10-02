@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/bottom_navi_background"
+            android:backgroundTint="@color/bottom_navi_background"
             app:fabCradleMargin="5dp"
             app:fabCradleRoundedCornerRadius="10dp">
 
@@ -36,7 +36,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginRight="16dp"
-                android:background="@color/bottom_navi_background"
                 app:menu="@menu/menu_bottom_navi" />
 
         </com.google.android.material.bottomappbar.BottomAppBar>

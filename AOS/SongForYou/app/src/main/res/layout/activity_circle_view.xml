@@ -32,7 +32,8 @@
                 android:id="@+id/centerView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/center_circle" />
+                android:adjustViewBounds="true"
+                android:src="@drawable/btn_bottom_open" />
 
             <LinearLayout
                 android:id="@+id/layout_search"

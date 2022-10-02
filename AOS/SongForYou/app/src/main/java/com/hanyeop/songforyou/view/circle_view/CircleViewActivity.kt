@@ -1,6 +1,8 @@
 package com.hanyeop.songforyou.view.circle_view
 
 import android.content.Intent
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.lifecycle.lifecycleScope
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
@@ -16,7 +18,8 @@ class CircleViewActivity : BaseActivity<ActivityCircleViewBinding>(R.layout.acti
 
     override fun init() {
         initClickListener()
-
+        val hyperspaceJump: Animation = AnimationUtils.loadAnimation(this, R.xml.bottom_navi_rotate)
+        binding.centerView.startAnimation(hyperspaceJump)
 
     }
 

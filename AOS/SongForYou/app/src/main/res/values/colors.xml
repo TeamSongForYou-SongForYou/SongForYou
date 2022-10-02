@@ -46,7 +46,7 @@
     <color name="md_theme_dark_onSecondary">#293041</color>
     <color name="md_theme_dark_secondaryContainer">#3F4759</color>
     <color name="md_theme_dark_onSecondaryContainer">#DBE2F9</color>
-    <color name="md_theme_dark_tertiary">#BDC2FF</color>
+    <color name="md_theme_dark_tertiary">#1D1D1D</color>
     <color name="md_theme_dark_onTertiary">#1E2678</color>
     <color name="md_theme_dark_tertiaryContainer">#363E90</color>
     <color name="md_theme_dark_onTertiaryContainer">#E0E0FF</color>
@@ -65,8 +65,8 @@
     <color name="md_theme_dark_inverseSurface">#E3E2E6</color>
     <color name="md_theme_dark_inversePrimary">#005AC1</color>
     <color name="md_theme_dark_shadow">#000000</color>
-    <color name="md_theme_dark_surfaceTint">#ADC6FF</color>
-    <color name="md_theme_dark_surfaceTintColor">#ADC6FF</color>
+    <color name="md_theme_dark_surfaceTint">#1D1D1D</color>
+    <color name="md_theme_dark_surfaceTintColor">#1D1D1D</color>
     <color name="CustomColor1">#4285F4</color>
     <color name="light_grey">#FFb6b6b9</color>
     <color name="real_light_grey">#E9E9EF</color>

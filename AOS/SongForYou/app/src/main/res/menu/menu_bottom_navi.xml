@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/HomeFragment"
-        android:icon="@drawable/ic_home_gray"
+        android:icon="@drawable/home_selected"
         android:title=""
         android:enabled="true"/>
 
