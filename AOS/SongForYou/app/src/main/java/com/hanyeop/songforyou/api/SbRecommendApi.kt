@@ -17,9 +17,9 @@ interface SbRecommendApi {
         @Query ("weather") weather: Int
     ): BaseResponse<List<SongResponse>>
 
-    @GET("sb-recommend/list")
+    @GET("sb-recommend/{weatherNum}/weather")
     suspend fun getWeatherRecommend(
-        @Query ("weather") weather: Int
+        @Path ("weatherNum") weatherNum: Int
     ): BaseResponse<List<SongResponse>>
 
     @GET("sb-recommend/list")

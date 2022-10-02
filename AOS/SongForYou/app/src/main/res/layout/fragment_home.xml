@@ -10,42 +10,34 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
+        android:background="@color/background_color"
+        android:paddingBottom="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:context=".view.main.home.HomeFragment">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@color/background_color"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="30dp"
+            android:text="Song For You"
+            android:fontFamily="@font/noto_sans_medium"
+            android:textColor="@color/white"
+            android:textSize="28sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans_bold"
-                android:text="Song For You"
-                android:textColor="@color/CustomColor1"
-                android:textSize="30sp" />
-
-        </com.google.android.material.appbar.MaterialToolbar>
-
+            app:layout_constraintTop_toTopOf="parent" />
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            app:layout_constraintTop_toBottomOf="@+id/textView">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,6 +48,8 @@
                     android:id="@+id/recycler_banner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="24dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="horizontal"
                     tools:listitem="@layout/item_banner"/>
@@ -68,7 +62,7 @@
                     android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
                     android:drawablePadding="10dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="오늘 날씨엔" />
@@ -78,6 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginStart="24dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="horizontal"
                     tools:listitem="@layout/item_song_summary" />
@@ -90,7 +85,7 @@
                     android:fontFamily="@font/noto_sans_bold"
                     android:textSize="30sp"
                     android:drawablePadding="10dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="Song For You 차트" />
@@ -103,16 +98,17 @@
                     android:fontFamily="@font/noto_sans_light"
                     android:textSize="15sp"
                     android:drawablePadding="10dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="24dp"
                     android:text="당신의 음성을 기반으로 추천해드립니다" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_chart"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:paddingStart="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_margin="24dp"
                     android:paddingEnd="20dp"
-                    android:layout_margin="16dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_chart"
                     android:paddingBottom="12dp"
@@ -127,7 +123,7 @@
                     android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
                     android:drawablePadding="10dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="20대가 많이 부르는" />
@@ -136,6 +132,7 @@
                     android:id="@+id/recycler_age"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="horizontal"
@@ -149,7 +146,7 @@
                     android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
                     android:drawablePadding="10dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="저장한 노래" />
@@ -158,6 +155,7 @@
                     android:id="@+id/recycler_my_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="horizontal"
@@ -171,7 +169,7 @@
                     android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
                     android:drawablePadding="10dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="내 녹음과 관련된" />
@@ -181,6 +179,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginStart="24dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="horizontal"
                     android:layout_marginBottom="16dp"
