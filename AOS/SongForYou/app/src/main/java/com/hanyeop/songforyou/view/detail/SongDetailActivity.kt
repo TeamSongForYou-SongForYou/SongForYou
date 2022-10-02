@@ -3,6 +3,7 @@ package com.hanyeop.songforyou.view.detail
 import android.content.Intent
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivitySongDetailBinding
@@ -12,6 +13,9 @@ import com.hanyeop.songforyou.view.audio.AudioRecordActivity
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+
 private const val TAG = "SongDetailActivity___"
 @AndroidEntryPoint
 class SongDetailActivity : BaseActivity<ActivitySongDetailBinding>(R.layout.activity_song_detail) {
@@ -32,9 +36,11 @@ class SongDetailActivity : BaseActivity<ActivitySongDetailBinding>(R.layout.acti
                     val videoId = tmp[1]
                     youTubePlayer.loadVideo(videoId, 0f)
                 }
-
             })
+
+            tvTitle.isSelected = true
         }
+        songDetailViewModel.getLyrics(songInfo.SongSeq)
 
         initClickListener()
 
@@ -63,6 +69,11 @@ class SongDetailActivity : BaseActivity<ActivitySongDetailBinding>(R.layout.acti
         }
         songDetailViewModel.failMsgEvent.observe(this){
             showToast(it)
+        }
+        lifecycleScope.launch {
+            songDetailViewModel.lyrics.collectLatest {
+                binding.tvLyrics.text = it
+            }
         }
     }
 }
