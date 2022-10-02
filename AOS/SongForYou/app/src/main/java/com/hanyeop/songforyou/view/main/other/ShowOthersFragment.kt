@@ -49,30 +49,4 @@ class ShowOthersFragment : BaseFragment<FragmentShowOthersBinding>(R.layout.frag
             }
         }
     }
-
-//    private fun initTagView() {
-//        binding.tagView.setTextPaint(
-//            TextPaint().apply {
-//                isAntiAlias = true
-//                textSize = resources.getDimension(R.dimen.tag_text_size)
-//                color = Color.DKGRAY
-//            }
-//        )
-//        val loremSize = LoremIpsum.list.size
-//        (0..40).map {
-//            TextTagItem(text = LoremIpsum.list[Random.nextInt(loremSize)])
-//        }.toList().let {
-//            binding.tagView.addTagList(it)
-//        }
-//        binding.tagView.setRadius(3f)
-//        binding.tagView.setOnTagTapListener(object : OnTagTapListener {
-//            override fun onTap(tagItem: TagItem) {
-//                Toast.makeText(
-//                    requireContext(),
-//                    "On tap: ${(tagItem as TextTagItem).text}",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//        })
-//    }
 }

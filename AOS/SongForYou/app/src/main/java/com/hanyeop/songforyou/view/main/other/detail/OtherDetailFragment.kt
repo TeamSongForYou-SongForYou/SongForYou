@@ -1,7 +1,11 @@
 package com.hanyeop.songforyou.view.main.other.detail
 
 import android.content.Intent
+import android.graphics.Color
+import android.text.TextPaint
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
@@ -20,6 +24,9 @@ import com.hanyeop.songforyou.view.audio.AudioRecordActivity
 import com.hanyeop.songforyou.view.detail.SongDetailActivity
 import com.hanyeop.songforyou.view.main.home.SongDetailListener
 import com.hanyeop.songforyou.view.main.other.OtherViewModel
+import com.magicgoop.tagsphere.OnTagTapListener
+import com.magicgoop.tagsphere.item.TagItem
+import com.magicgoop.tagsphere.item.TextTagItem
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -38,6 +45,12 @@ class OtherDetailFragment : BaseFragment<FragmentOtherDetailBinding>(R.layout.fr
         adapter = OtherDetailAdapter(songDetailListener)
 
         binding.apply {
+            if(args.item.type == "word"){
+                layoutType.visibility = View.VISIBLE
+            }else{
+                layoutType.visibility = View.GONE
+            }
+
             tvHeader.text = args.item.name
             recyclerRecommend.adapter = adapter
         }
@@ -46,7 +59,23 @@ class OtherDetailFragment : BaseFragment<FragmentOtherDetailBinding>(R.layout.fr
 
         initViewModelCallBack()
 
+        initClickListener()
+
         otherViewModel.getRecommendWithWord(args.item.num)
+    }
+
+    private fun initClickListener(){
+        binding.apply {
+            btnSwap.setOnClickListener{
+                if(tagView.visibility == View.VISIBLE){
+                    tagView.visibility = View.INVISIBLE
+                    anyChartView.visibility = View.VISIBLE
+                }else if(tagView.visibility == View.INVISIBLE){
+                    tagView.visibility = View.VISIBLE
+                    anyChartView.visibility = View.INVISIBLE
+                }
+            }
+        }
     }
 
     private fun initViewModelCallBack(){
@@ -61,6 +90,7 @@ class OtherDetailFragment : BaseFragment<FragmentOtherDetailBinding>(R.layout.fr
             otherViewModel.wordList.collectLatest {
                 Log.d("test5", "initViewModelCallBack: $it")
                 initData(it)
+                initTagView(it)
             }
         }
     }
@@ -85,6 +115,7 @@ class OtherDetailFragment : BaseFragment<FragmentOtherDetailBinding>(R.layout.fr
 
         tagCloud.colorRange().enabled(true)
         tagCloud.colorRange().colorLineSize(15.0)
+        tagCloud
     }
 
     private fun initData(list: List<WordResponse>){
@@ -99,6 +130,30 @@ class OtherDetailFragment : BaseFragment<FragmentOtherDetailBinding>(R.layout.fr
         tagCloud.data(data)
 
         binding.anyChartView.setChart(tagCloud)
+    }
+
+    private fun initTagView(list: List<WordResponse>) {
+        binding.tagView.setTextPaint(
+            TextPaint().apply {
+                isAntiAlias = true
+                textSize = resources.getDimension(R.dimen.tag_text_size)
+                color = Color.WHITE
+            }
+        )
+
+        val tmpList = mutableListOf<TextTagItem>()
+        for(i in list){
+            tmpList.add(TextTagItem(text = i.word))
+        }
+
+        binding.tagView.addTagList(tmpList)
+
+        binding.tagView.setRadius(3f)
+        binding.tagView.setOnTagTapListener(object : OnTagTapListener {
+            override fun onTap(tagItem: TagItem) {
+
+            }
+        })
     }
 
     private val songDetailListener = object: SongDetailListener {
