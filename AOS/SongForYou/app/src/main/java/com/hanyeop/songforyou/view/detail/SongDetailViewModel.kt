@@ -35,9 +35,9 @@ class SongDetailViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             songDisLikeUseCase.execute(songSeq).collectLatest {
                 if(it is ResultType.Success){
-                    _successMsgEvent.postValue("성공")
+                    _successMsgEvent.postValue("이제 이 노래를 추천받지 않습니다.")
                 }else if(it is ResultType.Fail){
-                    _failMsgEvent.postValue("실패")
+//                    _failMsgEvent.postValue("")
                 }
             }
         }
@@ -47,9 +47,9 @@ class SongDetailViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             addSongBoxUseCase.execute(songSeq).collectLatest {
                 if(it is ResultType.Success){
-                    _successMsgEvent.postValue("성공")
+                    _successMsgEvent.postValue("보관함에 노래를 추가했습니다.")
                 }else if(it is ResultType.Fail){
-                    _failMsgEvent.postValue("실패")
+//                    _failMsgEvent.postValue("실패")
                 }
             }
         }
