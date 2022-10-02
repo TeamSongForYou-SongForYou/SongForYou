@@ -1,5 +1,6 @@
 package com.hanyeop.songforyou.view.main.my_page
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.fragment.app.viewModels
@@ -8,10 +9,13 @@ import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseFragment
 import com.hanyeop.songforyou.databinding.FragmentMyPageBinding
 import com.hanyeop.songforyou.di.AppModule_ProvideSharedPreferencesFactory
+import com.hanyeop.songforyou.di.ApplicationClass
 import com.hanyeop.songforyou.model.response.RecordResponse
+import com.hanyeop.songforyou.utils.JWT
 import com.hanyeop.songforyou.utils.NICKNAME
 import com.hanyeop.songforyou.utils.RECORD
 import com.hanyeop.songforyou.view.audio_play.AudioPlayActivity
+import com.hanyeop.songforyou.view.login.LoginActivity
 import com.hanyeop.songforyou.view.main.play_list.PlayListViewModel
 import com.hanyeop.songforyou.view.main.play_list.tab.record.RecordAdapter
 import com.hanyeop.songforyou.view.main.play_list.tab.record.RecordListener
@@ -51,7 +55,32 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     }
 
     private fun initClickListener(){
+        binding.apply {
+            layoutCardProfile.setOnClickListener {
+                showDialog()
+            }
+        }
+    }
 
+    private fun showDialog(){
+        val builder = AlertDialog.Builder(requireContext())
+        builder
+            .setTitle("로그아웃 할까요?")
+            .setIcon(R.drawable.ic_launcher_foreground)
+            .setPositiveButton("예") { dialog , which ->
+                logout()
+            }
+            .setNegativeButton("취소"){ dialog, which ->
+
+            }
+            .create()
+            .show()
+    }
+
+    private fun logout(){
+        ApplicationClass.sharedPreferencesUtil.deleteToken()
+        startActivity(Intent(requireContext(),LoginActivity::class.java))
+        requireActivity().finish()
     }
 
     private fun initViewModelCallBack(){

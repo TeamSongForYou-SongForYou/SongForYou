@@ -41,7 +41,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                     startActivity(this)
                     finish()
                 }
-
         }
     }
     private fun initPermission(){
