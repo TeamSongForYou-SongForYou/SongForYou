@@ -36,6 +36,7 @@ class BeforeSongSearchFragment : BaseFragment<FragmentBeforeSongSearchBinding>(R
 
         initViewModelCallBack()
         initSearchView()
+        initObserver()
     }
 
     private fun initSearchView() {
@@ -59,14 +60,19 @@ class BeforeSongSearchFragment : BaseFragment<FragmentBeforeSongSearchBinding>(R
             }
         }
     }
-
+    private fun initObserver(){
+        nextSongRecommendViewModel.successEvent.observe(viewLifecycleOwner) {
+            if(it){
+                val action = BeforeSongSearchFragmentDirections.actionBeforeSongSearchFragmentToNextSongRecommendFragment()
+                findNavController().navigate(action)
+            }
+        }
+    }
     private val songSearchListener = object : SongSearchListener {
         override fun onItemClick(song: SongResponse) {
             Log.d("test5", "onItemClick: $song")
             // 아이템 클릭 시 해당 아이템의 정보가 다음 프레그먼트로 넘어감 // 뷰모델에 저장
             nextSongRecommendViewModel.getNextSongRecommend(song.SongSeq, song.SongTitle)
-            val action = BeforeSongSearchFragmentDirections.actionBeforeSongSearchFragmentToNextSongRecommendFragment()
-            findNavController().navigate(action)
         }
 
         override fun onRecordClick(song: SongResponse) {

@@ -23,8 +23,13 @@ class NextSongRecommendFragment : BaseFragment<FragmentNextSongRecommendBinding>
     override fun init() {
         songSearchAdapter = SongSearchAdapter(songSearchListener)
         binding.recyclerNextRecommend.adapter = songSearchAdapter
-
+        binding.tvBeforeSongTitle.isSelected = true
+        binding.tvNextSongTitle.isSelected = true
+        binding.tvTitle.isSelected = true
+        binding.tvArtist.isSelected = true
         initView()
+
+
     }
 
     private fun initView() = with(binding){
@@ -48,6 +53,7 @@ class NextSongRecommendFragment : BaseFragment<FragmentNextSongRecommendBinding>
         }
 
     }
+
 
     private val songSearchListener = object : SongSearchListener {
         override fun onItemClick(song: SongResponse) {

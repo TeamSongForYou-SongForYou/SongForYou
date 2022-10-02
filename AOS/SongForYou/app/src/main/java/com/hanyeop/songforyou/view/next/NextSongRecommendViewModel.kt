@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.hanyeop.songforyou.model.response.SongResponse
 import com.hanyeop.songforyou.usecase.ib_recommend.GetIbRecommendBeforeUseCase
 import com.hanyeop.songforyou.utils.ResultType
+import com.hanyeop.songforyou.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,12 +27,16 @@ class NextSongRecommendViewModel @Inject constructor(
     private val _nextSongRecommendList: MutableStateFlow<List<SongResponse>> = MutableStateFlow(listOf())
     val nextSongRecommendList get() = _nextSongRecommendList.asStateFlow()
 
+    private val _successEvent = SingleLiveEvent<Boolean>()
+    val successEvent :LiveData<Boolean> get() = _successEvent
+
     fun getNextSongRecommend(songSeq : Int, beforeSongTitle : String){
         viewModelScope.launch(Dispatchers.IO) {
             ibRecommendBeforeUseCase.execute(songSeq).collectLatest {
                 if(it is ResultType.Success){
                     _nextSongRecommendList.value = it.data.data
                     _beforeSongTitle.value = beforeSongTitle
+                    _successEvent.postValue(true)
                 }
             }
         }
