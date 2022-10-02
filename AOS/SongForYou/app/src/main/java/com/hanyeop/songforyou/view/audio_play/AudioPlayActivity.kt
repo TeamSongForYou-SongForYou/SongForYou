@@ -1,6 +1,8 @@
 package com.hanyeop.songforyou.view.audio_play
 
 import android.util.Log
+import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
@@ -11,9 +13,15 @@ import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivityAudioPlayBinding
 import com.hanyeop.songforyou.model.response.RecordResponse
 import com.hanyeop.songforyou.utils.RECORD
+import com.hanyeop.songforyou.view.detail.SongDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class AudioPlayActivity : BaseActivity<ActivityAudioPlayBinding>(R.layout.activity_audio_play) {
 
+    private val songDetailViewModel by viewModels<SongDetailViewModel>()
     private var simpleExoPlayer: SimpleExoPlayer? = null
     private lateinit var recordInfo: RecordResponse
 
@@ -23,6 +31,10 @@ class AudioPlayActivity : BaseActivity<ActivityAudioPlayBinding>(R.layout.activi
             record = recordInfo
         }
         Log.d("test5", "init: $recordInfo")
+        initViewModelCallBack()
+
+        songDetailViewModel.getLyrics(recordInfo.songDto.SongSeq)
+
         initPlayer()
     }
     private fun initPlayer(){
@@ -30,6 +42,14 @@ class AudioPlayActivity : BaseActivity<ActivityAudioPlayBinding>(R.layout.activi
         binding.playerView.player = simpleExoPlayer
         buildMediaSource()?.let {
             simpleExoPlayer?.prepare(it)
+        }
+    }
+
+    private fun initViewModelCallBack(){
+        lifecycleScope.launch {
+            songDetailViewModel.lyrics.collectLatest {
+                binding.tvLyrics.text = it
+            }
         }
     }
 
