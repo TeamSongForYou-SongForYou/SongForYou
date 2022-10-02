@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/btn_bottom_open" />
+                android:src="@drawable/ic_bottom_navi" />
 
             <LinearLayout
                 android:id="@+id/layout_search"
@@ -44,13 +44,15 @@
                 <ImageView
                     android:id="@+id/imageView10"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    cl:srcCompat="@drawable/search_50" />
+                    android:layout_height="40dp"
+                    cl:srcCompat="@drawable/ic_search" />
 
                 <TextView
                     android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/noto_sans_medium"
                     android:text="노래 검색"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -64,14 +66,17 @@
 
                 <ImageView
                     android:id="@+id/imageView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    cl:srcCompat="@drawable/karaoke_64" />
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    cl:srcCompat="@drawable/ic_karaoke" />
 
                 <TextView
                     android:id="@+id/textView11"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/noto_sans_medium"
                     android:text="내 주변 노래방"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -86,13 +91,14 @@
                 <ImageView
                     android:id="@+id/imageView12"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    cl:srcCompat="@drawable/volume_64" />
+                    android:layout_height="40dp"
+                    cl:srcCompat="@drawable/ic_next_song" />
 
                 <TextView
                     android:id="@+id/textView12"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_medium"
                     android:text="다음 노래 추천"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -106,14 +112,17 @@
 
                 <ImageView
                     android:id="@+id/imageView13"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    cl:srcCompat="@drawable/random_64" />
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    cl:srcCompat="@drawable/ic_random" />
 
                 <TextView
                     android:id="@+id/textView13"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/noto_sans_medium"
                     android:text="노래 랜덤 추천"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
