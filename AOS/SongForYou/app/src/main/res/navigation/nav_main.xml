@@ -14,7 +14,11 @@
         android:id="@+id/ShowOthersFragment"
         android:name="com.hanyeop.songforyou.view.main.other.ShowOthersFragment"
         android:label="ShowOthersFragment"
-        tools:layout="@layout/fragment_show_others"/>
+        tools:layout="@layout/fragment_show_others">
+        <action
+            android:id="@+id/action_ShowOthersFragment_to_otherDetailFragment"
+            app:destination="@id/otherDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/PlayListFragment"
         android:name="com.hanyeop.songforyou.view.main.play_list.PlayListFragment"
@@ -25,4 +29,12 @@
         android:name="com.hanyeop.songforyou.view.main.my_page.MyPageFragment"
         android:label="MyPageFragment"
         tools:layout="@layout/fragment_my_page"/>
+    <fragment
+        android:id="@+id/otherDetailFragment"
+        android:name="com.hanyeop.songforyou.view.main.other.detail.OtherDetailFragment"
+        android:label="OtherDetailFragment" >
+        <argument
+            android:name="item"
+            app:argType="com.hanyeop.songforyou.model.dto.OthersDto" />
+    </fragment>
 </navigation>
