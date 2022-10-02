@@ -73,4 +73,5 @@
     <!--id 입력 박스 텍스트-->Titan White
     <color name="bombay">#FFb6b6b9</color>
     <color name="background_color">#000000</color>
+    <color name="bottom_navi_background">#1D1D1D</color>
 </resources>

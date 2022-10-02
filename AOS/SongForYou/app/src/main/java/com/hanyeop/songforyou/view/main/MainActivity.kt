@@ -1,6 +1,7 @@
 package com.hanyeop.songforyou.view.main
 
 import android.content.Intent
+import android.util.Log
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -8,6 +9,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivityMainBinding
+import com.hanyeop.songforyou.di.ApplicationClass.Companion.sharedPreferencesUtil
+import com.hanyeop.songforyou.utils.JWTUtils
 import com.hanyeop.songforyou.view.circle_view.CircleViewActivity
 import dagger.hilt.android.AndroidEntryPoint
 

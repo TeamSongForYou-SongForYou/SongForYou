@@ -1,6 +1,8 @@
 package com.hanyeop.songforyou.view.login
 
 import android.Manifest
+import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -11,8 +13,11 @@ import com.gun0912.tedpermission.normal.TedPermission
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseActivity
 import com.hanyeop.songforyou.databinding.ActivityLoginBinding
+import com.hanyeop.songforyou.di.ApplicationClass
+import com.hanyeop.songforyou.utils.JWTUtils
+import com.hanyeop.songforyou.view.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
-
+private const val TAG = "LoginFragment___"
 @AndroidEntryPoint
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
 
@@ -21,11 +26,24 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     //test
     override fun init() {
+        autoLogin()
         initNavigation()
-
         initPermission()
     }
+    private fun autoLogin() {
+        val token = ApplicationClass.sharedPreferencesUtil.getToken()
 
+        Log.d(TAG, "autoLogin token: $token")
+
+        // 저장된 토큰 정보가 있다면 로그인 실행
+        if (token != null) {
+                Intent(this, MainActivity::class.java).apply {
+                    startActivity(this)
+                    finish()
+                }
+
+        }
+    }
     private fun initPermission(){
         TedPermission.create()
             .setPermissionListener(object : PermissionListener {

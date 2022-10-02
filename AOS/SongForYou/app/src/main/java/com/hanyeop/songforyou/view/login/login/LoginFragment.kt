@@ -1,6 +1,7 @@
 package com.hanyeop.songforyou.view.login.login
 
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +15,8 @@ import com.bumptech.glide.request.target.Target
 import com.hanyeop.songforyou.R
 import com.hanyeop.songforyou.base.BaseFragment
 import com.hanyeop.songforyou.databinding.FragmentLoginBinding
+import com.hanyeop.songforyou.di.ApplicationClass
+import com.hanyeop.songforyou.utils.JWTUtils
 import com.hanyeop.songforyou.view.login.UserViewModel
 import com.hanyeop.songforyou.view.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +25,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+private const val TAG = "LoginFragment___"
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login) {
 
@@ -36,6 +40,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
             .load(R.raw.songforyou_logo)
             .listener(listener)
             .into(binding.tvLoginTitle)
+
+
         initClickListener()
         initViewModelCallback()
     }
@@ -65,6 +71,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
         lifecycleScope.launch {
             userViewModel.isLoginChecked.collectLatest {
                 if(it) {
+                    ApplicationClass.sharedPreferencesUtil.saveToken(userViewModel.token.value!!)
                     Intent(requireContext(), MainActivity::class.java).apply {
 //                                putExtra("user", user)
                         startActivity(this)
