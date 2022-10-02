@@ -32,6 +32,7 @@ class SongDetailActivity : BaseActivity<ActivitySongDetailBinding>(R.layout.acti
                     val videoId = tmp[1]
                     youTubePlayer.loadVideo(videoId, 0f)
                 }
+
             })
         }
 
