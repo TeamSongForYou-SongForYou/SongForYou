@@ -18,7 +18,10 @@ object ViewBindingAdapter {
 
     @BindingAdapter("songImage")
     @JvmStatic
-    fun ImageView.setSongImage (imageUrl: String){
+    fun ImageView.setSongImage (imageUrl: String?){
+        if(imageUrl == null){
+            return
+        }
         Glide.with(this.context)
             .load(imageUrl)
             .override(140 * 2,140 * 2)
@@ -27,7 +30,7 @@ object ViewBindingAdapter {
 
     @BindingAdapter("reviewImage")
     @JvmStatic
-    fun ImageView.setreviewImage (imageUrl: String){
+    fun ImageView.setReviewImage (imageUrl: String){
         Glide.with(this.context)
             .load(imageUrl)
             .override(300 * 2,300 * 2)
