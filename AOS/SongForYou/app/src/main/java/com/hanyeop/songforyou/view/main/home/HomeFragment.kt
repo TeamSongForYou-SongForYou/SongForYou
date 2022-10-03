@@ -19,6 +19,7 @@ import com.hanyeop.songforyou.utils.ResultType
 import com.hanyeop.songforyou.utils.SONG
 import com.hanyeop.songforyou.view.audio.AudioRecordActivity
 import com.hanyeop.songforyou.view.detail.SongDetailActivity
+import com.magicgoop.tagpshere.example.util.LoremIpsum.list
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -36,6 +37,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private var mFusedLocationProviderClient: FusedLocationProviderClient? = null // 현재 위치를 가져오기 위한 변수
     lateinit var mLastLocation: Location // 위치 값을 가지고 있는 객체
     private lateinit var mLocationRequest: LocationRequest// 위치 정보 요청의 매개변수를 저장하는
+    private lateinit var bannerList : MutableList<MutableList<String>>
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -45,14 +47,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private lateinit var recommendMyListAdapter: RecommendMyListAdapter
     private lateinit var recommendMyRecordAdapter: RecommendMyRecordAdapter
     private lateinit var ubRecommendListAdapter: UbRecommendListAdapter
+    private lateinit var bannerListAdapter: BannerListAdapter
+    private lateinit var  first: MutableList<String>
 
     override fun init() {
+
+        bannerText()
 
         ageRecommendMyListAdapter = RecommendMyListAdapter(songDetailListener)
         weatherRecommendMyListAdapter = RecommendMyListAdapter(songDetailListener)
         recommendMyListAdapter = RecommendMyListAdapter(songDetailListener)
         recommendMyRecordAdapter = RecommendMyRecordAdapter(songDetailListener)
         ubRecommendListAdapter = UbRecommendListAdapter(songDetailListener)
+        bannerListAdapter = BannerListAdapter(this.requireContext())
+
+        bannerListAdapter.submitList(bannerList as List<List<String>>?)
 
         binding.apply {
             recyclerAge.adapter = ageRecommendMyListAdapter
@@ -60,6 +69,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             recyclerMyList.adapter = recommendMyListAdapter
             recyclerMyRecord.adapter = recommendMyRecordAdapter
             recyclerChart.adapter = ubRecommendListAdapter
+            recyclerBanner.adapter = bannerListAdapter
         }
 
         startLocationUpdates()
@@ -213,5 +223,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             intent.putExtra(SONG,song)
             startActivity(intent)
         }
+    }
+
+    private fun bannerText(){
+
+        first = mutableListOf()
+
+        first.add("나보다 나를 더 잘 아는")
+        first.add("부를 음악 추천 서비스")
+        first.add("SONG FOR YOU")
+        first.add("banner_purple")
+
+
+        bannerList = mutableListOf()
+        bannerList.add(first)
+        first = mutableListOf()
+        first.add("나보다 나를 더 잘 아는")
+        first.add("부를 음악 추천 서비스")
+        first.add("SONG FOR YOU")
+        first.add("banner_green")
+
+        bannerList.add(first)
+        bannerList.add(first)
     }
 }

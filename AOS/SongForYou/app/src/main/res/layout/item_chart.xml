@@ -17,28 +17,33 @@
             android:id="@+id/img_song"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tv_ranking"
-            android:layout_width="30dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="10dp"
             android:text="@{String.valueOf(song.songSeq+1)}"
             tools:text="1"
+            android:fontFamily="@font/noto_sans_bold"
             app:layout_constraintBottom_toBottomOf="@+id/img_song"
             app:layout_constraintStart_toEndOf="@+id/img_song"
-            app:layout_constraintTop_toTopOf="@+id/img_song" />
+            app:layout_constraintTop_toTopOf="@+id/img_song"/>
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:text="@{song.songArtistName}"
             tools:text="After Like"
+            android:fontFamily="@font/noto_sans_regular"
             app:layout_constraintBottom_toTopOf="@+id/tv_artist"
             app:layout_constraintStart_toEndOf="@+id/tv_ranking"
             app:layout_constraintTop_toTopOf="@+id/img_song"
@@ -53,6 +58,7 @@
             tools:text="IVE (아이브)"
             android:textColor="@color/light_grey"
             android:textSize="12sp"
+            android:fontFamily="@font/noto_sans_thin"
             app:layout_constraintBottom_toBottomOf="@+id/img_song"
             app:layout_constraintEnd_toEndOf="@+id/tv_title"
             app:layout_constraintHorizontal_bias="0.5"

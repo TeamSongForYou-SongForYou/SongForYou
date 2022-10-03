@@ -112,7 +112,6 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_chart"
                     android:paddingBottom="12dp"
-                    android:background="@drawable/btn_stroke_lightgrey"
                     android:elevation="10dp"/>
 
                 <TextView
