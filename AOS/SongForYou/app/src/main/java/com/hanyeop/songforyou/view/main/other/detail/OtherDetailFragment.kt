@@ -52,6 +52,7 @@ class OtherDetailFragment : BaseFragment<FragmentOtherDetailBinding>(R.layout.fr
             }
 
             tvHeader.text = args.item.name
+            tvContentsHeader.text = args.itemContents
             recyclerRecommend.adapter = adapter
         }
 

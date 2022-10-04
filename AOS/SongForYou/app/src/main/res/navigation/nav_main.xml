@@ -36,5 +36,8 @@
         <argument
             android:name="item"
             app:argType="com.hanyeop.songforyou.model.dto.OthersDto" />
+        <argument
+            android:name="itemContents"
+            app:argType="string" />
     </fragment>
 </navigation>

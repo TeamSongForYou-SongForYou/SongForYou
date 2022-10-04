@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 data class OthersDto(
     val name: String,
     val num: Int,
-    val type: String
+    val type: String,
 ): Parcelable

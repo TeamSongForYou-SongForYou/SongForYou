@@ -26,6 +26,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tv_contents_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_goneMarginStart="24dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/noto_sans_light"
+            android:textSize="15sp"
+            android:drawablePadding="10dp"
+            android:layout_marginStart="24dp"
+            android:text="시원함이 느껴지는 여름 노래"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_header" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -35,7 +48,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_header"
+            app:layout_constraintTop_toBottomOf="@+id/tv_contents_header"
             app:layout_constraintVertical_bias="0.5">
 
             <LinearLayout
