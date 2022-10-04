@@ -47,21 +47,21 @@
 
         <TextView
             android:id="@+id/tv_next_song_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="5dp"
             android:ellipsize="marquee"
             android:focusable="true"
-            android:singleLine="true"
-            android:gravity="center"
+            android:fontFamily="@font/noto_sans_bold"
             android:marqueeRepeatLimit="marquee_forever"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:singleLine="true"
             android:text="불장난"
             android:textColor="@color/white"
-            android:fontFamily="@font/noto_sans_bold"
-            app:layout_constraintTop_toBottomOf="@id/tv_before_song_title"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_next_recommend_header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_before_song_title" />
 
         <TextView
             android:id="@+id/tv_next_recommend_header"

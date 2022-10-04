@@ -25,7 +25,7 @@ class ShowOthersFragment : BaseFragment<FragmentShowOthersBinding>(R.layout.frag
             }
             layoutTwo.setOnClickListener {
                 val action = ShowOthersFragmentDirections.actionShowOthersFragmentToOtherDetailFragment(
-                    OthersDto("이별",2,"word"), "이별 후 불뤄줘야 하는 노래"
+                    OthersDto("이별",2,"word"), "이별 후 불러줘야 하는 노래"
                 )
                 findNavController().navigate(action)
             }
