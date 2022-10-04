@@ -74,6 +74,8 @@
             android:id="@+id/btn_record"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:fontFamily="@font/noto_sans_medium"
+            android:textColor="@color/white"
             android:text="부르기"
             android:background="@drawable/btn_round_lightgrey"
             android:layout_marginEnd="24dp"
