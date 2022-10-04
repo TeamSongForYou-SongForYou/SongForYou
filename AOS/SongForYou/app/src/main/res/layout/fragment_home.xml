@@ -86,10 +86,8 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
-                    android:drawablePadding="10dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="오늘 날씨엔" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -109,11 +107,9 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/noto_sans_bold"
                     android:textSize="30sp"
-                    android:drawablePadding="10dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:text="Song For You 차트" />
+                    android:text="Song For You" />
 
                 <TextView
                     android:id="@+id/tv_chart_des"
@@ -146,10 +142,8 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
-                    android:drawablePadding="10dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="20대가 많이 부르는" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -169,10 +163,8 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
-                    android:drawablePadding="10dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="저장한 노래" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -192,10 +184,8 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
-                    android:drawablePadding="10dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="내 녹음과 관련된" />
 
                 <androidx.recyclerview.widget.RecyclerView
