@@ -277,6 +277,7 @@ public class SbRecommendServiceImpl implements SbRecommendService {
 			dto.getSongList().add(SongDto.of(SongStaticData.songList.get(1552)));
 			dto.getSongList().add(SongDto.of(SongStaticData.songList.get(1893)));
 			dto.getSongList().add(SongDto.of(SongStaticData.songList.get(3263)));
+			dto.getSongList().add(SongDto.of(SongStaticData.songList.get(1477)));
 			break;
 		case 5:
 			dto.getSongList().add(SongDto.of(SongStaticData.songList.get(6934)));
