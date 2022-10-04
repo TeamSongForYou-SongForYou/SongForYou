@@ -18,18 +18,43 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:context=".view.main.home.HomeFragment">
 
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="30dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/logo_gradient"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
+
+<!--        <ImageView-->
+<!--            android:id="@+id/textView"-->
+<!--            android:layout_width="130dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:background="@drawable/logo_neon"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/logo"-->
+<!--            app:layout_constraintStart_toEndOf="@id/logo"-->
+<!--            app:layout_constraintTop_toTopOf="@id/logo"-->
+<!--            app:layout_constraintVertical_bias="0.0" />-->
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="30dp"
-            android:text="Song For You"
-            android:fontFamily="@font/noto_sans_medium"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:gravity="center_vertical"
+            android:text="Song For You "
             android:textColor="@color/white"
-            android:textSize="28sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/logo"
+            app:layout_constraintStart_toEndOf="@id/logo"
+            app:layout_constraintTop_toTopOf="@id/logo"/>
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -37,7 +62,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintTop_toBottomOf="@+id/logo">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,8 +86,10 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
+                    android:drawablePadding="10dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
+                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="오늘 날씨엔" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -82,8 +109,10 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/noto_sans_bold"
                     android:textSize="30sp"
+                    android:drawablePadding="10dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
+                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="Song For You 차트" />
 
                 <TextView
@@ -117,8 +146,10 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
+                    android:drawablePadding="10dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
+                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:text="20대가 많이 부르는" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -138,9 +169,11 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
+                    android:drawablePadding="10dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
-                    android:text="저장한 노래들과 유사한" />
+                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:text="저장한 노래" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_my_list"
@@ -159,9 +192,11 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
+                    android:drawablePadding="10dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
-                    android:text="내가 부른 노래들과 유사한" />
+                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:text="내 녹음과 관련된" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_my_record"
