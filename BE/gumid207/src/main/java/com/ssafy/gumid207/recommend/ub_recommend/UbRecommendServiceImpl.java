@@ -3,7 +3,6 @@ package com.ssafy.gumid207.recommend.ub_recommend;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -14,6 +13,8 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -93,18 +94,27 @@ public class UbRecommendServiceImpl implements UbRecommendService {
 				.toUri(); //
 
 		RestTemplate restTemplate = new RestTemplate();
-		Long[] userList = new Long[0];
+		List<Long> userList = new ArrayList<>();
 
 		try {
-			userList = restTemplate.getForEntity(uri, Long[].class).getBody();
+			String temp = restTemplate.getForObject(uri, String.class);
+			JSONObject jsonObj = new JSONObject(temp);
+			JSONArray jsonArray = (JSONArray) jsonObj.get("data");
+			for(int i = 0; i < jsonArray.length(); i++) {
+				Long simUser = jsonArray.getLong(i);
+				if (simUser == userSeq) {
+					continue;
+				}
+				userList.add(simUser);
+			}
 		} catch (Exception e) {
+			System.out.println();
 		} finally {
-			if (userList.length == 0) {
+			if (userList.size() == 0) {
 				throw new SimVoiceUserNotFoundException("녹음 기록이 없거나, 목소리가 비슷한 유저가 없습니다.");
 			}
 		}
-		List<Long> result = new ArrayList<>(Arrays.asList(userList));
-		return result;
+		return userList;
 	}
 
 	public List<SongDto> getRecommendFromParams(Set<Long> dislike, List<Long> userSeqs, Integer size) throws Exception {
