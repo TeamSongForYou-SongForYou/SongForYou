@@ -29,9 +29,9 @@ class UserVoiceViewModel @Inject constructor(
             uploadUserVoiceUseCase.execute(userSeq, recordFile).collectLatest {
                 Log.d("test5", "uploadUserVoice: $it")
                 if (it is ResultType.Success) {
-                    _successMsgEvent.postValue("성공")
+                    _successMsgEvent.postValue("사용자 음성 정보가 등록되었습니다.")
                 } else if (it is ResultType.Fail) {
-                    _failMsgEvent.postValue("실패")
+//                    _failMsgEvent.postValue("")
                 }
             }
         }
