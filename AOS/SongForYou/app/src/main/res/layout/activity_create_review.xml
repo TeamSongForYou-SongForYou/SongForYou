@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.karaoke.review.CreateReviewActivity">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="타임동전노래방"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="작성하기"
+            android:textColor="@color/CustomColor1"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/cancel_64"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_name"
+            app:tint="@color/light_grey" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <TextView
+                    android:id="@+id/tv_cleanness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginTop="20dp"
+                    android:text="청결" />
+
+                <com.willy.ratingbar.ScaleRatingBar
+                    android:id="@+id/rating_cleanness"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/baseRatingBar"
+                    app:srb_clearRatingEnabled="true"
+                    app:srb_clickable="true"
+                    app:srb_isIndicator="false"
+                    app:srb_minimumStars="1"
+                    app:srb_numStars="5"
+                    app:srb_rating="2"
+                    app:srb_scrollable="true"
+                    app:srb_starHeight="30dp"
+                    app:srb_starPadding="2dp"
+                    app:srb_starWidth="30dp"
+                    app:srb_stepSize="1"/>
+
+                <TextView
+                    android:id="@+id/tv_sound_quality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginTop="20dp"
+                    android:text="음질" />
+
+                <com.willy.ratingbar.ScaleRatingBar
+                    android:id="@+id/rating_sound_quality"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/baseRatingBar"
+                    app:srb_clearRatingEnabled="true"
+                    app:srb_clickable="true"
+                    app:srb_isIndicator="false"
+                    app:srb_minimumStars="1"
+                    app:srb_numStars="5"
+                    app:srb_rating="2"
+                    app:srb_scrollable="true"
+                    app:srb_starHeight="30dp"
+                    app:srb_starPadding="2dp"
+                    app:srb_starWidth="30dp"
+                    app:srb_stepSize="1"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/real_light_grey"
+                    android:layout_marginTop="20dp"/>
+
+                <TextView
+                    android:id="@+id/tv_pay_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="결제 방식"
+                    android:textSize="16sp"/>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/group_pay_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:chipSpacingHorizontal="12dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        app:chipBackgroundColor="#00000000"
+                        app:chipStrokeColor="@color/light_grey"
+                        app:chipStrokeWidth="2dp"
+                        app:chipStartPadding="8dp"
+                        app:chipEndPadding="8dp"
+                        android:textSize="16sp"                        android:text="카드"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_cash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        app:chipBackgroundColor="#00000000"
+                        app:chipStrokeColor="@color/light_grey"
+                        app:chipStrokeWidth="2dp"
+                        app:chipStartPadding="8dp"
+                        app:chipEndPadding="8dp"
+                        android:textSize="16sp"                        android:text="현금"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_both"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        app:chipBackgroundColor="#00000000"
+                        app:chipStrokeColor="@color/light_grey"
+                        app:chipStrokeWidth="2dp"
+                        app:chipStartPadding="8dp"
+                        app:chipEndPadding="8dp"
+                        android:textSize="16sp"
+                        android:text="둘다"/>
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/tv_employee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="직원 유무"
+                    android:textSize="16sp"/>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/group_employee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:chipSpacingHorizontal="12dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_employee_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        app:chipBackgroundColor="#00000000"
+                        app:chipStrokeColor="@color/light_grey"
+                        app:chipStrokeWidth="2dp"
+                        app:chipStartPadding="8dp"
+                        app:chipEndPadding="8dp"
+                        android:textSize="16sp"
+                        android:text="있음"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_employee_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        app:chipBackgroundColor="#00000000"
+                        app:chipStrokeColor="@color/light_grey"
+                        app:chipStrokeWidth="2dp"
+                        app:chipStartPadding="8dp"
+                        app:chipEndPadding="8dp"
+                        android:textSize="16sp"
+                        android:text="없음"/>
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/tv_toilet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="화장실"
+                    android:textSize="16sp"/>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/group_toilet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:chipSpacingHorizontal="12dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_inside"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        app:chipBackgroundColor="#00000000"
+                        app:chipStrokeColor="@color/light_grey"
+                        app:chipStrokeWidth="2dp"
+                        app:chipStartPadding="8dp"
+                        app:chipEndPadding="8dp"
+                        android:textSize="16sp"
+                        android:text="내부"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_outside"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        app:chipBackgroundColor="#00000000"
+                        app:chipStrokeColor="@color/light_grey"
+                        app:chipStrokeWidth="2dp"
+                        app:chipStartPadding="8dp"
+                        app:chipEndPadding="8dp"
+                        android:textSize="16sp"
+                        android:text="외부"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_toilet_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        app:chipBackgroundColor="#00000000"
+                        app:chipStrokeColor="@color/light_grey"
+                        app:chipStrokeWidth="2dp"
+                        app:chipStartPadding="8dp"
+                        app:chipEndPadding="8dp"
+                        android:textSize="16sp"
+                        android:text="없음"/>
+                </com.google.android.material.chip.ChipGroup>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/real_light_grey"
+                    android:layout_marginTop="20dp"/>
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/btn_stroke_lightgrey"
+                    android:src="@drawable/ic_camera" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/real_light_grey"
+                    android:layout_marginTop="20dp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tf_content"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_login_title"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textMultiLine"
+                        android:gravity="start" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

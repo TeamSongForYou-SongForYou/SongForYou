@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="song"
+            type="com.hanyeop.songforyou.model.response.SongResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".view.detail.SongDetailActivity">
+
+        <ImageView
+            android:id="@+id/img_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="40dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/image_round"
+            android:clipToOutline="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_genre"
+            app:songImage="@{song.songThumbnailUrl}"
+            tools:srcCompat="@drawable/test" />
+
+
+        <ImageView
+            android:id="@+id/img_dis_like"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="20dp"
+            android:tint="@color/white"
+            app:layout_constraintStart_toStartOf="@+id/img_detail"
+            app:layout_constraintTop_toBottomOf="@+id/img_add"
+            app:srcCompat="@drawable/thumb_down_64" />
+
+        <ImageView
+            android:id="@+id/img_like"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/img_detail"
+            app:layout_constraintTop_toTopOf="@+id/img_dis_like"
+            app:srcCompat="@drawable/thumb_up_64" />
+
+        <ImageView
+            android:id="@+id/img_add"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/img_detail"
+            app:layout_constraintTop_toBottomOf="@+id/img_detail"
+            app:srcCompat="@drawable/ic_baseline_playlist_add_24"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:singleLine="true"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingStart="4dp"
+            android:text="@{song.songTitle}"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/img_like"
+            app:layout_constraintStart_toEndOf="@+id/img_dis_like"
+            app:layout_constraintTop_toTopOf="@+id/img_dis_like"
+            tools:text="Pink Venom" />
+
+        <TextView
+            android:id="@+id/tv_artist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{song.songArtistName}"
+            android:textColor="@color/bombay"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/img_like"
+            app:layout_constraintStart_toEndOf="@+id/img_dis_like"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            tools:text="블랙핑크" />
+
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/youtube_player_view"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="16dp"
+            android:alpha="0"
+            app:layout_constraintBottom_toTopOf="@+id/btn_record"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_artist" />
+
+        <Button
+            android:id="@+id/btn_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="부르기"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_artist" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Playing From PlayList"
+            android:textColor="@color/bombay"
+            android:fontFamily="@font/noto_sans_bold"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/img_detail"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_genre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{song.songGenre}"
+            android:fontFamily="@font/noto_sans_bold"
+            android:textColor="#7CEEFF"
+            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:text="랩/힙합" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bottom_card"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_record">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_lyrics"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/noto_sans_light"
+                    android:paddingTop="20dp"
+                    android:paddingStart="40dp"
+                    android:paddingEnd="40dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:text="가사입니다.\n가사입니다2\n가사입니다3" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

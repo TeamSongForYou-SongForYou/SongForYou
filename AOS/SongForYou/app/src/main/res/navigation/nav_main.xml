@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/HomeFragment"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="com.hanyeop.songforyou.view.main.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"/>
+    <fragment
+        android:id="@+id/ShowOthersFragment"
+        android:name="com.hanyeop.songforyou.view.main.other.ShowOthersFragment"
+        android:label="ShowOthersFragment"
+        tools:layout="@layout/fragment_show_others">
+        <action
+            android:id="@+id/action_ShowOthersFragment_to_otherDetailFragment"
+            app:destination="@id/otherDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/PlayListFragment"
+        android:name="com.hanyeop.songforyou.view.main.play_list.PlayListFragment"
+        android:label="PlayListFragment"
+        tools:layout="@layout/fragment_play_list"/>
+    <fragment
+        android:id="@+id/MyPageFragment"
+        android:name="com.hanyeop.songforyou.view.main.my_page.MyPageFragment"
+        android:label="MyPageFragment"
+        tools:layout="@layout/fragment_my_page"/>
+    <fragment
+        android:id="@+id/otherDetailFragment"
+        android:name="com.hanyeop.songforyou.view.main.other.detail.OtherDetailFragment"
+        android:label="OtherDetailFragment" >
+        <argument
+            android:name="item"
+            app:argType="com.hanyeop.songforyou.model.dto.OthersDto" />
+        <argument
+            android:name="itemContents"
+            app:argType="string" />
+    </fragment>
+</navigation>

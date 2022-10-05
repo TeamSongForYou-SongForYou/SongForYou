@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="300dp"
+        android:layout_height="160dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/banner_purple"
+        android:scaleType="fitXY">
+
+        <TextView
+            android:id="@+id/tv_banner_contents_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="20dp"
+            android:text="나보다 나를 더 잘아는"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:fontFamily="@font/noto_sans_thin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tv_banner_contents_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="부를 음악 추천 서비스"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:fontFamily="@font/noto_sans_thin"
+            app:layout_constraintTop_toBottomOf="@id/tv_banner_contents_1"
+            app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tv_banner_contents_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="20dp"
+            android:text="SONG FOR YOU"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:fontFamily="@font/noto_sans_medium"
+            app:layout_constraintTop_toBottomOf="@id/tv_banner_contents_2"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

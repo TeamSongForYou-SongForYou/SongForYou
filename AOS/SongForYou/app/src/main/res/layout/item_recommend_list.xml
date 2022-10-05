@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="song"
+            type="com.hanyeop.songforyou.model.response.SongResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <ImageView
+            android:id="@+id/img_recommend"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/image_round"
+            android:clipToOutline="true"
+            android:scaleType="fitXY"
+            app:summaryImage="@{song.songThumbnailUrl}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:maxLines="1"
+            android:paddingEnd="4dp"
+            android:ellipsize="end"
+            android:textColor="@color/white"
+            android:text="@{song.songTitle}"
+            android:fontFamily="@font/noto_sans_medium"
+            app:layout_constraintEnd_toStartOf="@+id/btn_record"
+            app:layout_constraintStart_toEndOf="@+id/img_recommend"
+            app:layout_constraintTop_toTopOf="@+id/img_recommend"
+            tools:text="Permission To Dance" />
+
+        <TextView
+            android:id="@+id/tv_artist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{song.songArtistName}"
+            android:paddingEnd="4dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="@color/bombay"
+            android:fontFamily="@font/noto_sans_regular"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            tools:text="BTS" />
+
+        <TextView
+            android:id="@+id/tv_cover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:youtubeView="@{song.songYoutubeView}"
+            tools:text="100000"
+            android:gravity="center"
+            android:textColor="@color/bombay"
+            android:drawableStart="@drawable/left_youtube"
+            android:drawablePadding="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_recommend"
+            app:layout_constraintStart_toStartOf="@+id/tv_artist" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_record"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:fontFamily="@font/noto_sans_medium"
+            android:textColor="@color/white"
+            android:text="부르기"
+            android:textSize="10dp"
+            android:background="@drawable/btn_round_lightgrey"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
