@@ -20,14 +20,14 @@ class IntroActivity: BaseActivity<ActivityIntroBinding>(R.layout.activity_intro)
 
     override fun init() {
         var dp = this.resources.displayMetrics.density
-        binding.ivLogo.animate().translationY(200 * dp).setDuration(1500L)
+        binding.ivLogo.animate().translationY(350 * dp).setDuration(2500L)
             .setInterpolator(BounceInterpolator()).start()
         var handler = Handler()
         handler.postDelayed( {
 
             var intent = Intent( this, LoginActivity::class.java)
             startActivity(intent)
-        }, 1500)
+        }, 2500)
     }
 
     override fun onPause() {
