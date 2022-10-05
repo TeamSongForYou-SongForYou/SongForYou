@@ -18,20 +18,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:iconifiedByDefault="false"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:queryBackground="@drawable/search_lightgrey"
-            app:queryHint="검색어를 입력해주세요." />
+            app:queryHint="검색어를 입력해주세요."/>
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="20dp"
             android:text="노래"
             android:textSize="20sp"
             android:textColor="@color/white"
