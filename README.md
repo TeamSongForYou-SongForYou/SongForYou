@@ -244,60 +244,29 @@
 
 ```markdown
 📁backend
-└──📁src/main
-├──📁java/com/ssafy/d101
-│ ├──📃Gumid101Application.java
-│ ├──📁achievement
-│ ├──📁aop
-│ ├──📁aws
-│ ├──📁competition
+├──📁src/main
+├──📁java/com/ssafy/gumid207
+│ ├──📃Gumid207Application.java
+│ ├──📁advice
 │ ├──📁config
-│ ├──📁controller.advice
-│ ├──📁crew
-│ ├──📁crew.activity
-│ ├──📁crew.manager
-│ ├──📁customercenter
-│ ├──📁customercenter.manager
 │ ├──📁customexception
+│ ├──📁devutil
 │ ├──📁dto
-│ └──📁entity
-│ │ ├──📃AchievementCompleteEntity.java
-│ │ ├──📃AchievementEntity.java
-│ │ ├──📃CompetitionEntity.java
-│ │ ├──📃CompetitionUserRecordEntity.java
-│ │ ├──📃CrewBoardEntity.java
-│ │ ├──📃CrewTotalRecordEntity.java
-│ │ ├──📃...
-│ │ └──📃UserEntity.java
-│ ├──📁firebase
-│ ├──📁imgfile
-│ ├──📁interceptor
+│ ├──📁entity
 │ ├──📁jwt
-│ ├──📁OAuth
-│ ├──📁OAuth.custom.validate
-│ ├──📁recomment
-│ ├──📁redis
-│ ├──📁req
+│ ├──📁mypage
+│ ├──📁oauth
+│ ├──📁recommend
 │ ├──📁res
-│ ├──📁schedule
-│ └──📁scrap
-│ │ ├──📃ScrapRepository.java
-│ │ ├──📃ScrapController.java
-│ │ ├──📃ScrapService.java
-│ │ └──📃ScrapServiceImpl.java
-│ ├──📁totalranking
+│ ├──📁review
+│ ├──📁s3
+│ ├──📁song
+│ ├──📁songbox
 │ ├──📁user
-│ └──📁util
-├──📁resources
-│ ├──📃application.yml
-│ ├──📃application-aws.yml
-│ ├──📃application-firebase.yml
-│ ├──📃application-oauth.yml
-│ └──📁firebase
-│ └──📃runwithme-...-.json
+│ ├──📁vote
+│ └──📁vote
 ├──📃.gitignore
-├──📃pom.xml
-└──📃dockerfile.yml
+└──📃pom.xml
 ```
 
 <br/>
