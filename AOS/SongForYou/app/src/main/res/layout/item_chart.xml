@@ -11,12 +11,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp">
 
         <ImageView
             android:id="@+id/img_song"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:adjustViewBounds="true"
             android:background="@drawable/image_round"
             android:clipToOutline="true"
@@ -35,7 +36,7 @@
             android:fontFamily="@font/noto_sans_regular"
             android:text="@{song.songArtistName}"
             android:textColor="@color/white"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="16dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_artist"
             app:layout_constraintStart_toEndOf="@+id/img_song"
             app:layout_constraintTop_toTopOf="@+id/img_song"

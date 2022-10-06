@@ -70,26 +70,45 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_banner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginStart="24dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:orientation="horizontal"
-                    tools:listitem="@layout/item_banner"/>
+                <com.denzcoskun.imageslider.ImageSlider
+                    android:id="@+id/imageSlide"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:layout_marginTop="8dp"
+                    android:clipToOutline="true"
+                    app:iss_auto_cycle="true"
+                    app:iss_delay="0"
+                    app:iss_period="3000"
+                    app:iss_error_image="@drawable/error"
+                    app:iss_selected_dot="@drawable/default_selected_dot"
+                    app:iss_unselected_dot="@drawable/default_unselected_dot"/>
 
-                <TextView
-                    android:id="@+id/tv_weather"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/noto_sans_medium"
-                    android:textSize="20sp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="40dp"
-                    android:text="오늘 날씨엔" />
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/noto_sans_medium"
+                        android:textSize="20sp"
+                        android:layout_gravity="center_vertical"
+                        android:text="오늘 날씨엔" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:scaleType="centerCrop"
+                        app:lottie_fileName="sunny.json"
+                        app:lottie_loop="true"
+                        app:lottie_autoPlay="true" />
+
+
+                </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_weather"
@@ -100,6 +119,7 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="horizontal"
                     tools:listitem="@layout/item_song_summary" />
+
 
                 <TextView
                     android:id="@+id/tv_chart"
@@ -127,10 +147,11 @@
                     android:id="@+id/recycler_chart"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginStart="24dp"
                     android:layout_margin="24dp"
                     android:paddingEnd="20dp"
+                    android:background="@drawable/btn_stroke_real_lightgrey"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_chart"
                     android:paddingBottom="12dp"
@@ -144,7 +165,7 @@
                     android:fontFamily="@font/noto_sans_medium"
                     android:textSize="20sp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="30dp"
                     android:text="20대가 많이 부르는" />
 
                 <androidx.recyclerview.widget.RecyclerView
