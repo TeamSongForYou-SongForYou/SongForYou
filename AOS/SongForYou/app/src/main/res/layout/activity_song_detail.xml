@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="40dp"
             android:adjustViewBounds="true"
             android:background="@drawable/image_round"
@@ -35,28 +35,21 @@
 
         <ImageView
             android:id="@+id/img_dis_like"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="20dp"
             android:tint="@color/white"
-            app:layout_constraintStart_toStartOf="@+id/img_detail"
-            app:layout_constraintTop_toBottomOf="@+id/img_add"
-            app:srcCompat="@drawable/thumb_down_64" />
-
-        <ImageView
-            android:id="@+id/img_like"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:tint="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/img_detail"
-            app:layout_constraintTop_toTopOf="@+id/img_dis_like"
-            app:srcCompat="@drawable/thumb_up_64" />
+            app:layout_constraintTop_toTopOf="@id/img_add"
+            app:layout_constraintBottom_toBottomOf="@id/img_add"
+            app:layout_constraintEnd_toStartOf="@id/img_add"
+            app:srcCompat="@drawable/thumb_down_64"
+            tools:layout_editor_absoluteX="363dp" />
 
         <ImageView
             android:id="@+id/img_add"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="@+id/img_detail"
             app:layout_constraintTop_toBottomOf="@+id/img_detail"
             app:srcCompat="@drawable/ic_baseline_playlist_add_24"
@@ -66,30 +59,32 @@
             android:id="@+id/tv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="40dp"
             android:ellipsize="marquee"
             android:focusable="true"
             android:singleLine="true"
             android:gravity="center"
             android:marqueeRepeatLimit="marquee_forever"
-            android:paddingStart="4dp"
             android:text="@{song.songTitle}"
             android:textColor="@color/white"
             android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/img_like"
-            app:layout_constraintStart_toEndOf="@+id/img_dis_like"
-            app:layout_constraintTop_toTopOf="@+id/img_dis_like"
+            android:fontFamily="@font/noto_sans_medium"
+            app:layout_constraintTop_toBottomOf="@id/img_detail"
+            app:layout_constraintStart_toStartOf="parent"
             tools:text="Pink Venom" />
 
         <TextView
             android:id="@+id/tv_artist"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
             android:gravity="center"
             android:text="@{song.songArtistName}"
             android:textColor="@color/bombay"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/img_like"
-            app:layout_constraintStart_toEndOf="@+id/img_dis_like"
+            android:fontFamily="@font/noto_sans_medium"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title"
             tools:text="블랙핑크" />
 
@@ -105,12 +100,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_artist" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_record"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="부르기"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/noto_sans_medium"
+            android:textSize="16dp"
+            android:textColor="@color/white"
+            android:text="부르러 가기"
+            android:background="@drawable/btn_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +123,7 @@
             android:text="Playing From PlayList"
             android:textColor="@color/bombay"
             android:fontFamily="@font/noto_sans_bold"
-            android:textSize="14sp"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/img_detail"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -132,10 +131,10 @@
             android:id="@+id/tv_genre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:text="@{song.songGenre}"
-            android:fontFamily="@font/noto_sans_bold"
-            android:textColor="#7CEEFF"
+            android:fontFamily="@font/noto_sans_medium"
+            android:textColor="#45DDF2"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             tools:text="랩/힙합" />
@@ -161,7 +160,7 @@
                     android:id="@+id/tv_lyrics"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/noto_sans_light"
                     android:paddingTop="20dp"
                     android:paddingStart="40dp"
