@@ -93,7 +93,7 @@
 
 > <h3><font color="green">전체 시스템 구조</font></h3>
 
-> ![전체 시스템 구조](img/102_전체 시스템 구조.png) > <br/>
+> ![전체 시스템 구조](img/102_시스템 구조도.png) > <br/>
 
 > <h3><font color="green">ERD 다이어그램</font></h3>
 
