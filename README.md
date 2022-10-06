@@ -97,7 +97,7 @@
 
 > <h3><font color="green">ERD 다이어그램</font></h3>
 
-> ![1](./img/8.ERD다이어그램.png) > [링크](https://www.erdcloud.com/d/uoAsmnv3gyCugnxno) 바로가기
+> ![ERD](img/D207 ERD.png) > <br/>
 > <br/>
 
 > <h3><font color="green">요구사항 명세서</font></h3>
