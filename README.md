@@ -14,21 +14,21 @@
 <h5>👟 회원가입 화면</h5>
 <hr>
 
-![회원가입](https://postfiles.pstatic.net/MjAyMjEwMDZfOTIg/MDAxNjY1MDMxMDE4MDkz._i6p70G1HzrQ-yqwjm6glp-obdXldCyGA_dTIQnL4vUg.au_ir7uHJqnqNII5ruDidJ1cxEb9aEVMCHsweT0zBKgg.JPEG.anfidthtn/2_%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85.jpg?type=w773)
+![회원가입](img/2_회원가입.jpg)
 <br/>
 
 <h5>🗺 메인 화면</h5>
 <hr>
 
-![메인화면](https://postfiles.pstatic.net/MjAyMjEwMDZfMjU3/MDAxNjY1MDMxMDIyMjcz.sI5njPSRcfRodJxP9p4raKadw5cwv-ORgOchaFmKPYAg.Ep4WGVt-yVS_DMc5HXDGC43GKzrye2Enb3uH47foTSQg.JPEG.anfidthtn/3_%ED%99%88%ED%99%94%EB%A9%B41.jpg?type=w773)
+![메인화면](img/3_홈화면1.jpg)
 <br/>
-![메인화면2](https://postfiles.pstatic.net/MjAyMjEwMDZfMjI3/MDAxNjY1MDMxMDE5NTk5.Ueay1oVu5f_FAX3Liv0LQTKcvPHgU-fNG3VzcFfTOLIg.RznSkyUzODGWZXDIO8hjH2YZGTYhwi2QL_T0ZUkYT4wg.JPEG.anfidthtn/4_%ED%99%88%ED%99%94%EB%A9%B42.jpg?type=w773)
+![메인화면2](img/4_홈화면2.jpg)
 <br/>
 
 <h5>🗺 상황별 추천 노래 화면</h5>
 <hr>
 
-![상황별 추천 노래](https://postfiles.pstatic.net/MjAyMjEwMDZfMjU3/MDAxNjY1MDMxMDIyMjcz.sI5njPSRcfRodJxP9p4raKadw5cwv-ORgOchaFmKPYAg.Ep4WGVt-yVS_DMc5HXDGC43GKzrye2Enb3uH47foTSQg.JPEG.anfidthtn/3_%ED%99%88%ED%99%94%EB%A9%B41.jpg?type=w773)
+![상황별 추천 노래](img/5_상황별 추천화면.jpg)
 <br/>
 
 ## 📃 Description
