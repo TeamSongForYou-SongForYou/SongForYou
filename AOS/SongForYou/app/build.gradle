@@ -87,7 +87,7 @@ dependencies {
     implementation "com.github.skydoves:powerspinner:1.2.3"
 
     // Lottie
-    implementation 'com.airbnb.android:lottie:3.5.0'
+    implementation 'com.airbnb.android:lottie:5.0.2'
 
     // Horizon
     implementation 'com.yalantis:eqwaves:1.0.1'
@@ -115,4 +115,7 @@ dependencies {
     implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
 
     implementation 'com.github.magic-goop:tag-sphere:1.0.0'
+
+    // Android Image Slide
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
 }
