@@ -101,14 +101,14 @@
 
 > <h3><font color="green">요구사항 명세서</font></h3>
 
-> ![image](./img/9.요구사항명세서.gif) <br/>
+> ![image](./img/요구사항명세서.png) <br/> > [요구사항 명세서](https://full-kite-ddb.notion.site/2fb7178a649e4ea882d10278962e8b85?v=614a303f67e243b18ea72eb6e7771027)
 
 > <br/>
 > <br/>
 
 > <h3><font color="green">API 명세서</font></h3>
 
-> ![image](./img/10.API명세서.gif) <br/>
+> ![image](./img/API명세서.png) <br/> > [API 명세서](https://full-kite-ddb.notion.site/API-a3b3ea2bc4704fd28ca1362ad71e6a10)
 
 > <br/>
 > <br/>
@@ -252,23 +252,6 @@
 ```
 
 <br/>
-
-> <h3><font color="green">패키지 다이어그램</font></h3>
-
-> ![image](./img/12.패키지다이어그램.png)
-
-> 도메인 별로 패키지를 구분하려고 하였다. 하지만 req,res,dto의 경우
-> 도메인 별로 구분하지 않고 하나의 패키지에 모아서 처리하였다.
-> <br/>
-
-> <h3><font color="green">인증 처리과정</font></h3>
-
-> ![image](./img/13.인증처리과정.png)
-
-> 클라이언트에서 OAuth Provider로 부터 받은 id_token, authorized_code 혹은 AccessToken를
-> 서버에 전달하고 서버에서 다시 OAuth Provider로 요청하여 검증을 수행한다.<br/>
-> 검증이 정상일 경우 서버에서는 자신의 로직을 통해 서버의 자원에 접근할 수 있는 JWT 토큰을 발급한다.
-> <br/> > <br/>
 
 ## 👨‍👦‍👦 Team Member
 
