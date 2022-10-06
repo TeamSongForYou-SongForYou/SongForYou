@@ -8,59 +8,60 @@
 <h5>👟 로그인/ 회원가입 화면</h5>
 <hr>
 
-![로그인](./img/1_로그인.jpg)
-![회원가입](./img/2_회원가입.jpg)
+![로그인](./img/1로그인.jpg)
+![회원가입](./img/2회원가입.jpg)
 <br/>
 
 <h5>🗺 메인 화면</h5>
 <hr>
 
-![메인화면](img/3_홈화면1.jpg)
-![메인화면2](img/4_홈화면2.jpg)
+![메인화면](img/3홈화면1.jpg)
+![메인화면2](img/4홈화면2.jpg)
 <br/>
 
 <h5>🗺 보관함 화면 </h5>
 <hr>
 
-![내가 저장한 노래](img/6_보관함.jpg)
-![내가 부른 노래](img/7_녹음 리스트 화면.jpg)
+![내가 저장한 노래](img/6보관함.jpg)
+![내가 부른 노래](img/7녹음리스트화면.jpg)
+
 <br/>
 
 <h5>🗺 다음곡 추천 </h5>
 <hr>
 
-![내가 저장한 노래](img/13_메인 메뉴 화면.jpg)
-![검색](img/14_검색화면.jpg)
-![다음 곡 추천](img/15_다음곡 추천.jpg)
+![내가 저장한 노래](img/13메인 메뉴 화면.jpg)
+![검색](img/14검색화면.jpg)
+![다음 곡 추천](img/15다음곡 추천.jpg)
 <br/>
 
 <h5>🗺 사용자 음성 녹음 / 노래 녹음 </h5>
 <hr>
 
-![음성정보 등록](img/9_사용자 음성정보 등록.jpg)
-![노래 녹음](img/10_노래 녹음.jpg)
+![음성정보 등록](img/9사용자 음성정보 등록.jpg)
+![노래 녹음](img/10노래 녹음.jpg)
 <br/>
 
 <h5>🗺 노래 상세 </h5>
 <hr>
 
-![노래 상세](img/12_노래 상세.jpg)
-![녹음 재생](img/11_녹음 재생.jpg)
+![노래 상세](img/12노래 상세.jpg)
+![녹음 재생](img/11녹음 재생.jpg)
 <br/>
 
 <h5>🗺 상황별 추천 노래 화면</h5>
 <hr>
 
-![상황별 추천 노래](img/5_상황별 추천화면.jpg)
-![태그 클라우드](img/18_태그 클라우드.jpg)
-![태그 뷰](img/19_태그 뷰.jpg)
+![상황별 추천 노래](img/5상황별 추천화면.jpg)
+![태그 클라우드](img/18태그 클라우드.jpg)
+![태그 뷰](img/19태그 뷰.jpg)
 <br/>
 
 <h5>🗺 노래방 리뷰 화면</h5>
 <hr>
 
-![노래방 리뷰](img/16_노래방 리뷰.jpg)
-![노래방 리뷰 작성](img/17_노래방 리뷰 작성.jpg)
+![노래방 리뷰](img/16노래방 리뷰.jpg)
+![노래방 리뷰 작성](img/17노래방 리뷰 작성.jpg)
 <br/>
 
 ## 📃 Description
@@ -117,30 +118,26 @@
 
 > <h3><font color="green">사용한 라이브러리</font></h3>
 
-| Name             | Description                                  |
-| ---------------- | -------------------------------------------- |
-| Data Layer API   | Wear OS 네트워크 통신 라이브러리             |
-| Navigation       | 프래그먼트 전환 라이브러리                   |
-| Glide            | 이미지 로딩 라이브러리                       |
-| ViewModel        | 수명주기 고려 데이터를 저장, 관리 라이브러리 |
-| Coroutine        | 비동기 처리 라이브러리                       |
-| Coroutine Flow   | 비동기 데이터 스트림                         |
-| TedPermission    | 안드로이드 권한 라이브러리                   |
-| Retrofit         | HTTP 통신 라이브러리                         |
-| SimpleRatingBar  | RatingBar 커스텀 라이브러리                  |
-| Dagger Hilt      | 의존성 주입 라이브러리                       |
-| Circle ImageView | 이미지뷰 라이브러리                          |
-| Google Auth      | 구글 소셜 로그인                             |
-| Naver            | 네이버 소셜 로그인                           |
-| KaKao            | 카카오 소셜 로그인                           |
-| Lottie           | 안드로이드 애니메이션 라이브러리             |
-| GoogleMap        | 구글 지도 라이브러리                         |
-| FCM              | 파이어베이스 푸시 알림                       |
-| Paging 3         | 안드로이드 페이징 라이브러리                 |
-| Mp Android Chart | 안드로이드 차트 통계 라이브러리              |
-| Room             | 안드로이드 DB 라이브러리                     |
-| Weather Api      | 공공데이터포털 기상청 날씨 라이브러리        |
-| CalendarView     | 캘린더 라이브러리                            |
+| Name            | Description                                  |
+| --------------- | -------------------------------------------- |
+| Navigation      | 프래그먼트 전환 라이브러리                   |
+| Glide           | 이미지 로딩 라이브러리                       |
+| ViewModel       | 수명주기 고려 데이터를 저장, 관리 라이브러리 |
+| Coroutine       | 비동기 처리 라이브러리                       |
+| Coroutine Flow  | 비동기 데이터 스트림                         |
+| TedPermission   | 안드로이드 권한 라이브러리                   |
+| Retrofit        | HTTP 통신 라이브러리                         |
+| SimpleRatingBar | RatingBar 커스텀 라이브러리                  |
+| Dagger Hilt     | 의존성 주입 라이브러리                       |
+| PowerSpinner    | 안드로이드 스피너 라이브러리                 |
+| Google Auth     | 구글 소셜 로그인                             |
+| Lottie          | 안드로이드 애니메이션 라이브러리             |
+| KakaoMap        | 카카오 지도 라이브러리                       |
+| AnyChart        | 안드로이드 태그클라우드 통계 라이브러리      |
+| TagSphere       | 안드로이드 태그 Sphere 라이브러리            |
+| Weather Api     | 공공데이터포털 기상청 날씨 라이브러리        |
+| YoutubePlayer   | 유튜브 플레이어 라이브러리                   |
+| Exoplayer       | 동영상 플레이어 라이브러리                   |
 
 <br/>
 
