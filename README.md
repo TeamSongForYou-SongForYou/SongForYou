@@ -8,7 +8,7 @@
 <h5>👟 로그인 화면 화면</h5>
 <hr>
 
-![로그인](https://postfiles.pstatic.net/MjAyMjEwMDZfMjI1/MDAxNjY1MDMxMDE4MDkx.5zwOBgmavbFpyUGOC284OqpLMTkwNDEapBRx_1X1ZNkg.qGEHgZIcGLI0ZkQ8yDwspEy_TMIywK3Hk5qps9tNPaIg.JPEG.anfidthtn/1_%EB%A1%9C%EA%B7%B8%EC%9D%B8.jpg?type=w773)
+![로그인](./img/1_로그인.jpg)
 <br/>
 
 <h5>👟 회원가입 화면</h5>
