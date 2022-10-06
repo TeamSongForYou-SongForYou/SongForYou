@@ -89,11 +89,11 @@
 
 > <h3><font color="green">전체 기술 스택</font></h3>
 
-> ![image](./img/6.전체기술스택.png) > <br/>
+> ![기술 스택](img/101_기술 스택.png) > <br/>
 
 > <h3><font color="green">전체 시스템 구조</font></h3>
 
-> ![image](./img/7.전체시스템구조.png) > <br/>
+> ![전체 시스템 구조](img/102_전체 시스템 구조.png) > <br/>
 
 > <h3><font color="green">ERD 다이어그램</font></h3>
 
@@ -289,13 +289,13 @@
 
 > <h3><font color="red">Android Part</font></h3>
 
-![image](./img/14.팀원역할1.png)
+![AOS팀원역할](img/103_팀원역할1.png)
 
 > <br/>
 
 > <h3><font color="red">Back-End Part</font></h3>
 
-![image](./img/15.팀원역할2.png)
+![BE팀원역할](img/104_팀원역할2.png)
 
 > <br/>
 > <br/>
