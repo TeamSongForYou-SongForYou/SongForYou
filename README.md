@@ -1,4 +1,4 @@
-## 🏃🏻‍♂️ Song For You?
+## 🎵 Song For You?
 
 <font size="5" color="orange">**Song For You**</font> 프로젝트는 Android 모바일로 제공되는 부르기 좋은 노래 추천 어플리케이션입니다. 주요 기획 의도는 <strong>개발진의 역량 향상</strong>과 <strong>기존의 듣기 좋은 노래 추천 앱 서비스에서 제공하지 않는 부를 노래 추천앱 개발</strong>이었습니다.
 <br/>
