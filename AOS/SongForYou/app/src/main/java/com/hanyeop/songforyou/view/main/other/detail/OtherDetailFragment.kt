@@ -105,17 +105,17 @@ class OtherDetailFragment : BaseFragment<FragmentOtherDetailBinding>(R.layout.fr
 
         tagCloud.title("가사에서 많이 나오는 단어")
 
-        val ordinalColor = OrdinalColor.instantiate()
-        ordinalColor.colors(
-            arrayOf(
-                "#26959f", "#f18126", "#3b8ad8", "#60727b", "#e24b26"
-            )
-        )
-        tagCloud.colorScale(ordinalColor)
+//        val ordinalColor = OrdinalColor.instantiate()
+//        ordinalColor.colors(
+//            arrayOf(
+//                "#26959f", "#f18126", "#3b8ad8", "#60727b", "#e24b26"
+//            )
+//        )
+//        tagCloud.colorScale(ordinalColor)
         tagCloud.angles(arrayOf(-90.0, 0.0, 90.0))
 
-        tagCloud.colorRange().enabled(true)
-        tagCloud.colorRange().colorLineSize(15.0)
+//        tagCloud.colorRange().enabled(true)
+//        tagCloud.colorRange().colorLineSize(15.0)
         tagCloud
     }
 
