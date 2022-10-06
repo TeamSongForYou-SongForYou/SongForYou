@@ -16,3 +16,4 @@ local.properties
 /.idea/
 /app/src/main/res/values/string_api.xml
 /app/src/main/java/com/hanyeop/songforyou/utils/ApiKey.kt
+/app/src/debug/res/values/string_api.xml
