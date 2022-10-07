@@ -16,17 +16,20 @@
         <com.hanyeop.songforyou.view.audio.SoundVisualizerView
             android:id="@+id/soundVisualizerView"
             android:layout_width="0dp"
-            android:layout_height="250dp"
+            android:layout_height="150dp"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/resetButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="RESET"
+            android:textColor="@color/white"
+            android:fontFamily="@font/noto_sans_bold"
+            android:background="@drawable/btn_gradient_round"
             app:layout_constraintBottom_toBottomOf="@+id/recordButton"
             app:layout_constraintEnd_toStartOf="@+id/recordButton"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,18 +49,7 @@
             app:layout_constraintTop_toBottomOf="@+id/soundVisualizerView"
             tools:ignore="HardcodedText" />
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animation_view"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recordTimeTextView"
-            app:lottie_autoPlay="true"
-            app:lottie_fileName="karaoke.json"
-            app:lottie_loop="true" />
+
 
         <com.hanyeop.songforyou.view.audio.RecordButton
             android:id="@+id/recordButton"
@@ -71,28 +63,49 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:src="@drawable/ic_recorde" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="저장하기"
+            android:textColor="@color/white"
+            android:fontFamily="@font/noto_sans_bold"
+            android:background="@drawable/btn_gradient_round"
             app:layout_constraintBottom_toBottomOf="@+id/recordButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/recordButton"
             app:layout_constraintTop_toTopOf="@+id/recordButton" />
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="음성을 녹음해주세요!\n목소리에 맞는 음악을 추천해드려요."
-            android:textColor="@color/white"
-            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/recordTimeTextView"
             app:layout_constraintBottom_toTopOf="@+id/recordButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent">
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_title"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="record.json"
+                app:lottie_loop="true"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="@font/noto_sans_medium"
+                android:text="음성을 녹음해주세요!\n목소리에 맞는 음악을 추천해드려요."
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </FrameLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
