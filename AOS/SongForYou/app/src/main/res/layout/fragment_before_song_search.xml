@@ -17,12 +17,14 @@
             android:layout_height="wrap_content"
             app:iconifiedByDefault="false"
             android:layout_marginTop="16dp"
+            app:searchIcon="@drawable/ic_search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:queryBackground="@drawable/search_lightgrey"
-            app:queryHint="검색어를 입력해주세요." />
+            app:queryBackground="@drawable/background_search"
+            app:queryHint=" 이전곡을 입력해주세요."
+            />
 
         <TextView
             android:id="@+id/textView7"
@@ -58,6 +60,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7"
-            tools:listitem="@layout/item_recommend_list"/>
+            tools:listitem="@layout/item_before_song"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -13,6 +13,7 @@ import com.hanyeop.songforyou.databinding.FragmentBeforeSongSearchBinding
 import com.hanyeop.songforyou.model.response.SongResponse
 import com.hanyeop.songforyou.utils.SONG
 import com.hanyeop.songforyou.view.detail.SongDetailActivity
+import com.hanyeop.songforyou.view.search.BeforeSongSearchAdapter
 import com.hanyeop.songforyou.view.search.SongSearchAdapter
 import com.hanyeop.songforyou.view.search.SongSearchListener
 import com.hanyeop.songforyou.view.search.SongSearchViewModel
@@ -23,12 +24,12 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class BeforeSongSearchFragment : BaseFragment<FragmentBeforeSongSearchBinding>(R.layout.fragment_before_song_search) {
 
-    private lateinit var songSearchAdapter: SongSearchAdapter
+    private lateinit var songSearchAdapter: BeforeSongSearchAdapter
     private val songSearchViewModel by viewModels<SongSearchViewModel>()
     private val nextSongRecommendViewModel by activityViewModels<NextSongRecommendViewModel>()
 
     override fun init() {
-        songSearchAdapter = SongSearchAdapter(songSearchListener)
+        songSearchAdapter = BeforeSongSearchAdapter(songSearchListener)
 
         binding.apply {
             recyclerSearch.adapter = songSearchAdapter
